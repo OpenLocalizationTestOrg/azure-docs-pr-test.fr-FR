@@ -1,0 +1,69 @@
+---
+title: "Considérations de conception pour les identités hybrides aaaAzure Active Directory - déterminer les besoins de gestion de contenu | Documents Microsoft"
+description: "Permet de comprendre comment toodetermine hello les besoins de gestion de contenu de votre entreprise. Généralement lorsqu’un utilisateur possède son propre appareil qu’il devra peut-être également plusieurs informations d’identification en alternance conséquente application toohello qu’il utilise. Il est important toodifferentiate contenu qui a été créé à l’aide des informations d’identification personnelles et hello ceux créés à l’aide des informations d’identification d’entreprise. Votre solution d’identité doit être en mesure de toointeract avec tooprovide de services de cloud une expérience transparente toohello les utilisateurs lors de garantir sa confidentialité et de renforcer la protection de hello contre les fuites de données."
+documentationcenter: 
+services: active-directory
+author: billmath
+manager: femila
+editor: 
+ms.assetid: dd1ef776-db4d-4ab8-9761-2adaa5a4f004
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 07/18/2017
+ms.author: billmath
+ms.openlocfilehash: 607d366633c37b65ec5cf8ae5c64d73ca1cc96b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="determine-content-management-requirements-for-your-hybrid-identity-solution"></a><span data-ttu-id="a3b5b-106">Déterminer les exigences de gestion de contenu pour votre solution d'identité hybride</span><span class="sxs-lookup"><span data-stu-id="a3b5b-106">Determine content management requirements for your hybrid identity solution</span></span>
+<span data-ttu-id="a3b5b-107">Présentation des exigences de gestion de contenu hello pour votre entreprise peut diriger influencer votre décision sur le toouse de solution d’identité hybride.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-107">Understanding hello content management requirements for your business may direct affect your decision on which hybrid identity solution toouse.</span></span> <span data-ttu-id="a3b5b-108">Avec hello prolifération de plusieurs appareils et de la capacité de hello d’utilisateurs toobring leurs propres appareils ([BYOD](http://aka.ms/byodcg)), société de hello doit protéger ses propres données, mais il également doit préserver la confidentialité de l’utilisateur consécutifs.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-108">With hello proliferation of multiple devices and hello capability of users toobring their own devices ([BYOD](http://aka.ms/byodcg)), hello company must protect its own data but it also must keep user’s privacy intact.</span></span> <span data-ttu-id="a3b5b-109">Généralement lorsqu’un utilisateur possède son propre appareil qu’il devra peut-être également plusieurs informations d’identification en alternance conséquente application toohello qu’il utilise.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-109">Usually when a user has his own device he might have also multiple credentials that will be alternating according toohello application that he uses.</span></span> <span data-ttu-id="a3b5b-110">Il est important toodifferentiate contenu qui a été créé à l’aide des informations d’identification personnelles et hello ceux créés à l’aide des informations d’identification d’entreprise.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-110">It is important toodifferentiate what content was created using personal credentials versus hello ones created using corporate credentials.</span></span> <span data-ttu-id="a3b5b-111">Votre solution d’identité doit être en mesure de toointeract avec tooprovide de services de cloud une expérience transparente toohello les utilisateurs lors de garantir sa confidentialité et de renforcer la protection de hello contre les fuites de données.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-111">Your identity solution should be able toointeract with cloud services tooprovide a seamless experience toohello end user while ensure his privacy and increase hello protection against data leakage.</span></span> 
+
+<span data-ttu-id="a3b5b-112">Votre solution d’identité est exploitée par les différents contrôles techniques de gestion de contenu de commande tooprovide comme indiqué dans la figure hello ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="a3b5b-112">Your identity solution will be leveraged by different technical controls in order tooprovide content management as shown in hello figure below:</span></span>
+
+![](./media/hybrid-id-design-considerations/securitycontrols.png)
+
+<span data-ttu-id="a3b5b-113">**Contrôles de sécurité qui exploiteront votre système de gestion d'identité**</span><span class="sxs-lookup"><span data-stu-id="a3b5b-113">**Security controls that will be leveraging your identity management system**</span></span>
+
+<span data-ttu-id="a3b5b-114">En général, les exigences de gestion de contenu reposera sur votre système de gestion d’identité Bonjour suivant de zones :</span><span class="sxs-lookup"><span data-stu-id="a3b5b-114">In general, content management requirements will leverage your identity management system in hello following areas:</span></span>
+
+* <span data-ttu-id="a3b5b-115">Confidentialité : identifiant utilisateur hello qui possède une ressource et en appliquant l’intégrité de toomaintain hello contrôles appropriés.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-115">Privacy: identifying hello user that owns a resource and applying hello appropriate controls toomaintain integrity.</span></span>
+* <span data-ttu-id="a3b5b-116">Classification des données : identifier les utilisateur hello ou de groupe et de niveau de l’objet tooan d’accès en fonction de classification de tooits.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-116">Data Classification: identify hello user or group and level of access tooan object according tooits classification.</span></span> 
+* <span data-ttu-id="a3b5b-117">Protection contre la perte de données : les contrôles de sécurité incombe de protéger la fuite des données tooavoid devez toointeract avec hello identité système toovalidate hello identité de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-117">Data Leakage Protection: security controls responsible for protecting data tooavoid leakage will need toointeract with hello identity system toovalidate hello user’s identity.</span></span> <span data-ttu-id="a3b5b-118">Ceci est également important pour objectif de piste d'audit.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-118">This is also important for auditing trail purpose.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="a3b5b-119">Lire [Classification des données pour l'adoption du cloud](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) pour plus d'informations sur les meilleures pratiques et directives de classification des données.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-119">Read [data classification for cloud readiness](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) for more information about best practices and guidelines for data classification.</span></span>
+> 
+> 
+
+<span data-ttu-id="a3b5b-120">Lors de la planification de votre solution d’identité hybride Vérifiez que hello suivant questions sont traitées selon les besoins de l’organisation tooyour :</span><span class="sxs-lookup"><span data-stu-id="a3b5b-120">When planning your hybrid identity solution ensure that hello following questions are answered according tooyour organization’s requirements:</span></span>
+
+* <span data-ttu-id="a3b5b-121">Votre entreprise a-t-elle des contrôles de sécurité de la confidentialité des données tooenforce place ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-121">Does your company have security controls in place tooenforce data privacy?</span></span>
+  * <span data-ttu-id="a3b5b-122">Si Oui, ces contrôles de sécurité seront en mesure de toointegrate avec la solution d’identité hybride hello que vous êtes continu tooadopt ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-122">If yes, will those security controls be able toointegrate with hello hybrid identity solution that you are going tooadopt?</span></span>
+* <span data-ttu-id="a3b5b-123">Votre entreprise utilise-t-elle la classification des données ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-123">Does your company use data classification?</span></span>
+  * <span data-ttu-id="a3b5b-124">Si Oui, est hello actuel toointegrate en mesure de solution avec la solution d’identité hybride hello que vous êtes continu tooadopt ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-124">If yes, is hello current solution able toointegrate with hello hybrid identity solution that you are going tooadopt?</span></span>
+* <span data-ttu-id="a3b5b-125">Votre entreprise a-t-elle actuellement une solution contre la fuite de données ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-125">Does your company currently have any solution for data leakage?</span></span> 
+  * <span data-ttu-id="a3b5b-126">Si Oui, est hello actuel toointegrate en mesure de solution avec la solution d’identité hybride hello que vous êtes continu tooadopt ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-126">If yes, is hello current solution able toointegrate with hello hybrid identity solution that you are going tooadopt?</span></span>
+* <span data-ttu-id="a3b5b-127">Votre entreprise a-t-elle besoin tooaudit accès tooresources ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-127">Does your company need tooaudit access tooresources?</span></span>
+  * <span data-ttu-id="a3b5b-128">Si oui, de quel type de ressources ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-128">If yes, what type of resources?</span></span>
+  * <span data-ttu-id="a3b5b-129">Si oui, quel est le niveau d'information nécessaire ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-129">If yes, what level of information is necessary?</span></span>
+  * <span data-ttu-id="a3b5b-130">Si Oui, le journal d’audit de hello doit où résident ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-130">If yes, where hello audit log must reside?</span></span> <span data-ttu-id="a3b5b-131">Local ou dans le cloud de hello ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-131">On-premises or in hello cloud?</span></span>
+* <span data-ttu-id="a3b5b-132">Votre entreprise a-t-elle besoin tooencrypt d’e-mails qui contiennent des données sensibles (numéros de sécurité sociale, numéros de carte de crédit, etc.) ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-132">Does your company need tooencrypt any emails that contain sensitive data (SSNs, credit card numbers, etc)?</span></span>
+* <span data-ttu-id="a3b5b-133">Votre entreprise a-t-elle besoin tooencrypt tous les documents/contenu partagé avec les partenaires externes de l’entreprise ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-133">Does your company need tooencrypt all documents/contents shared with external business partners?</span></span>
+* <span data-ttu-id="a3b5b-134">Votre entreprise a-t-elle besoin tooenforce des stratégies d’entreprise sur certains types de messages électroniques (ne pas répondre à tous, ne pas transférer) ?</span><span class="sxs-lookup"><span data-stu-id="a3b5b-134">Does your company need tooenforce corporate policies on certain kinds of emails (do no reply all, do not forward)?</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="a3b5b-135">Notez que tootake de chacune des réponses et comprendre hello sous-tend hello.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-135">Make sure tootake notes of each answer and understand hello rationale behind hello answer.</span></span> <span data-ttu-id="a3b5b-136">[Définir la stratégie de Protection des données](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) passe en revue les options hello disponibles et les avantages et inconvénients de chaque option.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-136">[Define Data Protection Strategy](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) will go over hello options available and advantages/disadvantages of each option.</span></span>  <span data-ttu-id="a3b5b-137">En répondant à chacune de ces questions, vous sélectionnerez l’option correspondant le mieux à vos besoins métier.</span><span class="sxs-lookup"><span data-stu-id="a3b5b-137">By having answered those questions you will select which option best suits your business needs.</span></span>
+> 
+> 
+
+## <a name="next-steps"></a><span data-ttu-id="a3b5b-138">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="a3b5b-138">Next steps</span></span>
+[<span data-ttu-id="a3b5b-139">Déterminer les exigences de contrôle d’accès</span><span class="sxs-lookup"><span data-stu-id="a3b5b-139">Determine access control requirements</span></span>](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
+
+## <a name="see-also"></a><span data-ttu-id="a3b5b-140">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="a3b5b-140">See Also</span></span>
+[<span data-ttu-id="a3b5b-141">Présentation des considérations relatives à la conception</span><span class="sxs-lookup"><span data-stu-id="a3b5b-141">Design considerations overview</span></span>](active-directory-hybrid-identity-design-considerations-overview.md)
+

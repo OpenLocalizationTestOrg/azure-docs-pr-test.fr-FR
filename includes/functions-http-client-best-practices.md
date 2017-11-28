@@ -1,0 +1,4 @@
+> [!TIP]
+>
+> <span data-ttu-id="80b2c-101">Si vous envisagez d’utiliser les liaisons HTTP ou WebHook, prévoyez d’éviter l’épuisement du port qui peut résulter d’une instanciation incorrecte de `HttpClient`.</span><span class="sxs-lookup"><span data-stu-id="80b2c-101">If you plan to use the HTTP or WebHook bindings, plan to avoid port exhaustion that can be caused by improper instantiation of `HttpClient`.</span></span> <span data-ttu-id="80b2c-102">Pour plus d’informations, consultez l’article [antimodèle d’instanciation incorrecte](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span><span class="sxs-lookup"><span data-stu-id="80b2c-102">For more information, review the article [Improper Instantiation antipattern](https://docs.microsoft.com/en-us/azure/architecture/antipatterns/improper-instantiation/).</span></span>
+>

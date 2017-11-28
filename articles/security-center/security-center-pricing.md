@@ -1,0 +1,91 @@
+---
+title: Tarification de Security Center | Microsoft Docs
+description: "Cet article fournit des informations sur la tarification d’Azure Security Center."
+services: security-center
+documentationcenter: na
+author: TerryLanfear
+manager: MBaldwin
+editor: 
+ms.assetid: 4d1364cd-7847-425a-bb3a-722cb0779f78
+ms.service: security-center
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 06/16/2017
+ms.author: terrylan
+ms.openlocfilehash: 367b8f38cb9fcf3dc36db83641cb1696710608ef
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="azure-security-center-pricing"></a><span data-ttu-id="7c1c9-103">Tarification d’Azure Security Center</span><span class="sxs-lookup"><span data-stu-id="7c1c9-103">Azure Security Center pricing</span></span>
+<span data-ttu-id="7c1c9-104">Le Centre de sécurité Azure vous aide à prévenir, détecter et résoudre les menaces grâce à une visibilité et un contrôle accrus de la sécurité de vos ressources Azure.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-104">Azure Security Center helps you prevent, detect, and respond to threats with increased visibility into and control over the security of your Azure resources.</span></span> <span data-ttu-id="7c1c9-105">Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-105">It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with a broad ecosystem of security solutions.</span></span>
+
+## <a name="pricing-tiers"></a><span data-ttu-id="7c1c9-106">Niveaux de tarification</span><span class="sxs-lookup"><span data-stu-id="7c1c9-106">Pricing tiers</span></span>
+<span data-ttu-id="7c1c9-107">Security Center est proposé en deux niveaux :</span><span class="sxs-lookup"><span data-stu-id="7c1c9-107">Security Center is offered in two tiers:</span></span>
+
+* <span data-ttu-id="7c1c9-108">Le **niveau Gratuit** est automatiquement activé dans tous les abonnements Azure.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-108">The **Free tier** is automatically enabled on all Azure subscriptions.</span></span> <span data-ttu-id="7c1c9-109">Le niveau Gratuit vous permet de voir l’état de sécurité de vos ressources Azure, vos stratégies de sécurité de base, vos recommandations de sécurité, ainsi que l’intégration des produits et services de partenaires.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-109">The Free tier provides visibility into the security state of your Azure resources, basic security policy, security recommendations, and integration with security products and services from partners.</span></span>
+* <span data-ttu-id="7c1c9-110">Le **niveau Standard** fournit des fonctionnalités de détection avancée des menaces, notamment des informations sur les menaces, une analyse comportementale, une détection des anomalies, des informations sur les incidents de sécurité et des rapports d’évaluation des menaces.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-110">The **Standard tier** adds advanced threat detection capabilities, including threat intelligence, behavioral analysis, anomaly detection, security incidents, and threat assessment reports.</span></span> <span data-ttu-id="7c1c9-111">Le niveau Standard est gratuit les 60 premiers jours.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-111">The Standard tier is offered free for the first 60 days.</span></span>
+
+<span data-ttu-id="7c1c9-112">Pour plus d’informations, consultez la [page de tarification](https://azure.microsoft.com/pricing/details/security-center/) de Security Center.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-112">For more information, see the Security Center [pricing page](https://azure.microsoft.com/pricing/details/security-center/).</span></span>
+
+## <a name="try-standard-free-for-60-days"></a><span data-ttu-id="7c1c9-113">Essayer gratuitement le niveau Standard pendant 60 jours</span><span class="sxs-lookup"><span data-stu-id="7c1c9-113">Try Standard free for 60 days</span></span>
+<span data-ttu-id="7c1c9-114">Le niveau Standard est gratuit les 60 premiers jours.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-114">The Standard tier is offered free for the first 60 days.</span></span> <span data-ttu-id="7c1c9-115">Une fois ces 60 jours écoulés, si vous décidez de continuer à utiliser le service, votre utilisation est automatiquement facturée.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-115">At the end of 60 days, should you choose to continue using the service, we will automatically start charging for usage.</span></span>
+
+<span data-ttu-id="7c1c9-116">Pour obtenir le niveau Standard :</span><span class="sxs-lookup"><span data-stu-id="7c1c9-116">To get the Standard tier:</span></span>
+
+1. <span data-ttu-id="7c1c9-117">Dans le panneau **Centre de sécurité**, cliquez sur la vignette **Stratégie**.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-117">Select the **Policy** tile on the **Security Center** blade.</span></span>
+2. <span data-ttu-id="7c1c9-118">Sélectionnez l’abonnement que vous souhaitez mettre à niveau vers la version Standard.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-118">Select the subscription that you want to upgrade to Standard.</span></span>
+3. <span data-ttu-id="7c1c9-119">Dans le panneau **Stratégie de sécurité**, sélectionnez **Niveau tarifaire**.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-119">On the **Security policy** blade, select **Pricing tier**.</span></span>
+4. <span data-ttu-id="7c1c9-120">Dans le panneau **Choisir votre niveau tarifaire**, sélectionnez **Standard**.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-120">On the **Choose your pricing tier** blade, select **Standard**.</span></span>
+5. <span data-ttu-id="7c1c9-121">Cliquez sur **Sélectionner**.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-121">Click **Select**.</span></span>
+
+
+## <a name="why-upgrade-to-standard"></a><span data-ttu-id="7c1c9-122">Pourquoi passer au niveau Standard ?</span><span class="sxs-lookup"><span data-stu-id="7c1c9-122">Why upgrade to Standard?</span></span>
+<span data-ttu-id="7c1c9-123">Le niveau Standard de Security Center fournit toutes les fonctionnalités du niveau Gratuit, ainsi qu’une détection avancée des menaces.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-123">The Standard tier of Security Center provides all features of the Free tier plus advanced threat detection.</span></span> <span data-ttu-id="7c1c9-124">La détection avancée des menaces vous aide à identifier les menaces actives qui ciblent vos ressources Azure, et vous donne les informations nécessaires pour corriger rapidement le problème.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-124">Advanced threat detection helps identify active threats targeting your Azure resources and provides you with the insights needed to respond quickly.</span></span>
+
+<span data-ttu-id="7c1c9-125">Azure Security Center emploie des analyses de sécurité avancées allant bien au-delà des approches simplement basées sur la signature.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-125">Security Center employs advanced security analytics, which go far beyond signature-based approaches.</span></span> <span data-ttu-id="7c1c9-126">Les innovations en matière de Big Data et de technologies Machine Learning sont mises à profit pour évaluer des événements dans toute la structure du cloud, et permettent ainsi de détecter des menaces qui seraient impossibles à identifier à l’aide de méthodes manuelles et de prédire l’évolution des attaques.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-126">Breakthroughs in big data and machine learning technologies are used to evaluate events across the entire cloud fabric – detecting threats that would be impossible to identify using manual approaches and predicting the evolution of attacks.</span></span>
+
+<span data-ttu-id="7c1c9-127">Les fonctionnalités d’analyse de la sécurité fournies avec le niveau Standard sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="7c1c9-127">Security analytics that come with the Standard tier are:</span></span>
+
+* <span data-ttu-id="7c1c9-128">**Informations sur les menaces** : recherche les éléments malveillants en exploitant des informations globales concernant les menaces provenant de produits et services Microsoft, de Microsoft Digital Crimes Unit, de Microsoft Security Response Center et de sources externes.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-128">**Threat intelligence** - Looks for known bad actors by using global threat intelligence from Microsoft products and services, the Microsoft Digital Crimes Unit, the Microsoft Security Response Center, and external feeds</span></span>
+* <span data-ttu-id="7c1c9-129">**Analyse comportementale** : applique des modèles connus pour détecter les comportements malveillants.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-129">**Behavioral analysis** - Applies known patterns to discover malicious behavior</span></span>
+* <span data-ttu-id="7c1c9-130">**Détection des anomalies** : utilise le profilage statistique pour créer une ligne de base historique.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-130">**Anomaly detection** - Uses statistical profiling to build a historical baseline.</span></span> <span data-ttu-id="7c1c9-131">Il avertit sur les écarts par rapport aux lignes de base établies qui se conforment à un vecteur d’attaque potentielle.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-131">It alerts on deviations from established baselines that conform to a potential attack vector</span></span>
+
+<span data-ttu-id="7c1c9-132">Dans le panneau **Alertes de sécurité** ci-dessous, Security Center a détecté un **incident** de sécurité.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-132">In the **Security alerts** blade below, Security Center has detected a security **incident**.</span></span> <span data-ttu-id="7c1c9-133">Un incident de sécurité est un regroupement de toutes les alertes d’une ressource correspondant à des modèles de chaîne de destruction.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-133">A security incident is an aggregation of all alerts for a resource that align with kill chain patterns.</span></span> <span data-ttu-id="7c1c9-134">Quand vous sélectionnez un incident de sécurité, vous affichez des informations détaillées sur l’incident, ainsi que la liste des alertes associées.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-134">Selecting the security incident reveals more details about the incident and lists the related alerts.</span></span> <span data-ttu-id="7c1c9-135">Quand vous sélectionnez une alerte, vous affichez des informations supplémentaires sur celle-ci.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-135">Selecting an alert provides more information about that occurrence.</span></span>
+
+![Incident de sécurité][2]
+
+<span data-ttu-id="7c1c9-137">L’alerte **Communication réseau** ci-dessous fournit des informations détaillées sur l’alerte.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-137">The **Network communication** alert below provides details about the alert.</span></span> <span data-ttu-id="7c1c9-138">Ces informations incluent la description complète de l’alerte, son niveau de gravité, son état actuel (dans ce cas, l’alerte a été ignorée, ce qui implique que l’utilisateur a exécuté une action pour l’ignorer), la ressource attaquée, ainsi que les étapes de résolution.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-138">Details include its full description, its severity, its current state (which in this case is dismissed, meaning the user took action to dismiss it), the attacked resource, and remediation steps.</span></span> <span data-ttu-id="7c1c9-139">Elles comprennent également une liste de liens vers des rapports d’informations sur les menaces fournis par Microsoft.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-139">There is also a list of links to Microsoft Threat Intelligence reports.</span></span> <span data-ttu-id="7c1c9-140">Ces rapports peuvent être utilisés à des fins de protection et de résolution des problèmes de sécurité.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-140">These reports can be used for security remediation and defensive purposes.</span></span>
+
+![Détails des alertes de sécurité][3]
+
+## <a name="enable-data-collection"></a><span data-ttu-id="7c1c9-142">Activer la collecte des données</span><span class="sxs-lookup"><span data-stu-id="7c1c9-142">Enable data collection</span></span>
+<span data-ttu-id="7c1c9-143">Pour activer l’analyse comportementale des machines virtuelles, vous devez activer la collecte des données.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-143">To enable virtual machine behavioral analytics, data collection must be turned on.</span></span>
+
+<span data-ttu-id="7c1c9-144">Pour vérifier que la collecte des données est activée :</span><span class="sxs-lookup"><span data-stu-id="7c1c9-144">To validate that data collection is enabled:</span></span>
+
+1. <span data-ttu-id="7c1c9-145">Sélectionnez la vignette **Stratégie**.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-145">Select the **Policy** tile.</span></span> <span data-ttu-id="7c1c9-146">Le panneau **Stratégie de sécurité** s’ouvre et affiche la liste de vos abonnements Azure.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-146">The **Security policy** blade opens listing your Azure subscriptions.</span></span>
+2. <span data-ttu-id="7c1c9-147">Sélectionnez un abonnement.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-147">Select a subscription.</span></span>
+3. <span data-ttu-id="7c1c9-148">Si la **Collecte des données** est désactivée, activez-la, puis enregistrez la modification.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-148">If **Data collection** is off, change it to on and save the change.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="7c1c9-149">Si vous utilisez le niveau Gratuit d’Azure Security Center, vous pouvez désactiver la collecte de données à partir des machines virtuelles dans la stratégie de sécurité.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-149">If you are using Azure Security Center Free, you can disable data collection from virtual machines in the Security Policy.</span></span> <span data-ttu-id="7c1c9-150">La collecte de données est obligatoire pour les abonnements du niveau Standard.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-150">Data Collection is required for subscriptions on the Standard tier.</span></span>
+>
+>
+
+<span data-ttu-id="7c1c9-151">Pour plus d’informations, consultez [Activer la collecte des données dans Azure Security Center](security-center-enable-data-collection.md).</span><span class="sxs-lookup"><span data-stu-id="7c1c9-151">See [Enable data collection in Azure Security Center](security-center-enable-data-collection.md) for more information.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="7c1c9-152">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="7c1c9-152">Next steps</span></span>
+* <span data-ttu-id="7c1c9-153">Ce document vous a présenté la tarification de Security Center.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-153">In this document, you were introduced to pricing for Security Center.</span></span> <span data-ttu-id="7c1c9-154">Pour plus d’informations sur la tarification, consultez la [page de tarification](https://azure.microsoft.com/pricing/details/security-center/) de Security Center.</span><span class="sxs-lookup"><span data-stu-id="7c1c9-154">For additional pricing information, see the Security Center [pricing page](https://azure.microsoft.com/pricing/details/security-center/).</span></span>
+* <span data-ttu-id="7c1c9-155">Pour plus d’informations sur les fonctionnalités de détection avancée de Security Center, consultez [Fonctionnalités de détection d’Azure Security Center](security-center-detection-capabilities.md).</span><span class="sxs-lookup"><span data-stu-id="7c1c9-155">To learn more about Security Center’s advanced detection capabilities, see [Azure Security Center detection capabilities](security-center-detection-capabilities.md).</span></span>
+* <span data-ttu-id="7c1c9-156">Pour en savoir plus sur la gestion et la protection des données dans Security Center, consultez [Sécurité des données Azure Security Center](security-center-data-security.md).</span><span class="sxs-lookup"><span data-stu-id="7c1c9-156">To learn more about how data is managed and safeguarded in Security Center, see [Azure Security Center data security](security-center-data-security.md).</span></span>
+* <span data-ttu-id="7c1c9-157">Si vous avez des questions sur l’utilisation d’Azure Security Center, consultez le [FAQ d’Azure Security Center](security-center-faq.md).</span><span class="sxs-lookup"><span data-stu-id="7c1c9-157">If you have questions about using Security Center, see the [Azure Security Center FAQ](security-center-faq.md).</span></span>
+* <span data-ttu-id="7c1c9-158">Si vous avez des questions sur l’utilisation de Security Center ou d’Azure, consultez les [forums Azure](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc).</span><span class="sxs-lookup"><span data-stu-id="7c1c9-158">If you still have questions about using Security Center, or Azure, visit the [Azure Forums](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc).</span></span>
+
+<!--Image references-->
+[1]: ./media/security-center-pricing/standard.png
+[2]: ./media/security-center-pricing/incident.png
+[3]: ./media/security-center-pricing/network-alert.png

@@ -1,0 +1,10 @@
+
+| <span data-ttu-id="39747-101">Options de calcul</span><span class="sxs-lookup"><span data-stu-id="39747-101">Compute Options</span></span> | <span data-ttu-id="39747-102">Audience</span><span class="sxs-lookup"><span data-stu-id="39747-102">Audience</span></span> |
+| --- | --- |
+| <span data-ttu-id="39747-103">[App Service][lnk_app]</span><span class="sxs-lookup"><span data-stu-id="39747-103">[App Service][lnk_app]</span></span> |<span data-ttu-id="39747-104">Applications Web évolutives, applications mobiles, applications d’API et applications logiques pour n’importe quel appareil</span><span class="sxs-lookup"><span data-stu-id="39747-104">Scalable Web Apps, Mobile Apps, API Apps, and Logic Apps for any device</span></span> |
+| <span data-ttu-id="39747-105">[Services Cloud][lnk_cloud]</span><span class="sxs-lookup"><span data-stu-id="39747-105">[Cloud Services][lnk_cloud]</span></span> |<span data-ttu-id="39747-106">Applications cloud à N niveaux, hautement disponibles et évolutives avec plus de contrôle du système d'exploitation</span><span class="sxs-lookup"><span data-stu-id="39747-106">Highly available, scalable n-tier cloud apps with more control of the OS</span></span> |
+| <span data-ttu-id="39747-107">[Machines virtuelles][lnk_vm]</span><span class="sxs-lookup"><span data-stu-id="39747-107">[Virtual Machines][lnk_vm]</span></span> |<span data-ttu-id="39747-108">Machines virtuelles Windows et Linux personnalisées avec contrôle total du système d'exploitation</span><span class="sxs-lookup"><span data-stu-id="39747-108">Customized Windows and Linux VMs with complete control of the OS</span></span> |
+
+[lnk_app]: ../articles/app-service-web/app-service-web-overview.md
+[lnk_vm]:../articles/virtual-machines/windows/overview.md
+[lnk_cloud]: ../articles/cloud-services/cloud-services-choose-me.md

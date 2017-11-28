@@ -1,0 +1,3 @@
+> [!IMPORTANT]
+> <span data-ttu-id="49832-101">L’ID d’appareil étant potentiellement visible dans les journaux collectés à des fins de support technique et de dépannage, assurez-vous de ne pas utiliser d’informations sensibles en attribuant un nom à votre appareil.</span><span class="sxs-lookup"><span data-stu-id="49832-101">The device ID may be visible in the logs collected for customer support and troubleshooting, so make sure to avoid any sensitive information while naming it.</span></span>
+>

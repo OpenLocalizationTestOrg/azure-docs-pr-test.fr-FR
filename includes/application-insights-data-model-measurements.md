@@ -1,0 +1,17 @@
+<span data-ttu-id="4afba-101">Collection des mesures personnalisées.</span><span class="sxs-lookup"><span data-stu-id="4afba-101">Collection of custom measurements.</span></span> <span data-ttu-id="4afba-102">Utilisez cette collection pour présenter des mesures nommées associées à l’élément de télémétrie.</span><span class="sxs-lookup"><span data-stu-id="4afba-102">Use this collection to report named measurement associated with the telemetry item.</span></span> <span data-ttu-id="4afba-103">Les cas d’utilisation classiques sont :</span><span class="sxs-lookup"><span data-stu-id="4afba-103">Typical use cases are:</span></span>
+- <span data-ttu-id="4afba-104">la taille de charge utile de télémétrie des dépendances ;</span><span class="sxs-lookup"><span data-stu-id="4afba-104">the size of Dependency Telemetry payload</span></span>
+- <span data-ttu-id="4afba-105">le nombre d’éléments d’attente traités par la télémétrie des requêtes ;</span><span class="sxs-lookup"><span data-stu-id="4afba-105">the number of queue items processed by Request Telemetry</span></span>
+- <span data-ttu-id="4afba-106">le temps que prend le client pour compléter l’étape dans l’Assistant pour l’état d’achèvement Télémétrie d’événement.</span><span class="sxs-lookup"><span data-stu-id="4afba-106">time that customer took to complete the step in wizard step completion Event Telemetry.</span></span>
+
+<span data-ttu-id="4afba-107">Vous pouvez interroger les [mesures personnalisées](https://analytics.applicationinsights.io/demo?q=H4sIAAAAAAAAA2WLOw6DMAyGd07hZoLeoRPqyMaGGAL8aiPhGCV2kKoeHsHK%2Bj1myyr8LoiaqfrT%2FkUCzRft4LMl8OUeL3LuLLIx%2BxR%2BIF8%2BtcoiNq2o78vgWuFthQaJ1AeGGxt6UlBwKxa1qQ6EpLhAfQAAAA%3D%3D&timespan=PT24H) dans l’analyse des applications :</span><span class="sxs-lookup"><span data-stu-id="4afba-107">You can query [custom measurements](https://analytics.applicationinsights.io/demo?q=H4sIAAAAAAAAA2WLOw6DMAyGd07hZoLeoRPqyMaGGAL8aiPhGCV2kKoeHsHK%2Bj1myyr8LoiaqfrT%2FkUCzRft4LMl8OUeL3LuLLIx%2BxR%2BIF8%2BtcoiNq2o78vgWuFthQaJ1AeGGxt6UlBwKxa1qQ6EpLhAfQAAAA%3D%3D&timespan=PT24H) in Application Analytics:</span></span>
+
+```
+customEvents
+| where customMeasurements != ""
+| summarize avg(todouble(customMeasurements["Completion Time"]) * itemCount)
+```
+
+ > [!NOTE]
+ > <span data-ttu-id="4afba-108">Des mesures personnalisées sont associées à l’élément de télémétrie auquel elles appartiennent.</span><span class="sxs-lookup"><span data-stu-id="4afba-108">Custom measurements are associated with the telemetry item they belong to.</span></span> <span data-ttu-id="4afba-109">Elles sont soumises à un échantillonnage à l’aide de l’élément de télémétrie dans lequel ces mesures sont contenues.</span><span class="sxs-lookup"><span data-stu-id="4afba-109">They are subject to sampling with the telemetry item containing those measurements.</span></span> <span data-ttu-id="4afba-110">Pour effectuer le suivi d’une mesure dont la valeur est indépendante de tout autre type de données de télémétrie, utilisez [Télémétrie des mesures](../articles/application-insights/app-insights-api-custom-events-metrics.md).</span><span class="sxs-lookup"><span data-stu-id="4afba-110">To track a measurement that has a value independent from other telemetry types, use [Metric telemetry](../articles/application-insights/app-insights-api-custom-events-metrics.md).</span></span>
+
+<span data-ttu-id="4afba-111">Longueur maximale de clé  : 150</span><span class="sxs-lookup"><span data-stu-id="4afba-111">Max key length: 150</span></span>

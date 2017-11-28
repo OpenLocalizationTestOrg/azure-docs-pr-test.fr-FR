@@ -1,0 +1,73 @@
+---
+title: "Exemple de script Azure PowerShell - Chiffrement d’une machine virtuelle Windows | Microsoft Docs"
+description: "Exemple de script Azure PowerShell - Chiffrement d’une machine virtuelle Windows"
+services: virtual-machines-windows
+documentationcenter: virtual-machines
+author: iainfoulds
+manager: timlt
+editor: tysonn
+tags: azure-resource-manager
+ms.assetid: 
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: sample
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure
+ms.date: 06/02/2017
+ms.author: iainfou
+ms.openlocfilehash: 9279fea482fcd8716bcd996985e10f500a4775ce
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="encrypt-a-windows-virtual-machine-with-azure-powershell"></a><span data-ttu-id="e8538-103">Chiffrement d’une machine virtuelle Windows avec Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="e8538-103">Encrypt a Windows virtual machine with Azure PowerShell</span></span>
+
+<span data-ttu-id="e8538-104">Ce script crée une solution Key Vault sécurisée, des clés de chiffrement, un principal de service Azure Active Directory et une machine virtuelle Windows.</span><span class="sxs-lookup"><span data-stu-id="e8538-104">This script creates a secure Azure Key Vault, encryption keys, Azure Active Directory service principal, and a Windows virtual machine (VM).</span></span> <span data-ttu-id="e8538-105">La machine virtuelle est ensuite chiffrée à l’aide de la clé de chiffrement de Key Vault et des informations d’identification du principal de service.</span><span class="sxs-lookup"><span data-stu-id="e8538-105">The VM is then encrypted using the encryption key from Key Vault and service principal credentials.</span></span>
+
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
+
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+
+## <a name="sample-script"></a><span data-ttu-id="e8538-106">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="e8538-106">Sample script</span></span>
+
+<span data-ttu-id="e8538-107">[!code-powershell[main](../../../powershell_scripts/virtual-machine/encrypt-vm/encrypt-windows-vm.ps1 "Chiffrer des disques de machine virtuelle")]</span><span class="sxs-lookup"><span data-stu-id="e8538-107">[!code-powershell[main](../../../powershell_scripts/virtual-machine/encrypt-vm/encrypt-windows-vm.ps1 "Encrypt VM disks")]</span></span>
+
+## <a name="clean-up-deployment"></a><span data-ttu-id="e8538-108">Nettoyer le déploiement</span><span class="sxs-lookup"><span data-stu-id="e8538-108">Clean up deployment</span></span> 
+
+<span data-ttu-id="e8538-109">Exécutez la commande suivante pour supprimer le groupe de ressources, la machine virtuelle et toutes les ressources associées.</span><span class="sxs-lookup"><span data-stu-id="e8538-109">Run the following command to remove the resource group, VM, and all related resources.</span></span>
+
+```powershell
+Remove-AzureRmResourceGroup -Name myResourceGroup
+```
+
+## <a name="script-explanation"></a><span data-ttu-id="e8538-110">Explication du script</span><span class="sxs-lookup"><span data-stu-id="e8538-110">Script explanation</span></span>
+
+<span data-ttu-id="e8538-111">Ce script a recours aux commandes suivantes pour créer le déploiement.</span><span class="sxs-lookup"><span data-stu-id="e8538-111">This script uses the following commands to create the deployment.</span></span> <span data-ttu-id="e8538-112">Chaque élément du tableau renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="e8538-112">Each item in the table links to command specific documentation.</span></span>
+
+| <span data-ttu-id="e8538-113">Commande</span><span class="sxs-lookup"><span data-stu-id="e8538-113">Command</span></span> | <span data-ttu-id="e8538-114">Remarques</span><span class="sxs-lookup"><span data-stu-id="e8538-114">Notes</span></span> |
+|---|---|
+| [<span data-ttu-id="e8538-115">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="e8538-115">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="e8538-116">Crée un groupe de ressources dans lequel toutes les ressources sont stockées.</span><span class="sxs-lookup"><span data-stu-id="e8538-116">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="e8538-117">New-AzureRmKeyVault</span><span class="sxs-lookup"><span data-stu-id="e8538-117">New-AzureRmKeyVault</span></span>](/powershell/module/azurerm.keyvault/new-azurermkeyvault) | <span data-ttu-id="e8538-118">Crée une solution Key Vault pour stocker des données sécurisées, telles que des clés de chiffrement.</span><span class="sxs-lookup"><span data-stu-id="e8538-118">Creates an Azure Key Vault to store secure data such as encryption keys.</span></span> |
+| [<span data-ttu-id="e8538-119">Add-AzureKeyVaultKey</span><span class="sxs-lookup"><span data-stu-id="e8538-119">Add-AzureKeyVaultKey</span></span>](/powershell/module/azurerm.keyvault/add-azurekeyvaultkey) | <span data-ttu-id="e8538-120">Crée une clé de chiffrement dans Key Vault.</span><span class="sxs-lookup"><span data-stu-id="e8538-120">Creates an encryption key in Key Vault.</span></span> |
+| [<span data-ttu-id="e8538-121">New-AzureRmADServicePrincipal</span><span class="sxs-lookup"><span data-stu-id="e8538-121">New-AzureRmADServicePrincipal</span></span>](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) | <span data-ttu-id="e8538-122">Crée un principal de service Azure Active Directory pour authentifier et contrôler l’accès aux clés de chiffrement en toute sécurité.</span><span class="sxs-lookup"><span data-stu-id="e8538-122">Creates an Azure Active Directory service principal to securely authenticate and control access to encryption keys.</span></span> |
+| [<span data-ttu-id="e8538-123">Set-AzureRmKeyVaultAccessPolicy</span><span class="sxs-lookup"><span data-stu-id="e8538-123">Set-AzureRmKeyVaultAccessPolicy</span></span>](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) | <span data-ttu-id="e8538-124">Définit les autorisations sur Key Vault pour accorder au principal de service l’accès aux clés de chiffrement.</span><span class="sxs-lookup"><span data-stu-id="e8538-124">Sets permissions on the Key Vault to grant the service principal access to encryption keys.</span></span> |
+| [<span data-ttu-id="e8538-125">New-AzureRmVirtualNetworkSubnetConfig</span><span class="sxs-lookup"><span data-stu-id="e8538-125">New-AzureRmVirtualNetworkSubnetConfig</span></span>](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) | <span data-ttu-id="e8538-126">Crée une configuration de sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-126">Creates a subnet configuration.</span></span> <span data-ttu-id="e8538-127">Cette configuration est utilisée avec le processus de création du réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="e8538-127">This configuration is used with the virtual network creation process.</span></span> |
+| [<span data-ttu-id="e8538-128">New-AzureRmVirtualNetwork</span><span class="sxs-lookup"><span data-stu-id="e8538-128">New-AzureRmVirtualNetwork</span></span>](/powershell/module/azurerm.network/new-azurermvirtualnetwork) | <span data-ttu-id="e8538-129">Créer un réseau virtuel.</span><span class="sxs-lookup"><span data-stu-id="e8538-129">Creates a virtual network.</span></span> |
+| [<span data-ttu-id="e8538-130">New-AzureRmPublicIpAddress</span><span class="sxs-lookup"><span data-stu-id="e8538-130">New-AzureRmPublicIpAddress</span></span>](/powershell/module/azurerm.network/new-azurermpublicipaddress) | <span data-ttu-id="e8538-131">Crée une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="e8538-131">Creates a public IP address.</span></span> |
+| [<span data-ttu-id="e8538-132">New-AzureRmNetworkSecurityRuleConfig</span><span class="sxs-lookup"><span data-stu-id="e8538-132">New-AzureRmNetworkSecurityRuleConfig</span></span>](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig) | <span data-ttu-id="e8538-133">Crée une configuration de règle de groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-133">Creates a network security group rule configuration.</span></span> <span data-ttu-id="e8538-134">Cette configuration est utilisée pour créer une règle de groupe de sécurité réseau lors de la création d’un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-134">This configuration is used to create an NSG rule when the NSG is created.</span></span> |
+| [<span data-ttu-id="e8538-135">New-AzureRmNetworkSecurityGroup</span><span class="sxs-lookup"><span data-stu-id="e8538-135">New-AzureRmNetworkSecurityGroup</span></span>](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) | <span data-ttu-id="e8538-136">Crée un groupe de sécurité réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-136">Creates a network security group.</span></span> |
+| [<span data-ttu-id="e8538-137">Get-AzureRmVirtualNetworkSubnetConfig</span><span class="sxs-lookup"><span data-stu-id="e8538-137">Get-AzureRmVirtualNetworkSubnetConfig</span></span>](/powershell/module/azurerm.network/get-azurermvirtualnetworksubnetconfig) | <span data-ttu-id="e8538-138">Obtient les informations du sous-réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-138">Gets subnet information.</span></span> <span data-ttu-id="e8538-139">Ces informations sont utilisées lors de la création d’une interface réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-139">This information is used when creating a network interface.</span></span> |
+| [<span data-ttu-id="e8538-140">New-AzureRmNetworkInterface</span><span class="sxs-lookup"><span data-stu-id="e8538-140">New-AzureRmNetworkInterface</span></span>](/powershell/module/azurerm.network/new-azurermnetworkinterface) | <span data-ttu-id="e8538-141">Crée une interface réseau.</span><span class="sxs-lookup"><span data-stu-id="e8538-141">Creates a network interface.</span></span> |
+| [<span data-ttu-id="e8538-142">New-AzureRmVMConfig</span><span class="sxs-lookup"><span data-stu-id="e8538-142">New-AzureRmVMConfig</span></span>](/powershell/module/azurerm.compute/new-azurermvmconfig) | <span data-ttu-id="e8538-143">Crée une configuration de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="e8538-143">Creates a VM configuration.</span></span> <span data-ttu-id="e8538-144">Cette configuration inclut des informations telles que le nom de la machine virtuelle, le système d’exploitation et les informations d’identification d’administration.</span><span class="sxs-lookup"><span data-stu-id="e8538-144">This configuration includes information such as VM name, operating system, and administrative credentials.</span></span> <span data-ttu-id="e8538-145">La configuration est utilisée lors de la création de machines virtuelles.</span><span class="sxs-lookup"><span data-stu-id="e8538-145">The configuration is used during VM creation.</span></span> |
+| [<span data-ttu-id="e8538-146">New-AzureRmVM</span><span class="sxs-lookup"><span data-stu-id="e8538-146">New-AzureRmVM</span></span>](/powershell/module/azurerm.compute/new-azurermvm) | <span data-ttu-id="e8538-147">Création d’une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="e8538-147">Create a virtual machine.</span></span> |
+| [<span data-ttu-id="e8538-148">Get-AzureRmKeyVault</span><span class="sxs-lookup"><span data-stu-id="e8538-148">Get-AzureRmKeyVault</span></span>](/powershell/module/azurerm.keyvault/get-azurermkeyvault) | <span data-ttu-id="e8538-149">Obtient les informations requises sur Key Vault.</span><span class="sxs-lookup"><span data-stu-id="e8538-149">Gets required information on the Key Vault</span></span> |
+| [<span data-ttu-id="e8538-150">Set-AzureRmVMDiskEncryptionExtension</span><span class="sxs-lookup"><span data-stu-id="e8538-150">Set-AzureRmVMDiskEncryptionExtension</span></span>](/powershell/module/azurerm.compute/set-azurermvmdiskencryptionextension) | <span data-ttu-id="e8538-151">Active le chiffrement sur une machine virtuelle en utilisant les informations d’identification du principal de service et la clé de chiffrement.</span><span class="sxs-lookup"><span data-stu-id="e8538-151">Enables encryption on a VM using the service principal credentials and encryption key.</span></span> |
+| [<span data-ttu-id="e8538-152">Get-AzureRmVmDiskEncryptionStatus</span><span class="sxs-lookup"><span data-stu-id="e8538-152">Get-AzureRmVmDiskEncryptionStatus</span></span>](/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus) | <span data-ttu-id="e8538-153">Affiche l’état du processus de chiffrement de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="e8538-153">Shows the status of the VM encryption process.</span></span> |
+| [<span data-ttu-id="e8538-154">Remove-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="e8538-154">Remove-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | <span data-ttu-id="e8538-155">Supprime un groupe de ressources et toutes les ressources contenues.</span><span class="sxs-lookup"><span data-stu-id="e8538-155">Removes a resource group and all resources contained within.</span></span> |
+
+## <a name="next-steps"></a><span data-ttu-id="e8538-156">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e8538-156">Next steps</span></span>
+
+<span data-ttu-id="e8538-157">Pour plus d’informations sur le module Azure PowerShell, consultez [Documentation Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="e8538-157">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+
+<span data-ttu-id="e8538-158">Vous trouverez des exemples supplémentaires de scripts PowerShell de machine virtuelle dans la [documentation relative aux machines virtuelles Windows Azure](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="e8538-158">Additional virtual machine PowerShell script samples can be found in the [Azure Windows VM documentation](../windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>

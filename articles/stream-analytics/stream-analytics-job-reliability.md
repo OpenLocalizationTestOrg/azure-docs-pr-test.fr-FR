@@ -1,0 +1,34 @@
+---
+title: "Éviter les interruptions de service avec les travaux Azure Stream Analytics | Microsoft Docs"
+description: "Conseils pour rendre votre mise à niveau de travaux Stream Analytics résistante."
+services: stream-analytics
+documentationCenter: 
+authors: jeffstokes72
+manager: jhubbard
+editor: cgronlun
+ms.service: stream-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: data-services
+ms.date: 03/28/2017
+ms.author: jeffstok
+ms.openlocfilehash: 8dc19e1b37082c87d2990ad910d1af786f8b9280
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 07/11/2017
+---
+# <a name="guarantee-stream-analytics-job-reliability-during-service-updates"></a><span data-ttu-id="41ef4-103">Garantir la fiabilité des travaux Stream Analytics lors des mises à jour de service</span><span class="sxs-lookup"><span data-stu-id="41ef4-103">Guarantee Stream Analytics job reliability during service updates</span></span>
+
+<span data-ttu-id="41ef4-104">Un service entièrement géré se distingue notamment par sa capacité à introduire de nouvelles fonctionnalités et améliorations de service à un rythme rapide.</span><span class="sxs-lookup"><span data-stu-id="41ef4-104">Part of being a fully managed service is the capability to introduce new service functionality and improvements at a rapid pace.</span></span> <span data-ttu-id="41ef4-105">Par conséquent, Stream Analytics peut bénéficier d’un déploiement de mise à jour de service de manière hebdomadaire (ou plus fréquemment).</span><span class="sxs-lookup"><span data-stu-id="41ef4-105">As a result, Stream Analytics can have a service update deploy on a weekly (or more frequent) basis.</span></span> <span data-ttu-id="41ef4-106">Quel que soit le nombre de tests réalisés, il existe toujours un risque qu’un travail existant et en cours d’exécution cesse de fonctionner en raison de l’introduction d’un bogue.</span><span class="sxs-lookup"><span data-stu-id="41ef4-106">No matter how much testing is done there is still a risk that an existing, running job may break due to the introduction of a bug.</span></span> <span data-ttu-id="41ef4-107">Pour les clients qui exécutent des travaux de traitement critiques en continu, ces risques doivent être limités.</span><span class="sxs-lookup"><span data-stu-id="41ef4-107">For customers who run critical streaming processing jobs these risks need to be avoided.</span></span> <span data-ttu-id="41ef4-108">Pour réduire ce risque, les clients peuvent avoir recours à un mécanisme basé sur le modèle de **[région jumelée](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)** d’Azure.</span><span class="sxs-lookup"><span data-stu-id="41ef4-108">A mechanism customers can use to reduce this risk is Azure’s **[paired region](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)** model.</span></span> 
+
+## <a name="how-do-azure-paired-regions-address-this-concern"></a><span data-ttu-id="41ef4-109">Comment les régions jumelées d’Azure résolvent-elles ce problème ?</span><span class="sxs-lookup"><span data-stu-id="41ef4-109">How do Azure paired regions address this concern?</span></span>
+
+<span data-ttu-id="41ef4-110">Stream Analytics garantit que les travaux dans les régions jumelées sont mis à jour dans des lots distincts.</span><span class="sxs-lookup"><span data-stu-id="41ef4-110">Stream Analytics guarantees jobs in paired regions are updated in separate batches.</span></span> <span data-ttu-id="41ef4-111">Ainsi, il existe un écart de temps suffisant entre les mises à jour pour identifier les bogues potentiels et y remédier.</span><span class="sxs-lookup"><span data-stu-id="41ef4-111">As a result there is a sufficient time gap between the updates to identify potential breaking bugs and remediate them.</span></span>
+
+<span data-ttu-id="41ef4-112">_À l’exception du Centre de l’Inde_ (dont la région jumelée, Inde du Sud, ne prend pas en charge Stream Analytics), le déploiement d’une mise à jour sur Stream Analytics ne se produit pas en même temps dans un ensemble de régions jumelées.</span><span class="sxs-lookup"><span data-stu-id="41ef4-112">_With the exception of Central India_ (whose paired region, South India, does not have Stream Analytics presence), the deployment of an update to Stream Analytics would not occur at the same time in a set of paired regions.</span></span> <span data-ttu-id="41ef4-113">Les déploiements dans plusieurs régions **dans le même groupe** peuvent se produire **en même temps**.</span><span class="sxs-lookup"><span data-stu-id="41ef4-113">Deployments in multiple regions **in the same group** may occur **at the same time**.</span></span>
+
+<span data-ttu-id="41ef4-114">L’article sur **[la disponibilité et les régions jumelées](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)** contient les informations les plus récentes sur le jumelage des régions.</span><span class="sxs-lookup"><span data-stu-id="41ef4-114">The article on **[availability and paired regions](https://docs.microsoft.com/azure/best-practices-availability-paired-regions)** has the most up-to-date information on which regions are paired.</span></span>
+
+<span data-ttu-id="41ef4-115">Nous conseillons aux clients de déployer des travaux identiques sur les deux régions jumelées.</span><span class="sxs-lookup"><span data-stu-id="41ef4-115">Customers are advised to deploy identical jobs to both paired regions.</span></span> <span data-ttu-id="41ef4-116">Outre les fonctionnalités de surveillance interne de Stream Analytics, nous recommandons aux clients de surveiller les travaux comme si **les deux** étaient des travaux de production.</span><span class="sxs-lookup"><span data-stu-id="41ef4-116">In addition to Stream Analytics internal monitoring capabilities, customers are also advised to monitor the jobs as if **both** are production jobs.</span></span> <span data-ttu-id="41ef4-117">Si un arrêt survient suite à la mise à jour du service Stream Analytics, signalez l’incident de manière appropriée et basculez les consommateurs en aval sur la sortie de travail intègre.</span><span class="sxs-lookup"><span data-stu-id="41ef4-117">If a break is identified to be a result of the Stream Analytics service update, escalate appropriately and fail over any downstream consumers to the healthy job output.</span></span> <span data-ttu-id="41ef4-118">Le signalement à l’équipe de support permettra d’empêcher la région jumelée d’être affectée par le nouveau déploiement et de maintenir l’intégrité des travaux jumelés.</span><span class="sxs-lookup"><span data-stu-id="41ef4-118">Escalation to support will prevent the paired region from being affected by the new deployment and maintain the integrity of the paired jobs.</span></span>

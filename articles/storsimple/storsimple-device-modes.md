@@ -1,0 +1,94 @@
+---
+title: "mode de l’appareil StorSimple hello aaaChange | Documents Microsoft"
+description: "Décrit les modes du périphérique StorSimple hello et explique comment toouse Windows PowerShell pour StorSimple toochange hello mode de l’appareil."
+services: storsimple
+documentationcenter: 
+author: alkohli
+manager: carmonm
+editor: 
+ms.assetid: e9d7d277-8a2f-45eb-9fef-355486e14cbc
+ms.service: storsimple
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 06/17/2016
+ms.author: alkohli
+ms.openlocfilehash: 299fd380a83bcd06780c97937f4064f0791b440d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="change-hello-device-mode-on-your-storsimple-device"></a><span data-ttu-id="5b15d-103">Modifier le mode d’appareil hello sur votre appareil StorSimple</span><span class="sxs-lookup"><span data-stu-id="5b15d-103">Change hello device mode on your StorSimple device</span></span>
+<span data-ttu-id="5b15d-104">Cet article fournit une brève description de hello différents modes dans lesquels votre appareil StorSimple peut fonctionner.</span><span class="sxs-lookup"><span data-stu-id="5b15d-104">This article provides a brief description of hello various modes in which your StorSimple device can operate.</span></span> <span data-ttu-id="5b15d-105">Votre appareil StorSimple peut fonctionner dans trois modes : Normal, Maintenance et Récupération.</span><span class="sxs-lookup"><span data-stu-id="5b15d-105">Your StorSimple device can function in three modes: normal, maintenance, and recovery.</span></span> 
+
+<span data-ttu-id="5b15d-106">À la fin de cet article, vous :</span><span class="sxs-lookup"><span data-stu-id="5b15d-106">After reading this article, you will know:</span></span>
+
+* <span data-ttu-id="5b15d-107">Quels sont les modes du périphérique StorSimple hello</span><span class="sxs-lookup"><span data-stu-id="5b15d-107">What hello StorSimple device modes are</span></span>
+* <span data-ttu-id="5b15d-108">Comment toofigure quel mode hello appareil StorSimple est en</span><span class="sxs-lookup"><span data-stu-id="5b15d-108">How toofigure out which mode hello StorSimple device is in</span></span>
+* <span data-ttu-id="5b15d-109">Comment toochange du mode de toomaintenance normal et *inversement*</span><span class="sxs-lookup"><span data-stu-id="5b15d-109">How toochange from normal toomaintenance mode and *vice versa*</span></span>
+
+<span data-ttu-id="5b15d-110">Hello au-dessus des tâches de gestion ne peut être effectuée via l’interface Windows PowerShell de hello de votre appareil StorSimple.</span><span class="sxs-lookup"><span data-stu-id="5b15d-110">hello above management tasks can only be performed via hello Windows PowerShell interface of your StorSimple device.</span></span>
+
+## <a name="about-storsimple-device-modes"></a><span data-ttu-id="5b15d-111">À propos des modes de l’appareil StorSimple</span><span class="sxs-lookup"><span data-stu-id="5b15d-111">About StorSimple device modes</span></span>
+<span data-ttu-id="5b15d-112">Votre appareil StorSimple peut fonctionner en mode Normal, Maintenance ou Récupération.</span><span class="sxs-lookup"><span data-stu-id="5b15d-112">Your StorSimple device can operate in normal, maintenance, or recovery mode.</span></span> <span data-ttu-id="5b15d-113">Chacun de ces modes est brièvement décrit ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="5b15d-113">Each of these modes is briefly described below.</span></span>
+
+### <a name="normal-mode"></a><span data-ttu-id="5b15d-114">Mode Normal</span><span class="sxs-lookup"><span data-stu-id="5b15d-114">Normal mode</span></span>
+<span data-ttu-id="5b15d-115">Cela est défini comme mode de fonctionnement normal hello pour un appareil StorSimple entièrement configuré.</span><span class="sxs-lookup"><span data-stu-id="5b15d-115">This is defined as hello normal operational mode for a fully configured StorSimple device.</span></span> <span data-ttu-id="5b15d-116">Par défaut, votre appareil doit être en mode Normal.</span><span class="sxs-lookup"><span data-stu-id="5b15d-116">By default, your device should be in normal mode.</span></span>
+
+### <a name="maintenance-mode"></a><span data-ttu-id="5b15d-117">Mode Maintenance</span><span class="sxs-lookup"><span data-stu-id="5b15d-117">Maintenance mode</span></span>
+<span data-ttu-id="5b15d-118">Parfois hello appareil StorSimple peut-être toobe placé en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-118">Sometimes hello StorSimple device may need toobe placed into maintenance mode.</span></span> <span data-ttu-id="5b15d-119">Ce mode vous permet de tooperform maintenance sur l’appareil de hello et installer les mises à jour, telles que celles liées toodisk microprogramme.</span><span class="sxs-lookup"><span data-stu-id="5b15d-119">This mode allows you tooperform maintenance on hello device and install disruptive updates, such as those related toodisk firmware.</span></span>
+
+<span data-ttu-id="5b15d-120">Vous pouvez placer le système de hello en mode de maintenance uniquement via hello Windows PowerShell pour StorSimple.</span><span class="sxs-lookup"><span data-stu-id="5b15d-120">You can put hello system into maintenance mode only via hello Windows PowerShell for StorSimple.</span></span> <span data-ttu-id="5b15d-121">Dans ce mode, toutes les demandes d’E/S sont suspendues.</span><span class="sxs-lookup"><span data-stu-id="5b15d-121">All I/O requests are paused in this mode.</span></span> <span data-ttu-id="5b15d-122">Services tels que de mémoire vive non volatile (NVRAM) ou le service de cluster de hello sont également arrêtés.</span><span class="sxs-lookup"><span data-stu-id="5b15d-122">Services such as non-volatile random access memory (NVRAM) or hello clustering service are also stopped.</span></span> <span data-ttu-id="5b15d-123">Les deux contrôleurs hello sont redémarrés lorsque vous entrez ou quittez ce mode.</span><span class="sxs-lookup"><span data-stu-id="5b15d-123">Both hello controllers are restarted when you enter or exit this mode.</span></span> <span data-ttu-id="5b15d-124">Lorsque vous quittez le mode de maintenance hello, tous les services hello reprendront et doivent être sains.</span><span class="sxs-lookup"><span data-stu-id="5b15d-124">When you exit hello maintenance mode, all hello services will resume and should be healthy.</span></span> <span data-ttu-id="5b15d-125">Cela peut prendre quelques minutes.</span><span class="sxs-lookup"><span data-stu-id="5b15d-125">This may take a few minutes.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="5b15d-126">**Le mode Maintenance est uniquement pris en charge sur un appareil en état de fonctionnement. Il n’est pas pris en charge sur un périphérique dans lequel une ou les deux contrôleurs de hello ne fonctionnent pas.**
+> </span><span class="sxs-lookup"><span data-stu-id="5b15d-126">**Maintenance mode is only supported on a properly functioning device. It is not supported on a device in which one or both of hello controllers are not functioning.**
+</span></span></br>
+> 
+> 
+
+### <a name="recovery-mode"></a><span data-ttu-id="5b15d-127">Mode Récupération</span><span class="sxs-lookup"><span data-stu-id="5b15d-127">Recovery mode</span></span>
+<span data-ttu-id="5b15d-128">Le mode Récupération peut être décrit comme un « mode sans échec avec prise en charge du réseau Windows ».</span><span class="sxs-lookup"><span data-stu-id="5b15d-128">Recovery mode can be described as "Windows Safe Mode with network support".</span></span> <span data-ttu-id="5b15d-129">En mode de récupération s’engage équipe de Support technique de Microsoft hello et leur permet tooperform diagnostics sur le système de hello.</span><span class="sxs-lookup"><span data-stu-id="5b15d-129">Recovery mode engages hello Microsoft Support team and allows them tooperform diagnostics on hello system.</span></span> <span data-ttu-id="5b15d-130">Hello principal en mode de récupération vise les journaux système tooretrieve hello.</span><span class="sxs-lookup"><span data-stu-id="5b15d-130">hello primary goal of recovery mode is tooretrieve hello system logs.</span></span>
+
+<span data-ttu-id="5b15d-131">Si votre système passe en mode Récupération, vous devez contacter le support technique Microsoft pour les étapes suivantes.</span><span class="sxs-lookup"><span data-stu-id="5b15d-131">If your system goes into recovery mode, you should contact Microsoft Support for next steps.</span></span> <span data-ttu-id="5b15d-132">Pour plus d’informations, consultez trop[contactez le Support technique Microsoft](storsimple-contact-microsoft-support.md).</span><span class="sxs-lookup"><span data-stu-id="5b15d-132">For more information, go too[Contact Microsoft Support](storsimple-contact-microsoft-support.md).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="5b15d-133">**Impossible de placer les appareils hello en mode de récupération. Si l’appareil de hello est en mauvais état, en mode de récupération tente de périphérique de hello tooget dans un état dans lequel le personnel de Support technique de Microsoft peut l’examiner.**</span><span class="sxs-lookup"><span data-stu-id="5b15d-133">**You cannot place hello device in recovery mode. If hello device is in a bad state, recovery mode tries tooget hello device into a state in which Microsoft Support personnel can examine it.**</span></span>
+> 
+> 
+
+## <a name="determine-storsimple-device-mode"></a><span data-ttu-id="5b15d-134">Détermination du mode de l’appareil StorSimple</span><span class="sxs-lookup"><span data-stu-id="5b15d-134">Determine StorSimple device mode</span></span>
+#### <a name="toodetermine-hello-current-device-mode"></a><span data-ttu-id="5b15d-135">mode de périphérique en cours toodetermine hello</span><span class="sxs-lookup"><span data-stu-id="5b15d-135">toodetermine hello current device mode</span></span>
+1. <span data-ttu-id="5b15d-136">Ouvrez une session sur la console série du périphérique toohello en suivant les étapes de hello dans [console série du périphérique toohello tooconnect utilisez PuTTY](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span><span class="sxs-lookup"><span data-stu-id="5b15d-136">Log on toohello device serial console by following hello steps in [Use PuTTY tooconnect toohello device serial console](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span></span>
+2. <span data-ttu-id="5b15d-137">Examinez le message de bannière hello dans le menu de console série hello du périphérique de hello.</span><span class="sxs-lookup"><span data-stu-id="5b15d-137">Look at hello banner message in hello serial console menu of hello device.</span></span> <span data-ttu-id="5b15d-138">Ce message indique explicitement si l’appareil de hello est en mode de maintenance ou de récupération.</span><span class="sxs-lookup"><span data-stu-id="5b15d-138">This message explicitly indicates whether hello device is in maintenance or recovery mode.</span></span> <span data-ttu-id="5b15d-139">Si le message de type hello ne contient pas d’informations spécifiques concernant le mode du système toohello, appareil de hello est en mode normal.</span><span class="sxs-lookup"><span data-stu-id="5b15d-139">If hello message does not contain any specific information pertaining toohello system mode, hello device is in normal mode.</span></span>
+
+## <a name="change-hello-storsimple-device-mode"></a><span data-ttu-id="5b15d-140">Modifier le mode de l’appareil StorSimple hello</span><span class="sxs-lookup"><span data-stu-id="5b15d-140">Change hello StorSimple device mode</span></span>
+<span data-ttu-id="5b15d-141">Vous pouvez placer l’appareil StorSimple hello dans la maintenance de maintenance mode (mode normal) tooperform ou installer des mises à jour du mode de maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-141">You can place hello StorSimple device into maintenance mode (from normal mode) tooperform maintenance or install maintenance mode updates.</span></span> <span data-ttu-id="5b15d-142">Effectuer hello suivant les procédures tooenter ou sortie en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-142">Perform hello following procedures tooenter or exit maintenance mode.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="5b15d-143">Avant de passer en mode maintenance, vérifiez que les deux contrôleurs d’appareil sont intègres en accédant à hello **état du matériel** sur hello **Maintenance** page Bonjour portail Azure classic.</span><span class="sxs-lookup"><span data-stu-id="5b15d-143">Before entering maintenance mode, verify that both device controllers are healthy by accessing hello **Hardware Status** on hello **Maintenance** page in hello Azure classic portal.</span></span> <span data-ttu-id="5b15d-144">Si un ou les deux contrôleurs de hello ne sont pas sains, contactez le Support Microsoft pour les étapes suivantes de hello.</span><span class="sxs-lookup"><span data-stu-id="5b15d-144">If one or both hello controllers are not healthy, contact Microsoft Support for hello next steps.</span></span> <span data-ttu-id="5b15d-145">Pour plus d’informations, consultez trop[contactez le Support technique Microsoft](storsimple-contact-microsoft-support.md).</span><span class="sxs-lookup"><span data-stu-id="5b15d-145">For more information, go too[Contact Microsoft Support](storsimple-contact-microsoft-support.md).</span></span>
+> 
+> 
+
+#### <a name="tooenter-maintenance-mode"></a><span data-ttu-id="5b15d-146">mode de maintenance tooenter</span><span class="sxs-lookup"><span data-stu-id="5b15d-146">tooenter maintenance mode</span></span>
+1. <span data-ttu-id="5b15d-147">Ouvrez une session sur la console série du périphérique toohello en suivant les étapes de hello dans [console série du périphérique toohello tooconnect utilisez PuTTY](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span><span class="sxs-lookup"><span data-stu-id="5b15d-147">Log on toohello device serial console by following hello steps in [Use PuTTY tooconnect toohello device serial console](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).</span></span>
+2. <span data-ttu-id="5b15d-148">Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet**.</span><span class="sxs-lookup"><span data-stu-id="5b15d-148">In hello serial console menu, choose option 1, **Log in with full access**.</span></span> <span data-ttu-id="5b15d-149">Lorsque vous y êtes invité, fournissez hello **mot de passe administrateur**.</span><span class="sxs-lookup"><span data-stu-id="5b15d-149">When prompted, provide hello **device administrator password**.</span></span> <span data-ttu-id="5b15d-150">mot de passe Hello : `Password1`.</span><span class="sxs-lookup"><span data-stu-id="5b15d-150">hello default password is: `Password1`.</span></span>
+3. <span data-ttu-id="5b15d-151">À l’invite de commandes hello, tapez</span><span class="sxs-lookup"><span data-stu-id="5b15d-151">At hello command prompt, type</span></span> 
+   
+    `Enter-HcsMaintenanceMode`
+4. <span data-ttu-id="5b15d-152">Vous verrez un message d’avertissement indiquant que le mode maintenance s’interrompre toutes les demandes d’e/s serveur hello connexion toohello portail Azure classic et vous serez invité à confirmer l’opération.</span><span class="sxs-lookup"><span data-stu-id="5b15d-152">You will see a warning message telling you that maintenance mode will disrupt all I/O requests and sever hello connection toohello Azure classic portal, and you will be prompted for confirmation.</span></span> <span data-ttu-id="5b15d-153">Type **Y** tooenter le mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-153">Type **Y** tooenter maintenance mode.</span></span>
+5. <span data-ttu-id="5b15d-154">Les deux contrôleurs redémarrent.</span><span class="sxs-lookup"><span data-stu-id="5b15d-154">Both controllers will restart.</span></span> <span data-ttu-id="5b15d-155">Lorsque le redémarrage de hello est terminée, un autre message s’affiche, indiquant que ce périphérique hello est en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-155">When hello restart is complete, another message will appear indicating that hello device is in maintenance mode.</span></span>
+
+#### <a name="tooexit-maintenance-mode"></a><span data-ttu-id="5b15d-156">mode de maintenance tooexit</span><span class="sxs-lookup"><span data-stu-id="5b15d-156">tooexit maintenance mode</span></span>
+1. <span data-ttu-id="5b15d-157">Ouvrez une session sur la console série du périphérique toohello.</span><span class="sxs-lookup"><span data-stu-id="5b15d-157">Log on toohello device serial console.</span></span> <span data-ttu-id="5b15d-158">Vérifiez à partir du message de bannière hello que votre appareil est en mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-158">Verify from hello banner message that your device is in maintenance mode.</span></span>
+2. <span data-ttu-id="5b15d-159">À l’invite de commandes hello, tapez :</span><span class="sxs-lookup"><span data-stu-id="5b15d-159">At hello command prompt, type:</span></span>
+   
+    `Exit-HcsMaintenanceMode`
+3. <span data-ttu-id="5b15d-160">Un message d’avertissement et un message de confirmation s’affichent.</span><span class="sxs-lookup"><span data-stu-id="5b15d-160">A warning message and a confirmation message will appear.</span></span> <span data-ttu-id="5b15d-161">Type **Y** tooexit le mode maintenance.</span><span class="sxs-lookup"><span data-stu-id="5b15d-161">Type **Y** tooexit maintenance mode.</span></span>
+4. <span data-ttu-id="5b15d-162">Les deux contrôleurs redémarrent.</span><span class="sxs-lookup"><span data-stu-id="5b15d-162">Both controllers will restart.</span></span> <span data-ttu-id="5b15d-163">Lorsque le redémarrage de hello est terminée, un autre message s’affiche, indiquant que ce périphérique hello est en mode normal.</span><span class="sxs-lookup"><span data-stu-id="5b15d-163">When hello restart is complete, another message will appear indicating that hello device is in normal mode.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="5b15d-164">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="5b15d-164">Next steps</span></span>
+<span data-ttu-id="5b15d-165">Découvrez comment trop[appliquer les mises à jour de mode normal et de maintenance](storsimple-update-device.md) sur votre appareil StorSimple.</span><span class="sxs-lookup"><span data-stu-id="5b15d-165">Learn how too[apply normal and maintenance mode updates](storsimple-update-device.md) on your StorSimple device.</span></span>
+

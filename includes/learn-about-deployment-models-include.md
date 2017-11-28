@@ -1,0 +1,2 @@
+> [!IMPORTANT]
+> <span data-ttu-id="c0f77-101">Avant d’utiliser des ressources Azure, familiarisez-vous avec les modèles de déploiement : [Resource Manager et classique](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="c0f77-101">Before you work with Azure resources, get familiar with the deployment models: [Resource Manager, and classic](../articles/azure-resource-manager/resource-manager-deployment-model.md).</span></span>

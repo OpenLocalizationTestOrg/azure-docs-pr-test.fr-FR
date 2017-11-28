@@ -1,0 +1,10 @@
+
+<!--author=SharS last changed: 11/06/15-->
+
+#### <a name="to-delete-a-storsimple-backup-policy"></a><span data-ttu-id="f8ab4-101">Pour supprimer une stratégie de sauvegarde StorSimple</span><span class="sxs-lookup"><span data-stu-id="f8ab4-101">To delete a StorSimple backup policy</span></span>
+1. <span data-ttu-id="f8ab4-102">Sur la page **Démarrage rapide**, cliquez sur l’onglet **Stratégies de sauvegarde**.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-102">On the device **Quick Start** page, click the **Backup Policies** tab.</span></span> <span data-ttu-id="f8ab4-103">La page **Stratégies de sauvegarde** s’affiche.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-103">This will take you to the **Backup Policies** page.</span></span>
+2. <span data-ttu-id="f8ab4-104">Sélectionnez la stratégie en cliquant n’importe où dans la ligne correspondante, à l’exception de la première colonne, puis cliquez sur **Supprimer** en bas de la page.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-104">Select the policy by clicking anywhere in the corresponding row except for the first column, and then click **Delete** at the bottom of the page.</span></span>
+3. <span data-ttu-id="f8ab4-105">Vous êtes invité à confirmer l’opération.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-105">You will be prompted for confirmation.</span></span> <span data-ttu-id="f8ab4-106">N’oubliez pas que la suppression d’une stratégie de sauvegarde entraîne celle de toutes les sauvegardes associées.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-106">Keep in mind that deleting a backup policy will delete all the associated backups.</span></span> <span data-ttu-id="f8ab4-107">Cliquez sur **Oui** pour supprimer.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-107">Click **Yes** to delete.</span></span>
+
+<span data-ttu-id="f8ab4-108">La page **Stratégies de sauvegarde** affiche la nouvelle liste des stratégies.</span><span class="sxs-lookup"><span data-stu-id="f8ab4-108">The **Backup Policies** page will be updated to display the new list of policies.</span></span>
+

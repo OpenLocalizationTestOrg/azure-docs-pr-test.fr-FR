@@ -1,0 +1,93 @@
+---
+title: "aaaManage les alertes de sécurité dans le centre de sécurité Azure | Documents Microsoft"
+description: "Ce document vous aide à vous toouse Azure Security Center fonctionnalités toomanage et répond toosecurity alertes."
+services: security-center
+documentationcenter: na
+author: YuriDio
+manager: mbaldwin
+editor: 
+ms.assetid: b88a8df7-6979-479b-8039-04da1b8737a7
+ms.service: security-center
+ms.topic: hero-article
+ms.devlang: na
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/19/2017
+ms.author: yurid
+ms.openlocfilehash: f1cb7e4770776827b75ed15893914678c1f44216
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="managing-and-responding-toosecurity-alerts-in-azure-security-center"></a><span data-ttu-id="b3cf5-103">La gestion et de répondre toosecurity des alertes dans le centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="b3cf5-103">Managing and responding toosecurity alerts in Azure Security Center</span></span>
+<span data-ttu-id="b3cf5-104">Ce document vous permet d’utiliser le centre de sécurité Azure toomanage et répondre toosecurity alertes.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-104">This document helps you use Azure Security Center toomanage and respond toosecurity alerts.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="b3cf5-105">détections de tooenable avancé, mise à niveau tooAzure Security Center Standard.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-105">tooenable advanced detections, upgrade tooAzure Security Center Standard.</span></span> <span data-ttu-id="b3cf5-106">Une version d’évaluation gratuite de 60 jours est disponible.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-106">A free 60-day trial is available.</span></span> <span data-ttu-id="b3cf5-107">tooupgrade, sélectionnez niveau tarifaire Bonjour [stratégie de sécurité](security-center-policies.md).</span><span class="sxs-lookup"><span data-stu-id="b3cf5-107">tooupgrade, select Pricing Tier in hello [Security Policy](security-center-policies.md).</span></span> <span data-ttu-id="b3cf5-108">Consultez [tarification d’Azure Security Center](security-center-pricing.md) toolearn plus.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-108">See [Azure Security Center pricing](security-center-pricing.md) toolearn more.</span></span>
+>
+>
+
+## <a name="what-are-security-alerts"></a><span data-ttu-id="b3cf5-109">Que sont les alertes de sécurité ?</span><span class="sxs-lookup"><span data-stu-id="b3cf5-109">What are security alerts?</span></span>
+<span data-ttu-id="b3cf5-110">Centre de sécurité automatiquement collecte, analyse et intègre des données de journal à partir de vos ressources Azure, le réseau de hello et les solutions de partenaire, tels que des solutions de protection pare-feu et de point de terminaison, les menaces réelles toodetect connectées et réduire les faux positifs.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-110">Security Center automatically collects, analyzes, and integrates log data from your Azure resources, hello network, and connected partner solutions, like firewall and endpoint protection solutions, toodetect real threats and reduce false positives.</span></span> <span data-ttu-id="b3cf5-111">Une liste des alertes de sécurité hiérarchisée est indiquée dans le centre de sécurité, ainsi que de hello informations dont vous avez besoin tooquickly examiner le problème de hello et des recommandations sur la manière tooremediate une attaque.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-111">A list of prioritized security alerts is shown in Security Center along with hello information you need tooquickly investigate hello problem and recommendations for how tooremediate an attack.</span></span>
+
+
+> [!NOTE]
+> <span data-ttu-id="b3cf5-112">Pour plus d’informations sur le fonctionnement des fonctionnalités de détection de Security Center, consultez [Fonctionnalités de détection d’Azure Security Center](security-center-detection-capabilities.md).</span><span class="sxs-lookup"><span data-stu-id="b3cf5-112">For more information about how Security Center detection capabilities work, read [Azure Security Center Detection Capabilities](security-center-detection-capabilities.md).</span></span>
+>
+>
+
+## <a name="managing-security-alerts"></a><span data-ttu-id="b3cf5-113">Gestion des alertes de sécurité</span><span class="sxs-lookup"><span data-stu-id="b3cf5-113">Managing security alerts</span></span>
+<span data-ttu-id="b3cf5-114">Vous pouvez consulter vos alertes en cours en examinant hello **alertes de sécurité** vignette.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-114">You can review your current alerts by looking at hello **Security alerts** tile.</span></span> <span data-ttu-id="b3cf5-115">Ouvrez le portail Azure et suivez les étapes de hello ci-dessous toosee plus de détails sur chaque alerte :</span><span class="sxs-lookup"><span data-stu-id="b3cf5-115">Open Azure Portal and follow hello steps below toosee more details about each alert:</span></span>
+
+1. <span data-ttu-id="b3cf5-116">Tableau de bord du centre de sécurité hello, vous verrez hello **alertes de sécurité** vignette.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-116">On hello Security Center dashboard, you will see hello **Security alerts** tile.</span></span>
+
+    ![Vignette Alertes de sécurité dans le Centre de sécurité](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig1-ga.png)
+
+2. <span data-ttu-id="b3cf5-118">Cliquez sur Bonjour vignette tooopen Bonjour **alertes de sécurité** panneau qui contient plus de détails sur hello alertes comme indiqué ci-dessous.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-118">Click hello tile tooopen hello **Security alerts** blade that contains more details about hello alerts as shown below.</span></span>
+
+   ![panneau d’alertes de sécurité Hello dans le centre de sécurité](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig2-ga.png)
+
+<span data-ttu-id="b3cf5-120">Dans la partie inférieure de hello de ce panneau sont détails hello pour chaque alerte.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-120">In hello bottom part of this blade are hello details for each alert.</span></span> <span data-ttu-id="b3cf5-121">toosort, cliquez sur la colonne que vous souhaitez toosort par hello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-121">toosort, click hello column that you want toosort by.</span></span> <span data-ttu-id="b3cf5-122">définition de Hello pour chaque colonne est donnée ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="b3cf5-122">hello definition for each column is given below:</span></span>
+
+* <span data-ttu-id="b3cf5-123">**Description**: une brève explication de l’alerte de hello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-123">**Description**: A brief explanation of hello alert.</span></span>
+* <span data-ttu-id="b3cf5-124">**Nombre**: liste de toutes les alertes d’un type spécifique qui ont été détectées un jour précis.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-124">**Count**: A list of all alerts of this specific type that were detected on a specific day.</span></span>
+* <span data-ttu-id="b3cf5-125">**Détecté par**: hello service qui a été chargé de déclencher l’alerte de hello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-125">**Detected by**: hello service that was responsible for triggering hello alert.</span></span>
+* <span data-ttu-id="b3cf5-126">**Date**: hello date cet événement hello s’est produite.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-126">**Date**: hello date that hello event occurred.</span></span>
+* <span data-ttu-id="b3cf5-127">**État**: hello l’état actuel de cette alerte.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-127">**State**: hello current state for that alert.</span></span> <span data-ttu-id="b3cf5-128">Il existe deux types d’état :</span><span class="sxs-lookup"><span data-stu-id="b3cf5-128">There are two types of states:</span></span>
+  * <span data-ttu-id="b3cf5-129">**Active**: alerte de sécurité hello a été détectée.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-129">**Active**: hello security alert has been detected.</span></span>
+* <span data-ttu-id="b3cf5-130">**Gravité**: niveau de gravité hello, qui peut être élevée, moyenne ou faible.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-130">**Severity**: hello severity level, which can be high, medium or low.</span></span>
+
+### <a name="filtering-alerts"></a><span data-ttu-id="b3cf5-131">Filtrage des alertes</span><span class="sxs-lookup"><span data-stu-id="b3cf5-131">Filtering alerts</span></span>
+<span data-ttu-id="b3cf5-132">Vous pouvez filtrer les alertes en fonction de la date, de l’état et du niveau de gravité.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-132">You can filter alerts based on date, state, and severity.</span></span> <span data-ttu-id="b3cf5-133">Filtrer les alertes peut être utile pour les scénarios où vous avez besoin d’étendue de hello toonarrow d’afficher des alertes de sécurité.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-133">Filtering alerts can be useful for scenarios where you need toonarrow hello scope of security alerts show.</span></span> <span data-ttu-id="b3cf5-134">Par exemple, vous pouvez vous tooaddress les alertes de sécurité s’est produite dans hello des dernières 24 heures, car vous examinez une violation potentielle dans le système de hello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-134">For example, you might you want tooaddress security alerts that occurred in hello last 24 hours because you are investigating a potential breach in hello system.</span></span>
+
+1. <span data-ttu-id="b3cf5-135">Cliquez sur **filtre** sur hello **alertes de sécurité** panneau.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-135">Click **Filter** on hello **Security Alerts** blade.</span></span> <span data-ttu-id="b3cf5-136">Hello **filtre** panneau s’ouvre et vous sélectionnez hello, état, gravité valeurs de date et vous souhaitez toosee.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-136">hello **Filter** blade opens and you select hello date, state, and severity values you wish toosee.</span></span>
+
+    ![Filtrage des alertes dans le Centre de sécurité](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig3-2017.png)
+
+### <a name="respond-toosecurity-alerts"></a><span data-ttu-id="b3cf5-138">Alertes répondent toosecurity</span><span class="sxs-lookup"><span data-stu-id="b3cf5-138">Respond toosecurity alerts</span></span>
+<span data-ttu-id="b3cf5-139">Sélectionnez un toolearn d’alerte de sécurité plus sur les événements hello ayant déclenché l’alerte de hello et, si elle existe, les étapes doivent tootake tooremediate une attaque.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-139">Select a security alert toolearn more about hello event(s) that triggered hello alert and what, if any, steps you need tootake tooremediate an attack.</span></span> <span data-ttu-id="b3cf5-140">Les alertes de sécurité sont regroupées par type et date d’apparition.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-140">Security alerts are grouped by type and date.</span></span> <span data-ttu-id="b3cf5-141">En cliquant sur une alerte de sécurité pour ouvrir un panneau contenant une liste d’alertes de hello regroupée.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-141">Clicking a security alert will open a blade containing a list of hello grouped alerts.</span></span>
+
+![Répondre toosecurity des alertes dans le centre de sécurité Azure](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig5-ga.png)
+
+<span data-ttu-id="b3cf5-143">Dans ce cas, les alertes hello qui ont été déclenchées reportez-vous toosuspicious activité du protocole RDP (Remote Desktop).</span><span class="sxs-lookup"><span data-stu-id="b3cf5-143">In this case, hello alerts that were triggered refer toosuspicious Remote Desktop Protocol (RDP) activity.</span></span> <span data-ttu-id="b3cf5-144">Hello première colonne affiche les ressources qui ont été attaquées ; Ensuite, Hello montre combien de fois les ressources hello a été attaqué ; Hello troisième affiche hello d’attaque de hello ; Hello affiche quatrième état d’alerte de hello ; et hello cinquième gravité hello d’attaque de hello s’affiche.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-144">hello first column shows which resources were attacked; hello second shows how many times hello resource was attacked; hello third shows hello time of hello attack; hello fourth shows state of hello alert; and hello fifth shows hello severity of hello attack.</span></span> <span data-ttu-id="b3cf5-145">Après avoir examiné ces informations, cliquez sur ressources hello qui a été attaqué, et un nouveau panneau s’ouvre.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-145">After reviewing this information, click hello resource that was attacked and a new blade will open.</span></span>
+
+![Suggestions pour le toodo sur la sécurité des alertes dans le centre de sécurité Azure](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig6-ga.png)
+
+<span data-ttu-id="b3cf5-147">Bonjour **Description** champ de ce panneau vous trouverez plus de détails sur cet événement.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-147">In hello **Description** field of this blade you will find more details about this event.</span></span> <span data-ttu-id="b3cf5-148">Ces détails supplémentaires offrent idée quelles hello déclenchées sécurité alerte, hello ressource cible, lors de l’hello applicable adresse IP source et des recommandations sur la façon de tooremediate.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-148">These additional details offer insight into what triggered hello security alert, hello target resource, when applicable hello source IP address, and recommendations about how tooremediate.</span></span>  <span data-ttu-id="b3cf5-149">Dans certains cas, adresse IP de source hello est vide (non disponible), car tous les journaux d’événements de sécurité Windows incluent l’adresse IP de hello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-149">In some instances, hello source IP address will be empty (not available) because not all Windows security events logs include hello IP address.</span></span>
+
+<span data-ttu-id="b3cf5-150">mise à jour Hello suggérée par le centre de sécurité varient conséquente alerte de sécurité toohello.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-150">hello remediation suggested by Security Center will vary according toohello security alert.</span></span> <span data-ttu-id="b3cf5-151">Dans certains cas, vous avez peut-être toouse autres tooimplement fonctionnalités Azure hello recommandé de mise à jour.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-151">In some cases, you may have toouse other Azure capabilities tooimplement hello recommended remediation.</span></span> <span data-ttu-id="b3cf5-152">Hello, par exemple, mise à jour pour ce type d’attaque est tooblacklist hello adresse qui génère cette attaque à l’aide un [réseau ACL](../virtual-network/virtual-networks-acl.md) ou un [groupe de sécurité réseau](../virtual-network/virtual-networks-nsg.md) règle.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-152">For example, hello remediation for this attack is tooblacklist hello IP address that is generating this attack by using a [network ACL](../virtual-network/virtual-networks-acl.md) or a [network security group](../virtual-network/virtual-networks-nsg.md) rule.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="b3cf5-153">Pour plus d’informations sur hello différents types d’alertes, consultez [les alertes de sécurité par Type dans le centre de sécurité Azure](security-center-alerts-type.md).</span><span class="sxs-lookup"><span data-stu-id="b3cf5-153">For more information on hello different types of alerts, read [Security Alerts by Type in Azure Security Center](security-center-alerts-type.md).</span></span>
+>
+>
+
+## <a name="see-also"></a><span data-ttu-id="b3cf5-154">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="b3cf5-154">See also</span></span>
+<span data-ttu-id="b3cf5-155">Dans ce document, vous avez appris comment tooconfigure des stratégies de sécurité dans le centre de sécurité.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-155">In this document, you learned how tooconfigure security policies in Security Center.</span></span> <span data-ttu-id="b3cf5-156">toolearn en savoir plus sur le centre de sécurité, voir hello :</span><span class="sxs-lookup"><span data-stu-id="b3cf5-156">toolearn more about Security Center, see hello following:</span></span>
+
+* [<span data-ttu-id="b3cf5-157">Gestion des incidents de sécurité dans Azure Security Center</span><span class="sxs-lookup"><span data-stu-id="b3cf5-157">Handling Security Incident in Azure Security Center</span></span>](security-center-incident.md)
+* [<span data-ttu-id="b3cf5-158">Fonctionnalités de détection d’Azure Security Center</span><span class="sxs-lookup"><span data-stu-id="b3cf5-158">Azure Security Center Detection Capabilities</span></span>](security-center-detection-capabilities.md)
+* [<span data-ttu-id="b3cf5-159">Guide des opérations et de planification du Centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="b3cf5-159">Azure Security Center Planning and Operations Guide</span></span>](security-center-planning-and-operations-guide.md)
+* <span data-ttu-id="b3cf5-160">[Forum aux questions sur Azure Security Center](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-160">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using hello service.</span></span>
+* <span data-ttu-id="b3cf5-161">[Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : accédez à des billets de blog sur la sécurité et la conformité Azure.</span><span class="sxs-lookup"><span data-stu-id="b3cf5-161">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Find blog posts about Azure security and compliance.</span></span>

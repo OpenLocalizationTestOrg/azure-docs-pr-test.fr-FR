@@ -1,0 +1,75 @@
+---
+title: "Analyse des utilisateurs, des sessions et des événements dans Azure Application Insights | Microsoft Docs"
+description: "Analyse démographique des utilisateurs de votre application web."
+services: application-insights
+documentationcenter: 
+author: botatoes
+manager: carmonm
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: multiple
+ms.topic: article
+ms.date: 05/03/2017
+ms.author: bwren
+ms.openlocfilehash: b154a01d1690bff4950ebc1ff5a5b89894d4d111
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 08/18/2017
+---
+# <a name="users-sessions-and-events-analysis-in-application-insights"></a><span data-ttu-id="c914e-103">Analyse des utilisateurs, des sessions et des événements dans Application Insights</span><span class="sxs-lookup"><span data-stu-id="c914e-103">Users, sessions, and events analysis in Application Insights</span></span>
+
+<span data-ttu-id="c914e-104">Découvrez quand des personnes utilisent votre application web, les pages qui les intéressent le plus, où vos utilisateurs se trouvent, les navigateurs et les systèmes d’exploitation qu’ils utilisent.</span><span class="sxs-lookup"><span data-stu-id="c914e-104">Find out when people use your web app, what pages they're most interested in, where your users are located, what browsers and operating systems they use.</span></span> <span data-ttu-id="c914e-105">Analysez les données de télémétrie d’utilisation et d’activité à l’aide d’[Azure Application Insights](app-insights-overview.md).</span><span class="sxs-lookup"><span data-stu-id="c914e-105">Analyze business and usage telemetry by using [Azure Application Insights](app-insights-overview.md).</span></span>
+
+## <a name="get-started"></a><span data-ttu-id="c914e-106">Prise en main</span><span class="sxs-lookup"><span data-stu-id="c914e-106">Get started</span></span>
+
+<span data-ttu-id="c914e-107">Si aucune donnée n’apparaît dans les panneaux des utilisateurs, des sessions ou des événements du portail Application Insights, [découvrez comment prendre en main les outils d’utilisation](app-insights-usage-overview.md).</span><span class="sxs-lookup"><span data-stu-id="c914e-107">If you don't yet see data in the users, sessions, or events blades in the Application Insights portal, [learn how to get started with the usage tools](app-insights-usage-overview.md).</span></span>
+
+## <a name="the-users-sessions-and-events-segmentation-tool"></a><span data-ttu-id="c914e-108">L’outil de segmentation Utilisateurs, Sessions et Événements</span><span class="sxs-lookup"><span data-stu-id="c914e-108">The Users, Sessions, and Events segmentation tool</span></span>
+
+<span data-ttu-id="c914e-109">Trois des panneaux d’utilisation exploitent le même outil pour segmenter et traiter les données de télémétrie fournies par votre application web selon trois perspectives.</span><span class="sxs-lookup"><span data-stu-id="c914e-109">Three of the usage blades use the same tool to slice and dice telemetry from your web app from three perspectives.</span></span> <span data-ttu-id="c914e-110">En filtrant et en segmentant les données, vous pouvez découvrir des informations sur l’utilisation relative des différentes fonctionnalités et pages.</span><span class="sxs-lookup"><span data-stu-id="c914e-110">By filtering and splitting the data, you can uncover insights about the relative usage of different pages and features.</span></span>
+
+* <span data-ttu-id="c914e-111">**Outil Utilisateurs** : nombre de personnes ayant utilisé votre application et ses fonctionnalités.</span><span class="sxs-lookup"><span data-stu-id="c914e-111">**Users tool**: How many people used your app and its features.</span></span>  <span data-ttu-id="c914e-112">Les utilisateurs sont comptabilisés à l’aide des ID anonymes stockés dans les cookies du navigateur.</span><span class="sxs-lookup"><span data-stu-id="c914e-112">Users are counted by using anonymous IDs stored in browser cookies.</span></span> <span data-ttu-id="c914e-113">Une seule personne utilisant plusieurs navigateurs ou ordinateurs est comptabilisée comme plusieurs utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="c914e-113">A single person using different browsers or machines will be counted as more than one user.</span></span>
+* <span data-ttu-id="c914e-114">**Outil Sessions** : nombre de sessions d’activité utilisateur ayant inclus certaines pages et fonctionnalités de votre application.</span><span class="sxs-lookup"><span data-stu-id="c914e-114">**Sessions tool**: How many sessions of user activity have included certain pages and features of your app.</span></span> <span data-ttu-id="c914e-115">Une session est comptabilisée après une demi-heure d’inactivité de l’utilisateur ou après 24 heures d’utilisation continue.</span><span class="sxs-lookup"><span data-stu-id="c914e-115">A session is counted after half an hour of user inactivity, or after continuous 24h of use.</span></span>
+* <span data-ttu-id="c914e-116">**Outil Événements** : fréquence à laquelle certaines pages et fonctionnalités de votre application sont utilisées.</span><span class="sxs-lookup"><span data-stu-id="c914e-116">**Events tool**: How often certain pages and features of your app are used.</span></span> <span data-ttu-id="c914e-117">L’affichage d’une page est comptabilisé lorsqu’un navigateur charge la page à partir de votre application, à condition que vous l’ayez [instrumentée](app-insights-javascript.md).</span><span class="sxs-lookup"><span data-stu-id="c914e-117">A page view is counted when a browser loads a page from your app, provided you have [instrumented it](app-insights-javascript.md).</span></span> 
+
+    <span data-ttu-id="c914e-118">Un événement personnalisé représente une occurrence de quelque chose qui se produit dans votre application, souvent une interaction utilisateur, comme un clic sur un bouton ou l’achèvement d’une tâche.</span><span class="sxs-lookup"><span data-stu-id="c914e-118">A custom event represents one occurrence of something happening in your app, often a user interaction like a button click or the completion of some task.</span></span> <span data-ttu-id="c914e-119">Vous insérez le code dans votre application pour [générer des événements personnalisés](app-insights-api-custom-events-metrics.md#trackevent).</span><span class="sxs-lookup"><span data-stu-id="c914e-119">You insert code in your app to [generate custom events](app-insights-api-custom-events-metrics.md#trackevent).</span></span>
+
+![Outil d’utilisation](./media/app-insights-usage-segmentation/users.png)
+
+## <a name="querying-for-certain-users"></a><span data-ttu-id="c914e-121">Interrogation de certains utilisateurs</span><span class="sxs-lookup"><span data-stu-id="c914e-121">Querying for Certain Users</span></span> 
+
+<span data-ttu-id="c914e-122">Explorez les différents groupes d’utilisateurs en ajustant les options d’interrogation en haut de l’outil Utilisateurs :</span><span class="sxs-lookup"><span data-stu-id="c914e-122">Explore different groups of users by adjusting the query options at the top of the Users tool:</span></span> 
+
+* <span data-ttu-id="c914e-123">Qui a utilisé : choisissez les événements personnalisés et les affichages de pages.</span><span class="sxs-lookup"><span data-stu-id="c914e-123">Who used: Choose custom events and page views.</span></span> 
+* <span data-ttu-id="c914e-124">Pendant : choisissez un intervalle de temps.</span><span class="sxs-lookup"><span data-stu-id="c914e-124">During: Choose a time range.</span></span> 
+* <span data-ttu-id="c914e-125">Par : choisissez comment compartimenter les données, soit par période temporelle, soit par une autre propriété telle que le navigateur ou la ville.</span><span class="sxs-lookup"><span data-stu-id="c914e-125">By: Choose how to bucket the data, either by a period of time or by another property such as browser or city.</span></span> 
+* <span data-ttu-id="c914e-126">Fractionner par : choisissez une propriété selon laquelle fractionner ou segmenter les données.</span><span class="sxs-lookup"><span data-stu-id="c914e-126">Split By: Choose a property by which to split or segment the data.</span></span> 
+* <span data-ttu-id="c914e-127">Ajouter des filtres : limitez la requête à certains utilisateurs, certaines sessions ou certains événements en fonction de leurs propriétés, telles que le navigateur ou la ville.</span><span class="sxs-lookup"><span data-stu-id="c914e-127">Add Filters: Limit the query to certain users, sessions, or events based on their properties, such as browser or city.</span></span> 
+ 
+## <a name="saving-and-sharing-reports"></a><span data-ttu-id="c914e-128">Enregistrement et partage de rapports</span><span class="sxs-lookup"><span data-stu-id="c914e-128">Saving and sharing reports</span></span> 
+<span data-ttu-id="c914e-129">Vous pouvez enregistrer des rapports d’utilisateurs, privés (uniquement pour vous) dans la section Mes rapports, ou partagés avec tout le monde, avec un accès à cette ressource Application Insights dans la section Rapports partagés.</span><span class="sxs-lookup"><span data-stu-id="c914e-129">You can save Users reports, either private just to you in the My Reports section, or shared with everyone else with access to this Application Insights resource in the Shared Reports section.</span></span>  
+ 
+<span data-ttu-id="c914e-130">Lors de l’enregistrement d’un rapport ou de la modification de ses propriétés, choisissez « Current Relative Time Range » (Intervalle de temps relatif actuel) pour enregistrer un rapport avec des données actualisées en permanence, jusqu’à un instant donné.</span><span class="sxs-lookup"><span data-stu-id="c914e-130">While saving a report or editing its properties, choose "Current Relative Time Range" to save a report will continuously refreshed data, going back some fixed amount of time.</span></span>  
+ 
+<span data-ttu-id="c914e-131">Choisissez « Current Absolute Time Range » (Intervalle de temps absolu actuel) pour enregistrer un rapport avec un ensemble fixe de données.</span><span class="sxs-lookup"><span data-stu-id="c914e-131">Choose "Current Absolute Time Range" to save a report with a fixed set of data.</span></span> <span data-ttu-id="c914e-132">N’oubliez pas que les données d’Application Insights sont uniquement stockées pendant 90 jours. Si plus de 90 jours se sont écoulés depuis l’enregistrement d’un rapport avec un intervalle de temps absolu, le rapport apparaîtra vide.</span><span class="sxs-lookup"><span data-stu-id="c914e-132">Keep in mind that data in Application Insights is only stored for 90 days, so if more than 90 days have passed since a report with an absolute time range was saved, the report will appear empty.</span></span> 
+ 
+## <a name="example-instances"></a><span data-ttu-id="c914e-133">Exemples d’instances</span><span class="sxs-lookup"><span data-stu-id="c914e-133">Example instances</span></span>
+
+<span data-ttu-id="c914e-134">La section Exemples d’instances affiche des informations sur un certain nombre d’utilisateurs, de sessions ou d’événements individuels qui correspondent à la requête actuelle.</span><span class="sxs-lookup"><span data-stu-id="c914e-134">The Example instances section shows information about a handful of individual users, sessions, or events that are matched by the current query.</span></span> <span data-ttu-id="c914e-135">La prise en compte et l’analyse des comportements des personnes, en plus des agrégats, fournissent des informations sur la façon dont les personnes utilisent réellement votre application.</span><span class="sxs-lookup"><span data-stu-id="c914e-135">Considering and exploring the behaviors of individuals, in addition to aggregates, can provide insights about how people actually use your app.</span></span> 
+ 
+## <a name="insights"></a><span data-ttu-id="c914e-136">Insights</span><span class="sxs-lookup"><span data-stu-id="c914e-136">Insights</span></span> 
+
+<span data-ttu-id="c914e-137">La barre latérale Insights regroupe des clusters volumineux d’utilisateurs qui partagent des propriétés communes.</span><span class="sxs-lookup"><span data-stu-id="c914e-137">The Insights sidebar shows large clusters of users that share common properties.</span></span> <span data-ttu-id="c914e-138">Ces clusters peuvent révéler des tendances surprenantes sur la manière dont les personnes utilisent votre application.</span><span class="sxs-lookup"><span data-stu-id="c914e-138">These clusters can uncover surprising trends in how people use your app.</span></span> <span data-ttu-id="c914e-139">Par exemple, 40 % de l’utilisation globale de votre application provient de personnes utilisant une fonctionnalité unique.</span><span class="sxs-lookup"><span data-stu-id="c914e-139">For example, if 40% of all of the usage of your app comes from people using a single feature.</span></span>  
+
+
+## <a name="next-steps"></a><span data-ttu-id="c914e-140">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="c914e-140">Next steps</span></span>
+- <span data-ttu-id="c914e-141">Pour activer les expériences d’utilisation, commencez à envoyer des [événements personnalisés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) ou des [affichages de page](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).</span><span class="sxs-lookup"><span data-stu-id="c914e-141">To enable usage experiences, start sending [custom events](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) or [page views](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).</span></span>
+- <span data-ttu-id="c914e-142">Si vous envoyez déjà des événements personnalisés ou des affichages de page, explorez les outils d’utilisation pour savoir comment les utilisateurs emploient votre service.</span><span class="sxs-lookup"><span data-stu-id="c914e-142">If you already send custom events or page views, explore the Usage tools to learn how users use your service.</span></span>
+    - [<span data-ttu-id="c914e-143">Entonnoirs</span><span class="sxs-lookup"><span data-stu-id="c914e-143">Funnels</span></span>](usage-funnels.md)
+    - [<span data-ttu-id="c914e-144">Rétention</span><span class="sxs-lookup"><span data-stu-id="c914e-144">Retention</span></span>](app-insights-usage-retention.md)
+    - [<span data-ttu-id="c914e-145">Flux d’utilisateurs</span><span class="sxs-lookup"><span data-stu-id="c914e-145">User Flows</span></span>](app-insights-usage-flows.md)
+    - [<span data-ttu-id="c914e-146">Classeurs</span><span class="sxs-lookup"><span data-stu-id="c914e-146">Workbooks</span></span>](app-insights-usage-workbooks.md)
+    - [<span data-ttu-id="c914e-147">Ajouter du contexte utilisateur</span><span class="sxs-lookup"><span data-stu-id="c914e-147">Add user context</span></span>](app-insights-usage-send-user-context.md)
+

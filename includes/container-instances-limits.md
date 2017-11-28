@@ -1,0 +1,3 @@
+| <span data-ttu-id="4c0fa-101">Ressource</span><span class="sxs-lookup"><span data-stu-id="4c0fa-101">Resource</span></span> | <span data-ttu-id="4c0fa-102">Limite par défaut</span><span class="sxs-lookup"><span data-stu-id="4c0fa-102">Default Limit</span></span> |
+| --- | --- |
+| <span data-ttu-id="4c0fa-103">Groupes de conteneurs par [abonnement](../articles/billing-buy-sign-up-azure-subscription.md)</span><span class="sxs-lookup"><span data-stu-id="4c0fa-103">Container groups per [subscription](../articles/billing-buy-sign-up-azure-subscription.md)</span></span> | <span data-ttu-id="4c0fa-104">20</span><span class="sxs-lookup"><span data-stu-id="4c0fa-104">20</span></span> |
