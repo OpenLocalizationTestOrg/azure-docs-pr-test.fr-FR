@@ -756,7 +756,7 @@ Une erreur 401 est la réponse souhaitée. Elle indique que la couche Passport t
 ## <a name="you-now-have-a-rest-api-service-that-uses-oauth2"></a>Vous disposez maintenant d’un service API REST qui utilise OAuth2.
 Vous avez implémenté une API REST à l’aide de Restify et d’OAuth. Vous disposez maintenant de suffisamment de code pour pouvoir continuer à développer votre service et à vous appuyer sur cet exemple. Vous êtes allé aussi loin que possible avec ce serveur sans utiliser un client compatible OAuth2. Pour cette étape suivante, utilisez une autre procédure pas à pas comme celle-ci : [Se connecter à une API web en utilisant iOS avec B2C](active-directory-b2c-devquickstarts-ios.md) .
 
-## <a name="next-steps"></a>Étapes suivantes
+## <a name="next-steps"></a>étapes suivantes
 Vous pouvez maintenant aborder des rubriques plus avancées, telles que :
 
 [Se connecter à une API web en utilisant iOS avec B2C](active-directory-b2c-devquickstarts-ios.md)
