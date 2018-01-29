@@ -4,20 +4,20 @@ Pour plus d’informations sur les disques, consultez l’article [À propos des
 <a id="attachempty"></a>
 
 ## <a name="attach-an-empty-disk"></a>Attacher un disque vide
-1. Ouvrez Azure CLI 1.0 et [connecter tooyour abonnement Azure](../articles/xplat-cli-connect.md). Assurez-vous que vous êtes en mode Azure Service Management (`azure config mode asm`).
-2. Entrez `azure vm disk attach-new` toocreate et connectez un nouveau disque, comme indiqué dans hello l’exemple suivant. Remplacez *myVM* avec le nom hello de votre Machine virtuelle de Linux et spécifiez la taille hello du disque de hello en Go, ce qui est *100 Go* dans cet exemple :
+1. Ouvrez l’interface Azure CLI 1.0, puis [connectez-vous à votre abonnement Azure](/cli/azure/authenticate-azure-cli). Vérifiez que vous êtes en mode Gestion des services Azure (`azure config mode asm`).
+2. Entrez `azure vm disk attach-new` pour créer et attacher un disque comme indiqué dans l’exemple ci-dessous. Remplacez *myVM* par le nom de votre machine virtuelle Linux et spécifiez la taille du disque en Go (*100 Go* dans cet exemple) :
 
     ```azurecli
     azure vm disk attach-new myVM 100
     ```
 
-3. Une fois le disque de données hello est créé et attaché, il est répertorié dans la sortie de hello de `azure vm disk list <virtual-machine-name>` comme indiqué dans hello l’exemple suivant :
+3. Une fois créé et attaché, le disque de données s’affiche dans la sortie de `azure vm disk list <virtual-machine-name>`, comme indiqué dans l’exemple ci-dessous :
    
     ```azurecli
     azure vm disk list TestVM
     ```
 
-    Hello la sortie est similaire toohello l’exemple suivant :
+    Le résultat ressemble à l’exemple suivant :
 
     ```bash
     info:    Executing command vm disk list
@@ -37,14 +37,14 @@ Pour plus d’informations sur les disques, consultez l’article [À propos des
 ## <a name="attach-an-existing-disk"></a>Association d'un disque existant
 Pour attacher un disque existant, vous devez disposer d’un fichier .vhd dans un compte de stockage.
 
-1. Ouvrez Azure CLI 1.0 et [connecter tooyour abonnement Azure](../articles/xplat-cli-connect.md). Assurez-vous que vous êtes en mode Azure Service Management (`azure config mode asm`).
-2. Vérifier si hello disque dur virtuel que vous souhaitez tooattach est déjà téléchargée tooyour abonnement Azure :
+1. Ouvrez l’interface Azure CLI 1.0, puis [connectez-vous à votre abonnement Azure](/cli/azure/authenticate-azure-cli). Vérifiez que vous êtes en mode Gestion des services Azure (`azure config mode asm`).
+2. Vérifiez si le disque dur virtuel que vous souhaitez attacher est déjà chargé dans votre abonnement Azure :
    
     ```azurecli
     azure vm disk list
     ```
 
-    Hello la sortie est similaire toohello l’exemple suivant :
+    Le résultat ressemble à l’exemple suivant :
 
     ```azurecli
      info:    Executing command vm disk list
@@ -58,13 +58,13 @@ Pour attacher un disque existant, vous devez disposer d’un fichier .vhd dans u
      info:    vm disk list command OK
     ```
 
-3. Si vous ne trouvez pas les disques hello que vous souhaitez toouse, vous risquez de télécharger un abonnement tooyour de disque dur virtuel local à l’aide de `azure vm disk create` ou `azure vm disk upload`. Un exemple de `disk create` serait comme hello l’exemple suivant :
+3. Si le disque que vous souhaitez utiliser est introuvable, vous pouvez charger un disque dur virtuel local dans votre abonnement en utilisant `azure vm disk create` ou `azure vm disk upload`. Un exemple d’utilisation de `disk create` serait semblable à ce qui suit :
    
     ```azurecli
     azure vm disk create myVhd .\TempDisk\test.VHD -l "East US" -o Linux
     ```
 
-    Hello la sortie est similaire toohello l’exemple suivant :
+    Le résultat ressemble à l’exemple suivant :
 
     ```azurecli
     info:    Executing command vm disk create
@@ -78,23 +78,23 @@ Pour attacher un disque existant, vous devez disposer d’un fichier .vhd dans u
     info:    vm disk create command OK
     ```
    
-   Vous pouvez également utiliser `azure vm disk upload` tooupload un compte de stockage de disque dur virtuel tooa. Lire plus hello commandes toomanage vos disques de données de machine virtuelle Azure [ici](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+   Vous pouvez également utiliser la commande `azure vm disk upload` pour charger un disque dur virtuel dans un compte de stockage. Vous trouverez plus d’informations sur les commandes de gestion de vos disques de données de machine virtuelle Azure [ici](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
 
-4. Maintenant vous attachez hello souhaitée virtuels tooyour de disque dur virtuel :
+4. Maintenant, vous attachez le disque dur virtuel souhaité à votre machine virtuelle :
    
     ```azurecli
     azure vm disk attach myVM myVhd
     ```
    
-   Assurez-vous que tooreplace *myVM* avec nom hello de votre machine virtuelle, et *myVHD* avec votre disque dur virtuel souhaité.
+   Veillez à remplacer *myVM* par le nom de votre machine virtuelle, et *myVHD* par le disque dur virtuel de votre choix.
 
-5. Vous pouvez vérifier le disque de hello est attaché toohello machine virtuelle `azure vm disk list <virtual-machine-name>`:
+5. Vous pouvez vérifier que le disque est attaché à la machine virtuelle avec la commande `azure vm disk list <virtual-machine-name>`:
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    Hello la sortie est similaire toohello l’exemple suivant :
+    Le résultat ressemble à l’exemple suivant :
 
     ```azurecli
      info:    Executing command vm disk list
@@ -111,7 +111,7 @@ Pour attacher un disque existant, vous devez disposer d’un fichier .vhd dans u
     ```
 
 > [!NOTE]
-> Après avoir ajouté un disque de données, vous devez toolog sur l’ordinateur virtuel de toohello et initialiser le disque de hello donc hello virtual machine peut utiliser un disque de hello pour le stockage (voir hello suivant les étapes pour plus d’informations sur comment toodo initialiser le disque de hello).
+> Après avoir ajouté un disque de données, vous devez vous connecter à la machine virtuelle et initialiser le disque. La machine virtuelle pourra alors utiliser le disque pour le stockage (pour plus d’informations sur l’initialisation du disque, consultez la procédure ci-après).
 > 
 > 
 

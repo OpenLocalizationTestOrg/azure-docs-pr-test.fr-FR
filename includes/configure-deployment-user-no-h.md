@@ -1,18 +1,16 @@
-Créer des informations d’identification de déploiement par hello [az webapp utilisateur de déploiement défini](/cli/azure/webapp/deployment/user#set) commande.
+Dans Cloud Shell, créez des informations d’identification de déploiement au moyen de la commande [az webapp deployment user set](/cli/azure/webapp/deployment/user?view=azure-cli-latest#az_webapp_deployment_user_set). Un utilisateur de déploiement est requis pour les déploiements FTP et Git en local sur une application web. Le nom d’utilisateur et le mot de passe par défaut sont tous les deux au niveau du compte. _Ils sont différents des informations d’identification de votre abonnement Azure._
 
-Un utilisateur du déploiement est requis pour FTP et Git déploiement tooa l’application web locale. mot de passe et le nom d’utilisateur hello sont au niveau du compte. _Ils sont différents des informations d’identification de votre abonnement Azure._
-
-Bonjour suivant de commande, remplacez  *\<nom d’utilisateur >* et  *\<mot de passe >* avec un nouveau nom d’utilisateur et un mot de passe. nom d’utilisateur Hello doit être unique. Hello mot de passe doit comporter au moins huit caractères, avec deux hello suivant trois éléments : des lettres, des chiffres, des symboles. 
+Dans l’exemple suivant, remplacez *\<username>* et *\<password>* (parenthèses comprises) par le nom et le mot de passe du nouvel utilisateur. Le nom d’utilisateur doit être unique. Le mot de passe doit comporter au moins huit caractères et inclure deux des trois éléments suivants : lettres, chiffres et symboles. 
 
 ```azurecli-interactive
 az webapp deployment user set --user-name <username> --password <password>
 ```
 
-Si vous obtenez un ` 'Conflict'. Details: 409` erreur, le nom d’utilisateur de modification hello. Si vous obtenez une erreur ` 'Bad Request'. Details: 400`, utilisez un mot de passe plus fort.
+Si vous obtenez une erreur ` 'Conflict'. Details: 409`, modifiez le nom d’utilisateur. Si vous obtenez une erreur ` 'Bad Request'. Details: 400`, utilisez un mot de passe plus fort.
 
 Vous ne devez créer cet utilisateur de déploiement qu’une fois. Vous pouvez l’utiliser pour tous vos déploiements Azure.
 
 > [!NOTE]
-> Nom de l’enregistrement hello utilisateur et mot de passe. Vous avez besoin de les toodeploy hello web application plus tard.
+> Notez le nom d’utilisateur et le mot de passe. Vous en aurez besoin pour déployer ultérieurement l’application web.
 >
 >

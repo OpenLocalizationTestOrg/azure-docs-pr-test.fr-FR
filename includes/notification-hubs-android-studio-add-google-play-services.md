@@ -1,18 +1,22 @@
-1. Hello Open Android SDK Manager en cliquant sur icône hello sur la barre d’outils hello de Android Studio ou en cliquant sur **outils** -> **Android** -> **SDK Manager**menu hello. Localiser la version cible de hello Hello du SDK Android qui est utilisé dans votre projet, ouvrez-le en cliquant sur **afficher les détails de Package**, puis choisissez **APIs Google**, s’il n’est pas déjà installé.
-2. Cliquez sur hello **outils SDK** onglet. Si vous n’avez pas encore installé Google Play Service, cliquez sur **Services Google Play** comme indiqué ci-dessous. Puis cliquez sur **appliquer** tooinstall. 
+1. Ouvrez le Gestionnaire du Kit de développement logiciel Android en cliquant sur l’icône de la barre d’outils d’Android Studio ou sur **Outils** -> **Android** -> **Gestionnaire du Kit de développement logiciel (SDK)** à partir du menu. Recherchez la version cible du Kit de développement logiciel (SDK) Android utilisé pour votre projet, ouvrez-la en cliquant sur **Afficher la page Détails du package** et choisissez **API Google** si elles ne sont pas déjà installées.
+2. Cliquez sur l’onglet **Outils SDK** . Si vous n’avez pas encore installé Google Play Service, cliquez sur **Services Google Play** comme indiqué ci-dessous. Cliquez ensuite sur **Appliquer** pour procéder à l’installation. 
    
-    Notez le chemin d’accès du Kit de développement logiciel hello, pour une utilisation dans une étape ultérieure. 
+    Notez le chemin du Kit de développement logiciel (SDK). Vous l’utiliserez à une étape suivante. 
    
     ![](./media/notification-hubs-android-studio-add-google-play-services/notification-hubs-android-studio-sdk-manager.png)
-3. Ouvrez hello **build.gradle** fichier dans le répertoire de l’application hello.
+3. Ouvrez le fichier **build.gradle** dans le répertoire de l’application.
    
     ![](./media/notification-hubs-android-studio-add-google-play-services/notification-hubs-android-studio-add-google-play-dependency.png)
 4. Ajoutez la ligne suivante sous *dépendances*: 
+    
+    ```java
+        compile 'com.google.android.gms:play-services-gcm:9.2.0'
+    ```
+5. Cliquez sur l’icône **Synchronisation du projet avec les fichiers Gradle** dans la barre d’outils.
+6. Ouvrez **AndroidManifest.xml** et ajoutez cette balise à la balise *application* .
    
-           compile 'com.google.android.gms:play-services-gcm:9.2.0'
-5. Cliquez sur hello **projet de synchronisation avec les fichiers Gradle** icône dans la barre d’outils hello.
-6. Ouvrez **AndroidManifest.xml** et ajoutez cette balise toohello *application* balise.
-   
-        <meta-data android:name="com.google.android.gms.version"
+    ```java
+    <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+    ```
 

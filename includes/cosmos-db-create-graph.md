@@ -1,16 +1,16 @@
-Vous pouvez maintenant utiliser outil Explorateur de données de hello Bonjour toocreate portail Azure une base de données de graphique. 
+Vous pouvez désormais utiliser l’outil Explorateur de données dans le portail Azure pour créer une base de données de graphiques. 
 
-1. Bonjour portail Azure, dans le menu de navigation gauche hello, cliquez sur **Explorateur de données (version préliminaire)**. 
-2. Bonjour **Explorateur de données (version préliminaire)** panneau, cliquez sur **nouveau graphique**, puis renseignez page hello à l’aide de hello informations suivantes.
+1. Dans le menu de gauche du portail Azure, sélectionnez **Explorateur de données (préversion)**.
 
-    ![Explorateur de données Bonjour portail Azure](./media/cosmos-db-create-graph/azure-cosmosdb-data-explorer.png)
+2. Sous **Explorateur de données (préversion)**, sélectionnez **New Graph** (Nouveau graphique). Remplissez ensuite la page en utilisant les informations suivantes :
 
-    Paramètre|Valeur suggérée|Description
+    ![Explorateur de données dans le portail Azure](./media/cosmos-db-create-graph/azure-cosmosdb-data-explorer.png)
+
+    Paramètre|Valeur suggérée|DESCRIPTION
     ---|---|---
-    ID de base de données|sample-database|ID de Hello pour votre nouvelle base de données. Les noms de base de données doivent inclure entre 1 et 255 caractères et ne peuvent pas contenir `/ \ # ?` ni d’espace de fin.
-    ID de graphique|sample-graph|ID de Hello pour votre nouveau graphique. Les noms de graphique ont hello même caractère spécifications en tant qu’ID de base de données.
-    Capacité de stockage| 10 Go|Laissez la valeur par défaut de hello. Il s’agit de la capacité de stockage hello de base de données hello.
-    Throughput|400 unités de requête|Laissez la valeur par défaut de hello. Vous pouvez monter le débit hello ultérieurement si vous souhaitez une latence tooreduce.
-    Clé de partition|/userid|Une clé de partition qui distribue uniformément les données tooeach partition. En sélectionnant hello correct de clé de partition est importante pour la création d’un performants du graphique, en savoir plus sur dans [conception pour le partitionnement](../articles/cosmos-db/partition-data.md#designing-for-partitioning).
+    ID de base de données|sample-database|Entrez le nom *sample-database* pour la nouvelle base de données. Les noms de bases de données doivent inclure entre 1 et 255 caractères et ne peuvent pas contenir `/ \ # ?`, ni d’espace de fin.
+    ID de graphique|sample-graph|Entrez le nom *sample-graph* pour votre nouvelle collection. Les noms de graphiques sont soumis aux mêmes exigences de nombre de caractères que les ID de bases de données.
+    Capacité de stockage| 10 Go|Conservez la valeur par défaut. Il s’agit de la capacité de stockage de la base de données.
+    Débit|400 unités de requête|Conservez la valeur par défaut. Vous pourrez augmenter le débit ultérieurement si vous souhaitez réduire la latence.
 
-3. Une fois le formulaire de hello est rempli, cliquez sur **OK**.
+3. Une fois le formulaire rempli, sélectionnez **OK**.

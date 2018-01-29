@@ -1,31 +1,27 @@
-1. Dans une nouvelle fenêtre, connectez-vous toohello [portail Azure](https://portal.azure.com/).
-2. Dans le volet gauche de hello, cliquez sur **nouveau**, cliquez sur **bases de données**, puis sous **base de données Azure Cosmos**, cliquez sur **créer**.
+1. Dans une nouvelle fenêtre du navigateur, connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Cliquez sur **Nouveau** > **Bases de données** > **Azure Cosmos DB**.
    
-   ![Hello volet de bases de données du portail Azure](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
+   ![Volet Bases de données du portail Azure](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
 
-3. Sur hello **nouveau compte** panneau, spécifiez la configuration hello souhaitées pour ce compte de base de données Azure Cosmos. 
-
-    Grâce à Azure Cosmos DB, vous pouvez choisir l’un des quatre modèles de programmation : Gremlin (graphique), MongoDB, SQL (DocumentDB) et Table (clé-valeur). Chacun de ces modèles requiert actuellement un compte distinct.
-    
-    Dans cet article de démarrage rapide nous programmer hello API DocumentDB, par conséquent, choisissez **SQL (DocumentDB)** pendant que vous remplissez le formulaire de hello. Si vous disposez de données graphiques pour une application de réseau social, de données clé/valeur (table) ou de données ayant fait l’objet d’une migration à partir d’une application MongoDB, notez qu’Azure Cosmos DB peut fournir une plateforme de service de base de données hautement disponible et distribuée dans le monde entier pour toutes vos applications stratégiques.
-
-    Renseignez les champs hello sur hello **nouveau compte** panneau, à l’aide des informations hello Bonjour suivant comme guide - capture d’écran de vos valeurs peut-être être différente de valeurs hello dans la capture d’écran de hello.
+3. Dans la page **Nouveau compte**, entrez les paramètres pour le nouveau compte Azure Cosmos DB. 
  
-    ![nouveau panneau de compte Hello pour la base de données Azure Cosmos](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-2.png)
-
-    Paramètre|Valeur suggérée|Description
+    Paramètre|Valeur suggérée|DESCRIPTION
     ---|---|---
-    ID|*Valeur unique*|Nom unique identifiant ce compte Azure Cosmos DB. Étant donné que *documents.azure.com* est ajouté toohello ID que vous fournissez toocreate votre URI, utilisation unique mais identifiables ID. ID de Hello peut contenir uniquement des lettres minuscules, des chiffres et des caractères de trait d’union (-) hello, et il doit contenir 3 caractères too50.
-    API|SQL (DocumentDB)|Programmer avec hello [API DocumentDB](../articles/documentdb/documentdb-introduction.md) plus loin dans cet article.|
-    Abonnement|*Votre abonnement*|Hello abonnement Azure que vous souhaitez toouse pour ce compte de base de données Azure Cosmos. 
-    Groupe de ressources|*Hello même valeur que l’ID*|nom de groupe de ressources de nouveau Hello pour votre compte. Par souci de simplicité, vous pouvez utiliser hello même nom que votre code. 
-    Lieu|*utilisateurs tooyour le plus proche Hello région*|Bonjour à l’emplacement géographique dans le toohost votre compte de base de données Azure Cosmos. Choisissez un emplacement hello qui est le plus proche toogive d’utilisateurs tooyour les hello plus rapide toohello accéder à des données.
-4. Cliquez sur **créer** compte de hello toocreate.
-5. Sur la barre d’outils supérieure hello, cliquez sur hello **Notifications** icône ![l’icône de hello](./media/cosmos-db-create-dbaccount/notification-icon.png) processus de déploiement toomonitor hello.
+    ID|*Entrez un nom unique*|Entrez un nom unique pour identifier ce compte Azure Cosmos DB. Étant donné que *documents.azure.com* est ajouté à l’ID que vous fournissez pour créer votre URI, utilisez un ID unique mais identifiable.<br><br>L’ID ne peut contenir que des lettres minuscules, des chiffres et le caractère de trait d’union (-), et doit comporter entre 3 et 50 caractères.
+    API|SQL|L’API détermine le type de compte à créer. Azure Cosmos DB fournit cinq API pour répondre aux besoins de votre application : SQL (base de données Document), Gremlin (base de données de graphiques), MongoDB (base de données Document), Table Azure et Cassandra, qui nécessitent toutes un compte séparé. <br><br>Sélectionnez **SQL**. En effet, dans ce démarrage rapide, vous créez une base de données de documents qu’il est possible d’interroger au moyen de la syntaxe SQL et à laquelle il est possible d’accéder avec l’API SQL.<br><br>[En savoir plus sur l’API SQL](../articles/cosmos-db/documentdb-introduction.md)|
+    Abonnement|*Votre abonnement*|Sélectionnez l’abonnement Azure que vous voulez utiliser pour ce compte Azure Cosmos DB. 
+    Groupe de ressources|Création<br><br>*Entrez ensuite le même nom unique que celui fourni plus haut dans ID*|Sélectionnez **Créer**, puis entrez le nom du nouveau groupe de ressources pour votre compte. Pour plus de simplicité, vous pouvez utiliser le même nom que votre ID. 
+    Lieu|*Sélectionner la région la plus proche de vos utilisateurs*|Sélectionnez l’emplacement géographique où héberger votre compte Azure Cosmos DB. Utilisez l’emplacement le plus proche de vos utilisateurs, pour leur donner l’accès le plus rapide possible aux données.
+    Activer la géoredondance| Laisser vide | Ceci crée une version répliquée de votre base de données dans une seconde région (appairée). Laissez ce champ vide.  
+    Épingler au tableau de bord | Sélectionnez | Cochez cette case pour que votre nouveau compte de base de données soit ajouté à votre tableau de bord du portail pour un accès facilité.
 
-    ![Hello volet de Notifications du portail Azure](./media/cosmos-db-create-dbaccount-graph/azure-documentdb-nosql-notification.png)
+    Cliquez ensuite sur **Créer**.
 
-6.  Lorsque la fenêtre de Notifications hello indique fenêtre de notification hello déploiement hello a réussi, fermez et ouvrez hello nouveau compte hello **toutes les ressources** vignette sur hello du tableau de bord. 
+    ![Panneau de nouveau compte pour Azure Cosmos DB](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-2.png)
 
-    ![Hello compte DocumentDB sur hello que toutes les ressources en mosaïque](./media/cosmos-db-create-dbaccount/all-resources.png)
- 
+4. La création du compte prend quelques minutes. Au cours de création d’un compte, le portail affiche la vignette **Déploiement d’Azure Cosmos DB** sur le côté droit. Vous devrez peut-être faire défiler à droite sur votre tableau de bord pour voir la vignette. Il existe également une barre de progression en haut de l’écran. Vous pouvez surveiller la progression de la zone souhaitée. 
+
+    ![Volet Notifications du portail Azure](./media/cosmos-db-create-dbaccount/deploying-cosmos-db.png)
+
+    Une fois que le compte est créé, la page **Félicitations ! Votre compte Azure Cosmos DB a été créé** s’affiche. 
+

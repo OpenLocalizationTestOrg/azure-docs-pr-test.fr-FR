@@ -1,16 +1,18 @@
-Vérifiez que vous avez déjà créé un espace de noms de relais, comme illustré [ici][namespace-how-to].
+Vérifiez que vous avez déjà [créé un espace de noms de relais][namespace-how-to].
 
-1. Ouvrez une session sur toohello [portail Azure](https://portal.azure.com).
-2. Dans le volet de navigation gauche hello du portail de hello, cliquez sur **relais**.
-3. Sélectionnez hello espace de noms dans lequel vous souhaitez que toocreate hello connexion hybride. Dans ce cas, il s’agit de **mynewns**.
+1. Connectez-vous au [Portail Azure](https://portal.azure.com).
+2. Dans le menu de gauche, sélectionnez **Toutes les ressources**.
+3. Sélectionnez l’espace de noms dans lequel vous souhaitez créer la connexion hybride. Dans ce cas, il s’agit de **mynewns**.  
+4. Sous **Espace de noms de relais**, sélectionnez **Connexions hybrides**.
+
+    ![Create a hybrid connection](./media/relay-create-hybrid-connection-portal/create-hc-1.png)
+
+5. Dans la fenêtre de vue d’ensemble de l’espace de noms, cliquez sur **+ Connexion hybride**
    
-    ![Créer une connexion hybride](./media/relay-create-hybrid-connection-portal/create-hc-1.png)
-4. Bonjour **espace de noms de relais** panneau, sélectionnez **connexions hybrides**, puis cliquez sur **+ connexion hybride**.
-   
-    ![Sélectionner une connexion hybride](./media/relay-create-hybrid-connection-portal/create-hc-2.png)
-5. Entrez hello **nom de la connexion hybride** et laisser des autres valeurs hello avec leurs valeurs par défaut.
+    ![Sélectionner la connexion hybride](./media/relay-create-hybrid-connection-portal/create-hc-2.png)
+6. Sous **Créer une connexion hybride**, saisissez une valeur comme nom de la connexion hybride. Conservez les autres valeurs par défaut.
    
     ![Sélectionner Nouveau](./media/relay-create-hybrid-connection-portal/create-hc-3.png)
-6. Au bas de hello du Panneau de hello, cliquez sur **créer**.
+7. Sélectionnez **Créer**.
 
 [namespace-how-to]: ../articles/service-bus-relay/relay-create-namespace-portal.md 

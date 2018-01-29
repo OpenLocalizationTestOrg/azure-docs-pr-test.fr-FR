@@ -1,0 +1,81 @@
+- name: Azure Container Service (ACS)
+  href: ./index.yml
+- name: Vue d’ensemble
+  items:
+    - name: À propos de ACS
+      href: intro-kubernetes.md
+- name: Démarrages rapides
+  expanded: true
+  items:
+    - name: "Créer un cluster\_ACS - CLI"
+      href: kubernetes-walkthrough.md
+    - name: "Créer un cluster\_ACS - Portail"
+      href: kubernetes-walkthrough-portal.md
+- name: Didacticiels
+  items:
+    - name: 1 - Préparer l’application pour ACS
+      href: tutorial-kubernetes-prepare-app.md
+    - name: 2 - Créer un registre de conteneur
+      href: tutorial-kubernetes-prepare-acr.md
+    - name: "3 -Créer un cluster\_Kubernetes"
+      href: tutorial-kubernetes-deploy-cluster.md
+    - name: 4 - Exécuter l’application
+      href: tutorial-kubernetes-deploy-application.md
+    - name: 5 - Mettre à l’échelle l’application
+      href: tutorial-kubernetes-scale.md
+    - name: 6 - Mettre à jour l’application
+      href: tutorial-kubernetes-app-update.md
+    - name: 7 - Surveiller avec Log Analytics
+      href: tutorial-kubernetes-monitor.md
+    - name: 8 - Mettre à niveau un cluster
+      href: tutorial-kubernetes-upgrade-cluster.md
+- name: Concepts
+  items:
+    - name: Quotas et limites régionales
+      href: container-service-quotas.md
+- name: Procédures
+  items:
+    - name: Mettre à l’échelle un cluster ACS
+      href: scale-cluster.md
+    - name: Mettre à niveau un cluster ACS
+      href: upgrade-cluster.md
+    - name: S’authentifier avec ACR
+      href: ../container-registry/container-registry-auth-aks.md?toc=%2fazure%2faks%2ftoc.json
+    - name: Exécuter des applications avec Helm
+      href: kubernetes-helm.md
+    - name: Développer des applications avec Draft
+      href: kubernetes-draft.md
+    - name: Intégrer avec Azure à l’aide d’OSBA
+      href: integrate-azure.md
+    - name: Utiliser le tableau de bord Kubernetes
+      href: kubernetes-dashboard.md
+    - name: Créer un principal du service
+      href: kubernetes-service-principal.md
+    - name: Configurer des volumes de données
+      items:
+        - name: Disques Azure - volume persistant
+          href: azure-disks-dynamic-pv.md
+        - name: Azure Files - volume persistant
+          href: azure-files-dynamic-pv.md
+        - name: Azure Files - volume
+          href: azure-files.md
+- name: Informations de référence
+  items:
+    - name: Azure CLI
+      href: /cli/azure/aks
+    - name: REST
+      href: /rest/api/aks
+- name: Ressources
+  items:
+    - name: Disponibilité des régions
+      href: 'https://azure.microsoft.com/regions/services/'
+    - name: Tarifs
+      href: 'https://azure.microsoft.com/pricing/details/container-service/'
+    - name: Feuille de route
+      href: 'https://azure.microsoft.com/roadmap/'
+    - name: Indiquer des commentaires sur le produit
+      href: 'https://github.com/Azure/AKS/issues'
+    - name: Dépassement de capacité de la pile
+      href: 'http://stackoverflow.com/questions/tagged/azure-container-service'
+    - name: vidéos
+      href: 'https://azure.microsoft.com/resources/videos/index/?services=container-service&sort=newest'

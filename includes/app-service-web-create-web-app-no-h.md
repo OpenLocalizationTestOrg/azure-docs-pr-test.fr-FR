@@ -1,16 +1,15 @@
-Créer un [application web](../articles/app-service-web/app-service-web-overview.md) Bonjour `myAppServicePlan` plan App Service avec hello [az webapp créer](/cli/azure/webapp#create) commande. 
+Dans Cloud Shell, créez une [application web](../articles/app-service/app-service-web-overview.md) dans le plan App Service `myAppServicePlan` avec la commande [az webapp create](/cli/azure/webapp?view=azure-cli-latest#az_webapp_create). 
 
-Hello web application fournit un espace d’hébergement pour votre code et fournit une application hello déployé de tooview URL.
-
-Bonjour suivant de commande, remplacez  *\<nom_application >* avec un nom unique (les caractères valides sont `a-z`, `0-9`, et `-`). Si `<app_name>` est n’est pas unique, vous obtenez le message d’erreur hello « Site Web nommé < nom_application > existe déjà. » Hello par défaut de l’URL de l’application web hello est `https://<app_name>.azurewebsites.net`. 
+Dans l’exemple suivant, remplacez *\<app_name>* par un nom d’application unique (les caractères autorisés sont `a-z`, `0-9` et `-`). 
 
 ```azurecli-interactive
-az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
+az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan --deployment-local-git
 ```
 
-Lors de l’application hello web a été créée, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant :
+Une fois l’application web créée, Azure CLI affiche des informations similaires à celles de l’exemple suivant :
 
 ```json
+Local git is configured with url of 'https://<username>@<app_name>.scm.azurewebsites.net/<app_name>.git'
 {
   "availabilityState": "Normal",
   "clientAffinityEnabled": true,
@@ -19,26 +18,19 @@ Lors de l’application hello web a été créée, hello CLI d’Azure affiche d
   "containerSize": 0,
   "dailyMemoryTimeQuota": 0,
   "defaultHostName": "<app_name>.azurewebsites.net",
+  "deploymentLocalGitUrl": "https://<username>@<app_name>.scm.azurewebsites.net/<app_name>.git",
   "enabled": true,
-  "enabledHostNames": [
-    "<app_name>.azurewebsites.net",
-    "<app_name>.scm.azurewebsites.net"
-  ],
-  "gatewaySiteName": null,
-  "hostNameSslStates": [
-    {
-      "hostType": "Standard",
-      "name": "<app_name>.azurewebsites.net",
-      "sslState": "Disabled",
-      "thumbprint": null,
-      "toUpdate": null,
-      "virtualIp": null
-    }
-    < JSON data removed for brevity. >
+  < JSON data removed for brevity. >
 }
 ```
 
-Accédez à toohello site toosee votre application web qui vient d’être créé.
+Vous avez créé une application web vide, avec le déploiement Git activé.
+
+> [!NOTE]
+> L’URL du Git distant est indiquée dans la propriété `deploymentLocalGitUrl`, avec le format `https://<username>@<app_name>.scm.azurewebsites.net/<app_name>.git`. Enregistrez cette URL, car vous en aurez besoin ultérieurement.
+>
+
+Accédez à la nouvelle application web.
 
 ```bash
 http://<app_name>.azurewebsites.net

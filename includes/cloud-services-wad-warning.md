@@ -1,5 +1,5 @@
 > [!WARNING]
-> Lorsque vous activez les diagnostics sur un rôle existant, toutes les extensions que vous avez activé seront désactivées lorsque hello package est déployé. Vous avez notamment vu les points suivants :
+> Quand vous activez les diagnostics pour un rôle existant, toutes les extensions que vous avez déjà définies sont désactivées lors du déploiement du package. Vous avez notamment vu les points suivants :
 >
 > * Extension Microsoft Monitoring Agent Diagnostics
 > * Surveillance de la sécurité de Microsoft Azure
@@ -11,5 +11,5 @@
 > * Extension Bureau à distance de Microsoft Azure
 > * Collecteur de journaux Microsoft Azure
 >
-> Vous pouvez réactiver vos extensions via hello portail Azure ou de PowerShell une fois que vous avez déployé le rôle de hello mis à jour.
+> Vous pouvez réinitialiser vos extensions via le portail Azure ou PowerShell une fois que le rôle mis à jour est déployé.
 >

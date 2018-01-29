@@ -1,0 +1,1 @@
+Depuis le 15 novembre 2017, l’offre Machines virtuelles est disponible uniquement dans le [portail Azure](https://portal.azure.com). 

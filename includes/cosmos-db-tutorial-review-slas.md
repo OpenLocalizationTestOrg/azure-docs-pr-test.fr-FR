@@ -1,7 +1,11 @@
-Maintenant que votre application est en cours d’exécution, vous souhaiterez tooensure entreprise la continuité des activités et Espion utilisateur accès tooensure haute disponibilité. Vous pouvez utiliser hello disponibilité de hello tooreview portail Azure, la latence, le débit et la cohérence de votre collection. 
+Le débit, le stockage, la disponibilité, la latence et la cohérence des ressources de votre compte sont surveillés dans le portail Azure. Voici quelques informations sur ces mesures. 
 
-Chaque graphique qui est associé à hello [(SLA) de contrats de niveau de Service de base de données de Azure Cosmos](https://azure.microsoft.com/support/legal/sla/documentdb/) fournit une ligne qu’affiche hello quota requis toomeet hello SLA et votre utilisation réelle, ce qui vous donne une vue claire de performances de votre base de données. Les métriques supplémentaires, telles que l’utilisation du stockage et le nombre de demandes par minute, sont également inclus dans le portail de hello.
+1. Cliquez sur **Métriques** dans le menu de navigation.
 
-* Bonjour portail Azure, Bonjour volet gauche, sous **analyse**, cliquez sur **métriques**.
+   ![Métriques dans le portail Azure](./media/cosmos-db-tutorial-review-slas/metrics.png)
 
-   ![Application To-Do avec des exemples de données](./media/cosmos-db-tutorial-review-slas/azure-cosmosdb-portal-metrics-slas.png)
+2. Cliquez sur chacun des onglets pour découvrir les métriques fournies par Azure Cosmos DB. 
+
+    Chaque graphique associé aux [Contrats de niveau de service (SLA) d’Azure Cosmos DB](https://azure.microsoft.com/support/legal/sla/cosmos-db/) contient une ligne indiquant si un ou plusieurs des SLA n’ont pas été respectés. Azure Cosmos DB rend transparente la surveillance de vos SLA avec cet ensemble de métriques. 
+
+   ![Suite de métriques d’Azure Cosmos DB](./media/cosmos-db-tutorial-review-slas/metrics-suite.png)

@@ -1,61 +1,62 @@
-Si votre machine virtuelle (VM) dans Azure rencontre une erreur de démarrage ou de disque, vous devrez peut-être tooperform étapes de dépannage sur le disque dur virtuel hello lui-même. Un exemple courant est une mise à jour d’application qui a échoué qui empêche les hello machine virtuelle de démarrer correctement. Cet article décrit comment toouse tooconnect portail Azure votre toofix de machine virtuelle de disque dur virtuel tooanother toutes les erreurs, puis recréer votre machine virtuelle d’origine.
+Si votre machine virtuelle dans Azure rencontre une erreur de démarrage ou de disque, il vous faudra éventuellement appliquer la procédure de dépannage directement sur le disque dur virtuel. Comme exemple courant, citons l’échec de mise à jour d’une application qui empêche le bon démarrage de la machine virtuelle. Cet article vous explique comment utiliser le portail Azure pour connecter votre disque dur virtuel à une autre machine virtuelle pour corriger les éventuelles erreurs, puis recréer votre machine virtuelle d’origine.
+
 
 ## <a name="recovery-process-overview"></a>Vue d’ensemble du processus de récupération
-Hello, résolution des problèmes de processus est la suivante :
+Le processus de résolution de problème se présente comme suit :
 
-1. Supprimer hello machine virtuelle qui rencontre des problèmes, mais conserver les disques durs virtuels hello.
-2. Attacher et monter tooanother de disque dur virtuel hello machine virtuelle pour le dépannage.
-3. Se connecter toohello résolution des problèmes de la machine virtuelle. Modifier des fichiers ou d’exécuter les outils toofix erreurs sur les disque dur virtuel d’origine hello.
-4. Démontez et détacher le disque dur virtuel de hello de hello, résolution des problèmes de la machine virtuelle.
-5. Créer une machine virtuelle à l’aide de hello d’origine disque dur.
+1. Supprimez les machines virtuelles présentant des erreurs, mais conservez les disques durs virtuels.
+2. Fixez et montez le disque dur virtuel sur une autre machine virtuelle à des fins de résolution des problèmes.
+3. Connectez-vous à la machine virtuelle de dépannage. Modifiez les fichiers ou exécutez des outils afin de corriger les erreurs sur le disque dur virtuel d’origine.
+4. Démontez le disque dur virtuel d’origine et dissociez-le de la machine virtuelle de dépannage.
+5. Créez une machine virtuelle à l’aide du disque dur virtuel d’origine.
 
-## <a name="delete-hello-original-vm"></a>Supprimer hello d’ordinateur virtuel d’origine
-Les disques durs virtuels et les machines virtuelles sont deux ressources distinctes dans Azure. Un disque dur virtuel consiste à stocker des configurations, des applications et système d’exploitation de hello. Hello machine virtuelle est simplement des métadonnées qui définit la taille de hello ou l’emplacement et qui fait référence à des ressources, tel qu’un disque dur virtuel ou d’une carte réseau virtuelle (NIC). Chaque disque dur virtuel Obtient un bail affecté lors de ce disque est attaché tooa machine virtuelle. Bien que les disques de données peuvent être attachées et détachées même pendant l’exécution de la machine virtuelle de hello, les disques du système d’exploitation hello ne peut pas être détachée tant que hello ressource d’ordinateur virtuel est supprimé. bail de Hello continue tooassociate hello du système d’exploitation disque tooa machine virtuelle, même lorsque l’ordinateur virtuel est dans un état arrêté et est libéré.
+## <a name="delete-the-original-vm"></a>Supprimez la machine virtuelle d’origine
+Les disques durs virtuels et les machines virtuelles sont deux ressources distinctes dans Azure. Le disque dur virtuel est l’emplacement de stockage du système d’exploitation, des applications et des configurations. La machine virtuelle correspond à des métadonnées définissant la taille ou l’emplacement ; elle référence des ressources comme un disque dur virtuel ou une carte d’interface réseau virtuelle (NIC). Chaque disque dur virtuel associé à une machine virtuelle se voit attribuer un bail. Bien que l’association et la dissociation des disques de données puisse s’effectuer pendant l’exécution de la machine virtuelle, le disque du système d’exploitation ne peut pas être dissocié, sauf si la ressource de machine virtuelle est supprimée. Le bail continue à associer le disque du système d’exploitation à une machine virtuelle, même lorsque cette machine virtuelle se trouve dans un état d’arrêt ou de libération.
 
-Hello première étape toorecovering votre machine virtuelle est la ressource d’ordinateur virtuel hello toodelete lui-même. Suppression hello VM laisse hello des disques durs virtuels dans votre compte de stockage. Après hello que machine virtuelle est supprimée, vous pouvez attacher hello disque dur virtuel tooanother VM tootroubleshoot et résoudre les erreurs de hello. 
+La première étape de la récupération de votre machine virtuelle consiste à supprimer la ressource de machine virtuelle. En supprimant la machine virtuelle, vous ne vous séparez pas des disques durs virtuels de votre compte de stockage. Une fois la machine virtuelle supprimée, vous pouvez associer le disque dur virtuel à une autre machine virtuelle afin de réparer et de corriger les erreurs. 
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com). 
-2. Dans le menu hello hello situé à gauche, cliquez sur **Machines virtuelles (classiques)**.
-3. Cliquez sur la machine virtuelle qui possède le problème de hello, sélectionnez hello **disques**, puis identifiez le nom hello du disque dur virtuel de hello. 
-4. Sélectionnez un disque dur virtuel hello du système d’exploitation et vérifier hello **emplacement** compte de stockage hello tooidentify qui contient ce disque dur virtuel. Dans l’exemple suivant de hello, hello chaîne immédiatement avant «. blob.core.windows.net » est le nom de compte de stockage hello.
+1. Connectez-vous au [portail Azure](https://portal.azure.com). 
+2. Dans le menu de gauche, cliquez sur **Machines virtuelles (classiques)**.
+3. Sélectionnez la machine virtuelle défaillante, cliquez sur **Disques**, puis identifiez le nom du disque dur virtuel. 
+4. Sélectionnez le disque dur virtuel du système d’exploitation et vérifiez son **Emplacement** pour identifier le compte de stockage dans lequel il se trouve. Dans l’exemple suivant, la chaîne précédant « .blob.core.windows.net » correspond au nom du compte de stockage.
 
     ```
     https://portalvhds73fmhrw5xkp43.blob.core.windows.net/vhds/SCCM2012-2015-08-28.vhd
     ```
 
-    ![image Hello sur l’emplacement de la machine virtuelle](./media/virtual-machines-classic-recovery-disks-portal/vm-location.png)
+    ![L’image de l’emplacement de la machine virtuelle](./media/virtual-machines-classic-recovery-disks-portal/vm-location.png)
 
-5. Avec le bouton droit hello machine virtuelle, puis sélectionnez **supprimer**. Assurez-vous que les disques de hello ne sont pas activées lorsque vous supprimez hello machine virtuelle.
-6. Créez une nouvelle machine virtuelle de récupération. Cet ordinateur virtuel doit être Bonjour même région et ressource groupe (Service Cloud) en tant que le problème hello machine virtuelle.
-7. Sélectionnez l’ordinateur virtuel de récupération hello et sélectionnez **disques** > **attacher existant**.
-8. tooselect votre disque dur virtuel existant, cliquez sur **fichier de disque dur virtuel**:
+5. Faites un clic droit sur la machine virtuelle, puis sélectionnez **Supprimer**. Veillez à ce que les disques ne soient pas sélectionnés lors de la suppression de la machine virtuelle.
+6. Créez une nouvelle machine virtuelle de récupération. Cette machine virtuelle doit se trouver dans la même région et le même groupe de ressources (Service Cloud) que la machine virtuelle défaillante.
+7. Sélectionnez la machine virtuelle de récupération, puis **Disques** > **Attacher un disque existant**.
+8. Pour sélectionner votre disque dur virtuel existant, cliquez sur **Fichier VHD** :
 
     ![Rechercher le disque dur virtuel existant](./media/virtual-machines-classic-recovery-disks-portal/select-vhd-location.png)
 
-9. Sélectionnez le compte de stockage hello > conteneur de disque dur virtuel > hello du disque dur virtuel, cliquez sur hello **sélectionnez** bouton tooconfirm votre choix.
+9. Sélectionnez le compte de stockage > Conteneur du disque dur virtuel > le disque dur virtuel, et confirmez votre choix en cliquant sur **Sélectionner**.
 
     ![Sélectionner votre disque dur virtuel existant](./media/virtual-machines-classic-recovery-disks-portal/select-vhd.png)
 
-10. Sélectionnez votre disque dur virtuel est maintenant sélectionné, **OK** tooattach hello disque dur virtuel existant.
-11. Après quelques secondes, hello **disques** volet pour votre machine virtuelle affiche votre disque dur virtuel existant connecté en tant qu’un disque de données :
+10. Une fois que votre disque dur virtuel est sélectionné, sélectionnez **OK** pour attacher le disque dur virtuel existant.
+11. Après quelques secondes, le volet **Disques** de votre machine virtuelle affiche votre disque dur virtuel existant connecté en tant que disque de données :
 
     ![Disque dur virtuel existant attaché en tant que disque de données](./media/virtual-machines-classic-recovery-disks-portal/attached-disk.png)
 
-## <a name="fix-issues-on-hello-original-virtual-hard-disk"></a>Résoudre les problèmes sur les disque dur virtuel d’origine hello
-Lorsque le disque dur virtuel existant hello est monté, vous pouvez désormais effectuer une maintenance et dépannage en fonction des besoins. Une fois que vous avez corrige les problèmes de hello, poursuivez hello comme suit.
+## <a name="fix-issues-on-the-original-virtual-hard-disk"></a>Résoudre des problèmes sur le disque dur virtuel d’origine
+Une fois le disque dur virtuel existant monté, vous pouvez exécuter les procédures de maintenance et de dépannage requises. Une fois que vous avez résolu les problèmes, passez aux étapes suivantes.
 
-## <a name="unmount-and-detach-hello-original-virtual-hard-disk"></a>Démontez et détacher les disque dur virtuel d’origine hello
-Une fois toutes les erreurs résolues, démontez et détacher hello disque dur virtuel existant à partir de votre machine virtuelle de résolution des problèmes. Vous ne pouvez pas utiliser votre disque dur virtuel avec tout autre ordinateur virtuel jusqu'à ce que le bail hello qui relie des toohello de disque dur virtuel hello résolution des problèmes de la machine virtuelle est libéré.  
+## <a name="unmount-and-detach-the-original-virtual-hard-disk"></a>Démonter et dissocier le disque dur virtuel d’origine
+Une fois les erreurs résolues, démontez et détachez le disque dur virtuel existant de votre machine virtuelle de dépannage. Vous ne pouvez pas utiliser votre disque dur virtuel avec une autre machine virtuelle avant la libération du bail associant le disque dur virtuel à la machine virtuelle de dépannage.  
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com). 
-2. Dans le menu hello hello situé à gauche, sélectionnez **Machines virtuelles (classiques)**.
-3. Localisez l’ordinateur virtuel de récupération hello. Sélectionnez les disques, disque de hello avec le bouton droit, puis **détachement**.
+1. Connectez-vous au [portail Azure](https://portal.azure.com). 
+2. Dans le menu de gauche, sélectionnez **Machines virtuelles (classiques)**.
+3. Recherchez la machine virtuelle de récupération. Sélectionnez Disques, faites un clic droit sur le disque, puis sélectionnez **Détacher**.
 
-## <a name="create-a-vm-from-hello-original-hard-disk"></a>Créer une machine virtuelle à partir du disque dur d’origine de hello
+## <a name="create-a-vm-from-the-original-hard-disk"></a>Créer une machine virtuelle à partir du disque dur d’origine
 
-utilisation d’une machine virtuelle à partir de votre disque dur virtuel d’origine, toocreate [portail Azure classic](https://manage.windowsazure.com).
+Pour créer une machine virtuelle à partir de votre disque dur virtuel d’origine, utilisez le [portail Azure](https://portal.azure.com).
 
-1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
-2. Au bas de hello du portail de hello, sélectionnez **nouveau** > **de calcul** > **Machine virtuelle** > **à partir de la galerie** .
-3. Bonjour **choisir une Image** section, sélectionnez **mes disques**, et puis sélectionnez hello d’origine de disque dur virtuel. Vérifiez les informations d’emplacement hello. Il s’agit de région de hello où hello machine virtuelle doit être déployé. Sélectionnez le bouton suivant de hello.
-4. Bonjour **configuration d’ordinateur virtuel** section, tapez le nom d’ordinateur virtuel hello et sélectionnez une taille pour hello machine virtuelle.
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. En haut à gauche du portail, sélectionnez **Nouveau** > **Calcul** > **Machine virtuelle** > **Depuis la galerie**.
+3. Dans la section **Choisir une image**, sélectionnez **Mes disques**, puis le disque dur virtuel d’origine. Vérifiez les informations d’emplacement. Il s’agit de la région dans laquelle vous devez déployer la machine virtuelle. Cliquez sur Suivant.
+4. Dans la section **Configuration de la machine virtuelle**, entrez le nom de la machine virtuelle et sélectionnez une taille.

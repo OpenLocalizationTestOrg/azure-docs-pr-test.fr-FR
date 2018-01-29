@@ -1,19 +1,19 @@
-Lorsque vous n’avez plus besoin un disque de données est attachée tooa virtual machine (VM), vous pouvez facilement la détacher. Lorsque vous détachez un disque à partir de la machine virtuelle de hello, disque de hello n’est pas supprimé de stockage. Si vous souhaitez toouse hello données existantes hello disque à nouveau, vous pouvez rattacher il toohello même machine virtuelle, ou un autre.  
+Lorsque vous n’avez plus besoin d’un disque de données qui est attaché à une machine virtuelle, vous pouvez le détacher facilement. Cette opération ne supprime pas le disque du stockage. Si vous souhaitez réutiliser les données du disque, vous pouvez l’attacher à la même machine virtuelle ou à une autre.  
 
 > [!NOTE]
-> Dans Azure, une machine virtuelle utilise différents types de disque, comme le disque du système d’exploitation, un disque temporaire local et des disques de données facultatifs. Pour plus d’informations, consultez l’article [À propos des disques et VHD pour machines virtuelles](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Impossible de détacher un disque de système d’exploitation, sauf si vous supprimez également hello machine virtuelle.
+> Dans Azure, une machine virtuelle utilise différents types de disque, comme le disque du système d’exploitation, un disque temporaire local et des disques de données facultatifs. Pour plus d’informations, consultez l’article [À propos des disques et VHD pour machines virtuelles](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Vous ne pouvez pas détacher un disque de système d’exploitation si vous ne supprimez pas également la machine virtuelle.
 
-## <a name="find-hello-disk"></a>Trouver de disque de hello
-Avant de pouvoir détacher un disque à partir d’une machine virtuelle, vous devez toofind out hello numéro LUN, ce qui est un identificateur de toobe de disque hello détachée. toodo qui, procédez comme suit :
+## <a name="find-the-disk"></a>Recherche du disque
+Avant de pouvoir détacher un disque d'une machine virtuelle, vous devez rechercher le nombre LUN (numéro d’unité logique), qui est un identificateur pour le disque à détacher. Pour ce faire, procédez comme suit :
 
-1. Ouvrez CLI d’Azure et [connecter tooyour abonnement Azure](../articles/xplat-cli-connect.md). Assurez-vous que vous êtes en mode Azure Service Management (`azure config mode asm`).
-2. Découvrez quels sont les disques attaché tooyour machine virtuelle. Hello exemple suivant répertorie les disques pour hello ordinateur virtuel nommé `myVM`:
+1. Ouvrez l’interface de ligne de commande (CLI) Azure, puis [connectez-vous à votre abonnement Azure](/cli/azure/authenticate-azure-cli). Vérifiez que vous êtes en mode Gestion des services Azure (`azure config mode asm`).
+2. Recherchez les disques attachés à votre machine virtuelle. L’exemple ci-après répertorie les disques de la machine virtuelle nommée `myVM` :
 
     ```azurecli
     azure vm disk list myVM
     ```
 
-    Hello la sortie est similaire toohello l’exemple suivant :
+    Le résultat ressemble à l’exemple suivant :
 
     ```azurecli
     * Fetching disk images
@@ -26,12 +26,12 @@ Avant de pouvoir détacher un disque à partir d’une machine virtuelle, vous d
       info:    vm disk list command OK
     ```
 
-3. Remarque : hello numéro d’unité logique ou hello **numéro d’unité logique** pour disque hello que vous souhaitez toodetach.
+3. Notez le LUN ou le **numéro d'unité logique** pour le disque que vous souhaitez détacher.
 
-## <a name="remove-operating-system-references-toohello-disk"></a>Supprimer le disque de système d’exploitation références toohello
-Avant de détacher le disque hello Bonjour Linux invité, vous devez vous assurer que toutes les partitions sur le disque de hello ne sont pas en cours d’utilisation. Vérifiez le système d’exploitation hello n’essaie pas de tooremount après un redémarrage. Ces étapes Annuler configuration hello vous avez probablement créé lorsque [attachement](../articles/virtual-machines/linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) disque de hello.
+## <a name="remove-operating-system-references-to-the-disk"></a>Supprimer les références de système d’exploitation sur le disque
+Avant de détacher le disque de l’invité Linux, assurez-vous que toutes les partitions sur le disque ne sont pas en cours d’utilisation. Assurez-vous que le système d’exploitation n’essaie pas de les remonter après un redémarrage. Ces étapes annulent la configuration que vous avez probablement créée lors de [l’attachement](../articles/virtual-machines/linux/classic/attach-disk-classic.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) du disque.
 
-1. Hello d’utilisation `lsscsi` identificateur de disque commande toodiscover hello. `lsscsi` peut être installé par `yum install lsscsi` (dans des distributions Red Hat) ou `apt-get install lsscsi` (dans des distributions Debian). Vous pouvez trouver l’identificateur de disque hello que vous cherchez à l’aide du numéro d’unité logique hello. dernier numéro de tuple hello dans chaque ligne Hello est hello numéro d’unité logique. Bonjour à partir de l’exemple suivant `lsscsi`, LUN 0 mappe trop  */dev/sdc*
+1. Utilisez la commande `lsscsi` pour détecter l’iddentifiateur de disque. `lsscsi` peut être installé par `yum install lsscsi` (dans des distributions Red Hat) ou `apt-get install lsscsi` (dans des distributions Debian). Vous pouvez trouver l’identificateur de disque que vous recherchez à l’aide du numéro de LUN. Le dernier numéro du tuple dans chaque ligne est le LUN. Dans l’exemple ci-après pour la commande `lsscsi`, LUN 0 correspond à */dev/sdc*
 
     ```bash
     [1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
@@ -40,7 +40,7 @@ Avant de détacher le disque hello Bonjour Linux invité, vous devez vous assure
     [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
     ```
 
-2. Utilisez `fdisk -l <disk>` partitions de hello toodiscover associées toobe de disque hello détachée. exemple Hello présente sortie hello pour `/dev/sdc`:
+2. Utilisez `fdisk -l <disk>` pour détecter les partitions associées au disque à détacher. L’exemple ci-après illustre la sortie obtenue pour `/dev/sdc` :
 
     ```bash
     Disk /dev/sdc: 1098.4 GB, 1098437885952 bytes, 2145386496 sectors
@@ -54,13 +54,13 @@ Avant de détacher le disque hello Bonjour Linux invité, vous devez vous assure
     /dev/sdc1            2048  2145386495  1072692224   83  Linux
     ```
 
-3. Démontez chaque partition répertoriée pour le disque de hello. démonte Hello exemple `/dev/sdc1`:
+3. Démontez chaque partition répertoriée pour le disque. L’exemple ci-après démonte `/dev/sdc1` :
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-4. Hello d’utilisation `blkid` commande toodiscovery hello UUID pour toutes les partitions. Hello la sortie est similaire toohello l’exemple suivant :
+4. Utilisez la commande `blkid` pour détecter les UUID de toutes les partitions. Le résultat ressemble à l’exemple suivant :
 
     ```bash
     /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -68,35 +68,35 @@ Avant de détacher le disque hello Bonjour Linux invité, vous devez vous assure
     /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
     ```
 
-5. Supprimer les entrées dans hello **/etc/fstab** fichier associée à chemins d’accès de périphérique hello ou UUID pour toutes les partitions pour hello disque toobe est détachée.  Pour cet exemple, les entrées peuvent être les suivantes :
+5. Supprimez les entrées dans le fichier **/etc/fstab** associé aux chemins d’accès de l’appareil ou aux UUID pour toutes les partitions du disque à détacher.  Pour cet exemple, les entrées peuvent être les suivantes :
 
     ```sh  
    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
    ```
 
-    ou
+    or
    
    ```sh   
    /dev/sdc1   /datadrive   ext4   defaults   1   2
    ```
 
-## <a name="detach-hello-disk"></a>Détacher un disque de hello
-Après avoir trouvé le nombre de numéro d’unité logique de hello de disque de hello et références de système d’exploitation hello supprimé, vous êtes prêt toodetach il :
+## <a name="detach-the-disk"></a>Détachement du disque
+Une fois le numéro de LUN du disque identifié et les références de système d’exploitation supprimées, vous pouvez détacher le disque :
 
-1. Détachement du disque sélectionné de hello à partir de l’ordinateur virtuel de hello en exécutant la commande hello `azure vm disk detach
-   <virtual-machine-name> <LUN>`. exemple Hello détache LUN `0` de hello ordinateur virtuel nommé `myVM`:
+1. Détachez le disque sélectionné de la machine virtuelle en exécutant la commande `azure vm disk detach
+   <virtual-machine-name> <LUN>`. L’exemple ci-après détache LUN `0` de la machine virtuelle nommée `myVM` :
    
     ```azurecli
     azure vm disk detach myVM 0
     ```
 
-2. Vous pouvez vérifier si le disque de hello est détaché en exécutant `azure vm disk list` à nouveau. Hello contrôles de l’exemple hello ordinateur virtuel nommé `myVM`:
+2. Vous pouvez vérifier si le disque est détaché en réexécutant la commande `azure vm disk list`. L’exemple ci-après vérifie la machine virtuelle nommée `myVM` :
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    la sortie est similaire toohello suivant exemple, qui illustre le disque de données hello n’est plus attaché Hello :
+    La sortie obtenue est comparable à l’exemple ci-dessous, qui indique que le disque de données n’est plus attaché :
 
     ```azurecli
     info:    Executing command vm disk list
@@ -110,5 +110,5 @@ Après avoir trouvé le nombre de numéro d’unité logique de hello de disque 
      info:    vm disk list command OK
     ```
 
-disque de Hello détachée reste dans le stockage, mais n’est plus attaché tooa virtual machine.
+Le disque détaché reste dans le stockage, mais il n'est plus attaché à une machine virtuelle.
 

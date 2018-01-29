@@ -1,5 +1,5 @@
 >[!NOTE]
->Pour les ressources qui ne sont pas fixes, vous pouvez demander hello quotas toobe est déclenché, en ouvrant un ticket de support. Faire **pas** créer des comptes Azure Media Services supplémentaires d’essayer tooobtain les limites supérieures.
+>Pour les ressources qui ne sont pas fixes, vous pouvez demander d’augmenter les quotas en ouvrant un ticket de support. Ne créez **pas** d’autres comptes Azure Media Services pour obtenir des limites supérieures.
 
 | Ressource | Limite par défaut | 
 | --- | --- | 
@@ -18,30 +18,30 @@
 | Unités de diffusion en continu par point de terminaison de diffusion en continu  |10 |
 | Comptes de stockage | 1 000<sup>(5)</sup> (fixe) |
 | Stratégies | 1,000,000<sup>(6)</sup> |
-| Taille du fichier| Dans certains scénarios il existe une limite sur la taille de fichier maximale hello pris en charge pour le traitement dans Media Services. <sup>7</sup> |
+| Taille du fichier| Dans certains scénarios, la taille maximale des fichiers pris en charge pour le traitement dans Media Services est soumise à une limite. <sup>7</sup> |
   
-<sup>1</sup> Les unités réservées S3 ne sont pas disponibles en Inde-Ouest. les limites RU maximales Hello réinitialisées si les clients hello change de type hello (par exemple, à partir de S2 tooS1). 
+<sup>1</sup> Les unités réservées S3 ne sont pas disponibles en Inde-Ouest. Si vous changez le type (par exemple, de S2 à S1), les limites d’unités réservées maximales sont réinitialisées.
 
-<sup>2</sup> Ce nombre comprend les travaux en file d’attente, terminés, actifs et annulés. Il n’inclut pas les travaux supprimés. Vous pouvez supprimer hello anciens travaux à l’aide de **IJob.Delete** ou hello **supprimer** requête HTTP.
+<sup>2</sup> Ce nombre comprend les travaux en file d’attente, terminés, actifs et annulés. Il n’inclut pas les travaux supprimés. Vous pouvez supprimer les anciens travaux à l’aide de **IJob.Delete** ou de la requête HTTP **DELETE**.
 
-À partir du 1er avril 2017, n’importe quel enregistrement de la tâche dans votre compte plu de 90 jours est automatiquement supprimé, ainsi que ses enregistrements de tâche associés, même si le nombre total de hello d’enregistrements est au-dessous du quota maximal de hello. Si vous avez besoin des informations de tâche/hello tooarchive, vous pouvez utiliser le code hello décrit [ici](../articles/media-services/media-services-dotnet-manage-entities.md).
+Depuis le 1er avril 2017, les enregistrements de travaux de votre compte qui ont plus de 90 jours sont automatiquement supprimés, ainsi que leurs enregistrements de tâches associés, même si le nombre total d’enregistrements est inférieur au quota maximal. Si vous devez archiver les informations sur le travail/la tâche, vous pouvez utiliser le code décrit [ici](../articles/media-services/media-services-dotnet-manage-entities.md).
 
-<sup>3</sup> lors d’une demande en entités de travail toolist, un maximum de 1 000 est renvoyé par requête. Si vous devez suivre tookeep de toutes les soumises travaux, vous pouvez utiliser top/skip comme décrit dans [options de requête système OData](http://msdn.microsoft.com/library/gg309461.aspx).
+<sup>3</sup> Lors d’une requête visant à lister les entités de travail, un maximum de 1 000 travaux sont retournés par requête. Si vous souhaitez effectuer le suivi de l’ensemble des travaux soumis, vous pouvez utiliser top/skip comme décrit dans [Options de requête du système OData](http://msdn.microsoft.com/library/gg309461.aspx).
 
-<sup>4</sup> Les localisateurs ne sont pas conçus pour gérer le contrôle d’accès par utilisateur. toogive différents droits tooindividual les utilisateurs d’accès, utilisez les solutions de gestion des droits numériques (DRM). Pour plus d’informations, consultez [cette](../articles/media-services/media-services-content-protection-overview.md) section.
+<sup>4</sup> Les localisateurs ne sont pas conçus pour gérer le contrôle d’accès par utilisateur. Pour accorder différents droits d’accès aux utilisateurs, utilisez les solutions de gestion des droits numériques (DRM). Pour plus d’informations, consultez [cette](../articles/media-services/media-services-content-protection-overview.md) section.
 
-<sup>5</sup> comptes de stockage hello doivent provenir de hello même abonnement Azure.
+<sup>5</sup> Les comptes de stockage doivent provenir du même abonnement Azure.
 
 <sup>6</sup> Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). 
 
 >[!NOTE]
-> Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, etc.. Pour plus d’informations et un exemple, consultez [cette](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies) section.
+> Vous devez appliquer le même ID de stratégie si vous utilisez toujours le même nombre de jours, les mêmes autorisations d’accès, etc. Pour plus d’informations et un exemple, consultez [cette](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies) section.
 
-<sup>7</sup>si vous téléchargez tooan contenu actif dans Azure Media Services avec tooprocess intention de hello avec un des processeurs multimédias de hello dans notre service (autrement dit, les encodeurs telles que des moteurs Media Encoder Standard et Workflow d’encodeur multimédia Premium ou l’analyse comme le détecteur de Face), puis vous devez connaître de contrainte hello sur la taille maximale hello. 
+<sup>7</sup>Si vous chargez du contenu dans un actif dans Azure Media Services afin de le traiter avec l’un des processeurs multimédias du service (c’est-à-dire des encodeurs comme Media Encoder Standard et Media Encoder Premium Workflow, ou des moteurs d’analyse comme Face Detector), vous devez connaître les tailles de fichiers maximales prises en charge. 
 
-Depuis le 15 mai 2017, taille maximale de hello pris en charge pour un seul objet blob est to 195 - avec largers de fichier dépasse cette limite, votre tâche échoue. Nous travaillons un tooaddress correctif cette limite. En outre, hello contrainte sur la taille maximale de hello hello actif est comme suit.
+La taille maximale prise en charge pour un objet blob est actuellement de 5 To dans Stockage Blob Azure. Toutefois, des limites supplémentaires sont applicables dans Azure Media Services en fonction des tailles de machine virtuelle utilisées par le service. Le tableau suivant indique les limites pour chacune des unités réservées Multimédia (S1, S2, S3). Si votre fichier source dépasse la limite définie dans le tableau, votre travail d’encodage échoue. Si vous encodez des sources de résolution 4K de longue durée, vous devez obligatoirement utiliser des unités réservées Multimédia S3 afin d’obtenir les performances nécessaires. Si vous avez du contenu 4K qui dépasse la limite de 260 Go sur les unités réservées Multimédia S3, contactez-nous à l’adresse amshelp@microsoft.com afin d’identifier des solutions d’atténuation potentielles permettant de prendre en charge votre scénario.
 
-| Types d’unités réservées de média | Taille maximale en entrée (Go)| 
+| Types d’unité réservée Multimédia | Taille maximale en entrée (Go)| 
 | --- | --- | 
 |S1 | 325|
 |S2 | 640|

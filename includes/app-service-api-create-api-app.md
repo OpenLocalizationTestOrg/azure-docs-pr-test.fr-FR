@@ -1,15 +1,15 @@
 
-Créer un [application API](../articles/app-service-api/app-service-api-apps-why-best-platform.md) Bonjour `myAppServicePlan` plan App Service avec hello [az webapp créer](/cli/azure/appservice/web#create) commande. 
+Créez une application dans le plan App Service `myAppServicePlan` avec la commande [az webapp create](/cli/azure/webapp?view=azure-cli-latest#az_webapp_create). 
 
-Hello web application fournit un espace d’hébergement de votre API et fournit une application hello déployé de tooview URL.
+L’application web offre un espace d’hébergement pour votre API et fournit une URL pour afficher l’application déployée.
 
-Bonjour suivant de commande, remplacez  *\<nom_application >* avec un nom unique. Si `<app_name>` est n’est pas unique, vous obtenez le message d’erreur hello « Site Web nommé < nom_application > existe déjà. » Hello par défaut de l’URL de l’application web hello est `https://<app_name>.azurewebsites.net`. 
+Dans la commande suivante, remplacez *\<app_name>* par un nom unique. Si `<app_name>` n’est pas une valeur unique, un message d’erreur s’affiche : « Un site web avec ce nom <app_name> existe déjà. » L’URL par défaut de l’application web est `https://<app_name>.azurewebsites.net`. 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-Lors de l’application hello web a été créée, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant :
+Une fois l’application web créée, Azure CLI affiche des informations similaires à celles de l’exemple suivant :
 
 ```json
 {

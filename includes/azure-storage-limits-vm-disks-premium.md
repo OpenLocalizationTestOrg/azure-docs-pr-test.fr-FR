@@ -6,7 +6,7 @@
 | Capacité totale des instantanés par compte |10 To |
 | Bande passante maximale par compte (entrée + sortie<sup>1</sup>) |<=50 Gbits/s |
 
-<sup>1</sup>*entrée* fait référence à des données tooall (demandes) envoyées compte de stockage tooa. *Sortie* fait référence tooall des données (réponses) reçues d’un compte de stockage.
+<sup>1</sup>*Entrée* désigne toutes les données (requêtes) envoyées à un compte de stockage. *Sortie* désigne toutes les données (réponses) reçues d'un compte de stockage.
 
 **Disques de machine virtuelle non gérés Premium : par limites de disques**
 
@@ -21,8 +21,6 @@
 
 | Ressource | Limite par défaut |
 | --- | --- |
-| Nb max. d'E/S par seconde par machine virtuelle |80 000 E/S par seconde avec la machine virtuelle GS5<sup>1</sup> |
-| Débit max. par machine virtuelle |2 000 Mo/s avec la machine virtuelle GS5<sup>1</sup> |
-
-<sup>1</sup>reportez-vous trop[taille de machine virtuelle](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) des limites sur les tailles de machine virtuelle. 
+| Nb max. d'E/S par seconde par machine virtuelle |80 000 E/S par seconde avec la machine virtuelle GS5 |
+| Débit max. par machine virtuelle |2 000 Mo/s avec la machine virtuelle GS5 |
 

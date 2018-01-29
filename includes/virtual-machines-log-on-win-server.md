@@ -1,15 +1,15 @@
-1. Un clic sur **Connecter** permet de créer et de télécharger un fichier de protocole Remote Desktop Protocol (fichier .rdp). Cliquez sur **ouvrir** toouse ce fichier.
-2. Vous obtiendrez un avertissement qui .rdp hello est un serveur de publication inconnu. C’est normal. Dans la fenêtre du Bureau à distance hello, cliquez sur **Connect** toocontinue.
+1. Un clic sur **Connecter** permet de créer et de télécharger un fichier de protocole Remote Desktop Protocol (fichier .rdp). Cliquez sur **Ouvrir** pour utiliser ce fichier.
+2. Un message vous avertit que le fichier `.rdp` provient d’un éditeur inconnu. C’est normal. Dans la fenêtre Bureau à distance, cliquez sur **Connecter** pour continuer.
    
     ![Capture d’écran d’avertissement relatif à un éditeur inconnu.](./media/virtual-machines-log-on-win-server/rdp-warn.png)
-3. Bonjour **sécurité Windows** fenêtre, informations d’identification de hello pour un compte sur l’ordinateur virtuel de hello puis tapez **OK**.
+3. Dans la fenêtre **Sécurité Windows**, sélectionnez **Plus de choix**, puis **Utiliser un autre compte**. Tapez les informations d’identification d’un compte sur la machine virtuelle, puis cliquez sur **OK**.
    
-     **Compte local** -il s’agit généralement de nom d’utilisateur et mot de passe que vous avez spécifié lors de la création de machine virtuelle hello compte hello. Dans ce cas, domaine de hello est nom hello de machine virtuelle de hello et il est entré en tant que *vmname*&#92; *nom d’utilisateur*.  
+     **Compte local** : il s’agit généralement du nom d’utilisateur et du mot de passe du compte local que vous avez spécifiés quand vous avez créé la machine virtuelle. Le domaine correspond alors au nom de la machine virtuelle et vous devez l’entrer sous la forme *nom_machine_virtuelle*&#92;*nom_utilisateur*.  
    
-    **Machine virtuelle d’un domaine** - si hello machine virtuelle appartient tooa domaine, entrez le nom d’utilisateur de hello au format de hello *domaine*&#92; *Nom d’utilisateur*. compte de Hello doit également tooeither soit hello administrateurs de groupe disposent des privilèges de l’accès à distance toohello machine virtuelle.
+    **Machine virtuelle jointe à un domaine** : si la machine virtuelle appartient à un domaine, entrez le nom d’utilisateur au format *Domaine*&#92;*Nom d’utilisateur*. Le compte doit également être membre du groupe Administrateurs ou bénéficier de privilèges d’accès à distance à la machine virtuelle.
    
-    **Contrôleur de domaine** - si hello machine virtuelle est un contrôleur de domaine, le nom d’utilisateur de type hello et le mot de passe d’un compte d’administrateur de domaine pour ce domaine.
-4. Cliquez sur **Oui** tooverify hello l’identité de l’ordinateur virtuel de hello et terminer la session.
+    **Contrôleur de domaine** : si la machine virtuelle est un contrôleur de domaine, tapez le nom d’utilisateur et le mot de passe d’un compte d’administrateur de domaine pour ce domaine.
+4. Cliquez sur **Oui** pour vérifier l’identité de la machine virtuelle et terminer la connexion.
    
-   ![Capture d’écran montrant un message à propos de vérification d’identité hello Hello machine virtuelle.](./media/virtual-machines-log-on-win-server/cert-warning.png)
+   ![Capture d'écran montrant un message relatif à la vérification de l'identité de la machine virtuelle.](./media/virtual-machines-log-on-win-server/cert-warning.png)
 

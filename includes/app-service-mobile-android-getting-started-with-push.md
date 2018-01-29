@@ -1,96 +1,105 @@
-1. Dans votre **application** projet, les fichiers ouverts hello `AndroidManifest.xml`. Dans le code hello dans hello deux étapes suivantes, remplacez  *`**my_app_package**`*  par nom de hello du package d’application hello pour votre projet. Valeur hello Hello `package` attribut Hello `manifest` balise.
-2. Ajouter hello suivant nouvelles autorisations après hello existant `uses-permission` élément :
+1. Dans votre projet **d’application**, ouvrez le fichier `AndroidManifest.xml`. Ajoutez le code suivant après la balise de début `application` :
 
-        <permission android:name="**my_app_package**.permission.C2D_MESSAGE"
-            android:protectionLevel="signature" />
-        <uses-permission android:name="**my_app_package**.permission.C2D_MESSAGE" />
-        <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-        <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-        <uses-permission android:name="android.permission.WAKE_LOCK" />
-3. Ajouter hello après le code après hello `application` balise d’ouverture :
+    ```xml
+    <service android:name=".ToDoMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+        </intent-filter>
+    </service>
+    <service android:name=".ToDoInstanceIdService">
+        <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+        </intent-filter>
+    </service>
+    ```
 
-        <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
-                                         android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="**my_app_package**" />
-            </intent-filter>
-        </receiver>
-4. Les fichiers ouverts hello *ToDoActivity.java*et ajoutez hello après l’instruction d’importation :
+2. Ouvrez le fichier `ToDoActivity.java`, puis apportez les modifications suivantes :
 
-        import com.microsoft.windowsazure.notifications.NotificationsManager;
-5. Ajoutez hello suivant toohello variable privée classe. Remplacez  *`<PROJECT_NUMBER>`*  avec numéro de projet de hello attribué par Google tooyour application hello précédente procédure.
+    - Ajoutez l’instruction d’importation :
 
-        public static final String SENDER_ID = "<PROJECT_NUMBER>";
-6. Modifier la définition de hello de *MobileServiceClient* de **privé** trop**statique public**, donc il ressemble à ceci :
+        ```java
+        import com.google.firebase.iid.FirebaseInstanceId;
+        ```
 
-        public static MobileServiceClient mClient;
-7. Ajoutez un nouvelles notifications toohandle de classe. Dans l’Explorateur de projets, ouvrez hello **src** > **principal** > **java** nœuds et nœud de nom de package avec le bouton hello. Cliquez sur **Nouveau**, puis sur **Classe Java**.
-8. Dans **Nom**, tapez `MyHandler`, puis cliquez sur **OK**.
+    - Modifiez la définition de `MobileServiceClient` en remplaçant **private** par **private static**, afin qu’elle ressemble à ceci :
 
-    ![](./media/app-service-mobile-android-configure-push/android-studio-create-class.png)
+        ```java
+        private static MobileServiceClient mClient;
+        ```
 
-9. Dans le fichier de MyHandler hello, remplacez la déclaration de classe de hello avec :
+    - Ajoutez la méthode `registerPush` :
 
-        public class MyHandler extends NotificationsHandler {
-10. Ajouter hello suivant les instructions d’importation pour hello `MyHandler` classe :
+        ```java
+        public static void registerPush() {
+            final String token = FirebaseInstanceId.getInstance().getToken();
+            if (token != null) {
+                new AsyncTask<Void, Void, Void>() {
+                    protected Void doInBackground(Void... params) {
+                        mClient.getPush().register(token);
+                        return null;
+                    }
+                }.execute();
+            }
+        }
+        ```
 
-        import com.microsoft.windowsazure.notifications.NotificationsHandler;
-        import android.app.NotificationManager;
-        import android.app.PendingIntent;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.support.v4.app.NotificationCompat;
-11. Ensuite, ajoutez cette toohello membre `MyHandler` classe :
+    - Mettez à jour la méthode **onCreate** de la classe `ToDoActivity`. Veillez à ajouter ce code après l’instanciation de `MobileServiceClient`.
 
-        public static final int NOTIFICATION_ID = 1;
-12. Bonjour `MyHandler` de classe, ajoutez hello suivant hello toooverride de code **onRegistered** (méthode), qui inscrit votre appareil avec un concentrateur de notification du service mobile hello.
+        ```java
+        registerPush();
+        ```
 
-        @Override
-        public void onRegistered(Context context,  final String gcmRegistrationId) {
-           super.onRegistered(context, gcmRegistrationId);
+3. Ajoutez une nouvelle classe pour gérer les notifications. Dans l’Explorateur de projets, ouvrez les nœuds **app** > **java** > **your-project-namespace**, puis cliquez avec le bouton droit sur le nœud de nom de package. Cliquez sur **Nouveau**, puis sur **Classe Java**. Dans Nom, entrez `ToDoMessagingService`, puis cliquez sur OK. Remplacez ensuite la déclaration de classe par :
 
-           new AsyncTask<Void, Void, Void>() {
+    ```java
+    import android.app.Notification;
+    import android.app.NotificationManager;
+    import android.app.PendingIntent;
+    import android.content.Context;
+    import android.content.Intent;
 
-               protected Void doInBackground(Void... params) {
-                   try {
-                       ToDoActivity.mClient.getPush().register(gcmRegistrationId);
-                       return null;
-                   }
-                   catch(Exception e) {
-                       // handle error                
-                   }
-                   return null;              
-               }
-           }.execute();
-       }
-13. Bonjour `MyHandler` de classe, ajoutez hello suivant hello toooverride de code **onReceive** (méthode), ce qui amène hello notification toodisplay lorsqu’elle est reçue.
+    import com.google.firebase.messaging.FirebaseMessagingService;
+    import com.google.firebase.messaging.RemoteMessage;
+
+    public class ToDoMessagingService extends FirebaseMessagingService {
+
+        private static final int NOTIFICATION_ID = 1;
 
         @Override
-        public void onReceive(Context context, Bundle bundle) {
-               String msg = bundle.getString("message");
+        public void onMessageReceived(RemoteMessage remoteMessage) {
+            String message = remoteMessage.getData().get("message");
+            if (message != null) {
+                sendNotification("Notification Hub Demo", message);
+            }
+        }
 
-               PendingIntent contentIntent = PendingIntent.getActivity(context,
-                       0, // requestCode
-                       new Intent(context, ToDoActivity.class),
-                       0); // flags
+        private void sendNotification(String title, String messageBody) {
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, ToDoActivity.class), 0);
+            Notification.Builder notificationBuilder = new Notification.Builder(this)
+                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(messageBody)
+                    .setContentIntent(contentIntent);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (notificationManager != null) {
+                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+            }
+        }
+    }
+    ```
 
-               Notification notification = new NotificationCompat.Builder(context)
-                       .setSmallIcon(R.drawable.ic_launcher)
-                       .setContentTitle("Notification Hub Demo")
-                       .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
-                       .setContentText(msg)
-                       .setContentIntent(contentIntent)
-                       .build();
+4. Ajoutez une autre classe pour gérer les mises à jour de jeton. Créez une classe Java `ToDoInstanceIdService` et remplacez la déclaration de classe par :
 
-               NotificationManager notificationManager = (NotificationManager)
-                       context.getSystemService(Context.NOTIFICATION_SERVICE);
-               notificationManager.notify(NOTIFICATION_ID, notification);
-       }
-14. Dans le fichier de TodoActivity.java hello, mettre à jour de hello **onCreate** méthode Hello *ToDoActivity* classe classe du Gestionnaire de notification tooregister hello. Rendre le code que tooadd après hello *MobileServiceClient* est instancié.
+    ```java
+    import com.google.firebase.iid.FirebaseInstanceIdService;
 
-        NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
+    public class ToDoInstanceIdService extends FirebaseInstanceIdService {
 
-    Votre application est maintenant des notifications push de toosupport mis à jour.
+        @Override
+        public void onTokenRefresh() {
+            ToDoActivity.registerPush();
+        }
+    }
+    ```
+
+L'application est mise à jour et prend en charge les notifications Push.

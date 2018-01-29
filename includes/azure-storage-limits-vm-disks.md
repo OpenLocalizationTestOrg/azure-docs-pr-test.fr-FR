@@ -1,11 +1,15 @@
-Une machine virtuelle Azure prend en charge l'attachement d'un certain nombre de disques de données. Pour des performances optimales, vous devez toolimit hello de disques très utilisées associé toohello machine virtuelle tooavoid possible la limitation. Si tous les disques ne sont pas très utilisés à hello simultanément, compte de stockage hello peut prendre en charge un plus grand nombre de disques.
+Une machine virtuelle Azure prend en charge l'attachement d'un certain nombre de disques de données. Cet article décrit les objectifs de scalabilité et de performances des disques de données d’une machine virtuelle. Utilisez ces objectifs pour déterminer le nombre et le type de disques dont vous avez besoin pour répondre à vos besoins de performances et de capacité. 
 
-* **Pour les disques Azure géré :** limite du nombre de disques de managé est régionale et également varie selon le type de stockage hello. Hello par défaut et également le nombre maximal hello est 10 000 par abonnement, par région et par type de stockage. Par exemple, vous pouvez créer jusqu'à too10, 000 standard gérés disques ainsi que 10 000 premium gérés disques dans un abonnement et dans une région. 
+> [!IMPORTANT]
+> Pour des performances optimales, limitez le nombre de disques fortement utilisés attachés à la machine virtuelle pour éviter les limitations possibles. Si tous les disques attachés ne sont pas fortement utilisés en même temps, la machine virtuelle peut prendre en charge un plus grand nombre de disques.
 
-    Géré instantanés et les Images sont comptées par rapport à hello que limiter des disques gérés.
+* **Pour Azure Managed Disks :** la limite des disques managés est exprimée par région et par type de disque. La limite maximale, ainsi que la limite par défaut, s’élèvent à 10 000 disques managés par région et par type de disque pour un abonnement. Par exemple, vous pouvez créer jusqu’à 10 000 disques managés standard et jusqu’à 10 000 disques managés Premium au sein d’un abonnement et d’une région.
 
-* **Pour les comptes de stockage standard :** un compte de stockage standard a un taux de demandes total maximal de 20 000 opérations d'E/S par seconde. Hello total IOPS sur tous vos disques de machine virtuelle dans un compte de stockage standard ne doit pas dépasser cette limite.
+    Les instantanés et les images gérés sont comptabilisés par rapport à la limite de disques managés.
+
+* **Pour les comptes de stockage standard :** un compte de stockage standard a un taux de demandes total maximal de 20 000 opérations d'E/S par seconde. Le nombre d'opérations d'E/S par seconde sur l'ensemble de vos disques de machine virtuelle dans un compte de stockage standard ne doit pas dépasser cette limite.
   
-    Vous pouvez calculer à peu près de nombre hello de disques très utilisées pris en charge par un compte de stockage standard unique en fonction de la limite du taux de demande hello. Par exemple, pour un machine virtuelle, le niveau de base hello nombre maximal d’intensive des disques est environ 66 (20 000/300 IOPS par disque), et pour une machine virtuelle niveau Standard, il est environ 40 (20 000/500 IOPS par disque), comme indiqué dans le tableau hello ci-dessous. 
-* **Pour les comptes de stockage premium :** un compte de stockage premium a un débit total maximum de 50 Gbits/s. débit total de Hello dans l’ensemble de vos disques de machine virtuelle ne doit pas dépasser cette limite.
+    Vous pouvez calculer approximativement le nombre de disques fortement sollicités pris en charge par un seul compte de stockage standard en vous basant sur la limite du taux de demandes. Par exemple, pour une machine virtuelle de niveau de base, le nombre maximal de disques fortement sollicités est d’environ 66 (20 000/300 opérations d’E/S par seconde par disque) et, pour une machine virtuelle de niveau Standard, il est d’environ 40 (20 000/500 opérations d’E/S par seconde par disque). 
+
+* **Pour les comptes de stockage premium :** un compte de stockage premium a un débit total maximum de 50 Gbits/s. Le débit total sur l'ensemble de vos disques de machine virtuelle ne doit pas dépasser cette limite.
 

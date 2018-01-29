@@ -1,64 +1,64 @@
 ## <a name="set-up-your-development-environment"></a>Configuration de l'environnement de développement
-Ensuite, configurez votre environnement de développement dans Visual Studio afin de vous êtes prêt tootry exemples de code hello dans ce guide.
+Ensuite, configurez votre environnement de développement dans Visual Studio afin d’être prêt pour essayer les exemples de code fournis dans ce guide.
 
 ### <a name="create-a-windows-console-application-project"></a>Créer un projet d’application de console Windows
-Dans Visual Studio, créez une application de console Windows. Hello suit vous montre comment toocreate une application de console dans Visual Studio 2017, toutefois, les étapes de hello sont similaires dans les autres versions de Visual Studio.
+Dans Visual Studio, créez une application de console Windows. Les étapes suivantes vous montrent comment créer une application de console dans Visual Studio 2017. Les étapes sont semblables pour d’autres versions de Visual Studio.
 
-1. Sélectionnez **Fichier** > **Nouveau** > **Projet**
-2. Sélectionnez **Installé** > **Modèles** > **Visual C#** > **Bureau classique Windows**
-3. Sélectionnez **Application console (.NET Framework)**
-4. Entrez un nom pour votre application dans hello **nom :** champ
+1. Sélectionnez **Fichier** > **Nouveau** > **Projet**.
+2. Sélectionnez **Installé** > **Modèles** > **Visual C#** > **Bureau classique Windows**.
+3. Sélectionnez **Application console (.NET Framework)**.
+4. Saisissez un nom pour votre application dans le champ **Nom**.
 5. Sélectionnez **OK**.
 
-![Boîte de dialogue Création du projet dans Visual Studio](./media/storage-development-environment-include/storage-development-environment-include-1.png)
+![Capture d’écran de la boîte de dialogue Nouveau projet dans Visual Studio](./media/storage-development-environment-include/storage-development-environment-include-1.png)
 
-Tous les exemples de code dans ce didacticiel peuvent être ajoutés toohello `Main()` méthode de votre application de console `Program.cs` fichier.
+Tous les exemples de code figurant dans ce didacticiel peuvent être ajoutés à la méthode `Main()` du fichier `Program.cs` de votre application de console.
 
-Vous pouvez utiliser hello bibliothèque cliente de stockage Azure dans n’importe quel type d’application .NET, y compris une application web ou de service cloud Azure et les applications de bureau et mobiles. Dans ce guide, nous utilisons une application console pour plus de simplicité.
+Vous pouvez utiliser la bibliothèque cliente d’Azure Storage dans n’importe quelle application .NET, y compris un service cloud Azure, une application web, une application de bureau ou une application mobile. Dans ce guide, nous utilisons une application console pour plus de simplicité.
 
-### <a name="use-nuget-tooinstall-hello-required-packages"></a>Utiliser les packages NuGet tooinstall hello requis
-Il existe deux packages, vous devez tooreference dans votre projet toocomplete ce didacticiel :
+### <a name="use-nuget-to-install-the-required-packages"></a>Utiliser NuGet pour installer les packages requis
+Vous devez référencer deux packages dans votre projet pour terminer ce didacticiel :
 
-* [Bibliothèque cliente Microsoft Azure Storage pour .NET](https://www.nuget.org/packages/WindowsAzure.Storage/): ce package fournit un accès par programmation toodata des ressources dans votre compte de stockage.
+* [Bibliothèque cliente Microsoft Azure Storage pour .NET](https://www.nuget.org/packages/WindowsAzure.Storage/): ce package fournit un accès par programme aux ressources de données dans votre compte de stockage.
 * [Bibliothèque Microsoft Azure Configuration Manager pour .NET](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/) : ce package fournit une classe pour l’analyse d’une chaîne de connexion à partir d’un fichier de configuration, quel que soit l’emplacement d’exécution de votre application.
 
-Vous pouvez utiliser NuGet tooobtain les deux packages. Procédez comme suit :
+Vous pouvez utiliser NuGet pour obtenir ces deux packages. Procédez comme suit :
 
 1. Cliquez avec le bouton droit sur votre projet dans **l’Explorateur de solutions**, puis sélectionnez **Gérer les packages NuGet**.
-2. Rechercher en ligne du terme « WindowsAzure.Storage » et cliquez sur **installer** tooinstall hello bibliothèque cliente de stockage et de ses dépendances.
-3. Rechercher en ligne « WindowsAzure.ConfigurationManager » et cliquez sur **installer** tooinstall hello Azure Configuration Manager.
+2. Recherchez « WindowsAzure.Storage » en ligne, puis sélectionnez **Installer** pour installer la bibliothèque cliente Azure Storage et ses dépendances.
+3. Recherchez « WindowsAzure.ConfigurationManager » en ligne, puis sélectionnez **Installer** pour installer Azure Configuration Manager.
 
 > [!NOTE]
-> package de bibliothèque cliente de stockage Hello est également inclus dans hello [Azure SDK pour .NET](https://azure.microsoft.com/downloads/). Toutefois, nous vous recommandons d’installer également hello bibliothèque cliente de stockage tooensure NuGet que vous disposez toujours de version la plus récente de la bibliothèque cliente de hello hello.
+> Le package de bibliothèque cliente Azure Storage est également disponible dans le [Kit de développement logiciel (SDK) Azure pour .NET](https://azure.microsoft.com/downloads/). Toutefois, nous vous recommandons d’installer également la bibliothèque cliente Azure Storage à partir de NuGet pour vous assurer que vous avez toujours la dernière version de la bibliothèque cliente.
 > 
-> dépendances ODataLib de Hello Bonjour bibliothèque cliente de stockage pour .NET sont résolus par les packages ODataLib de hello disponibles sur NuGet, et non à partir des Services de données WCF. les bibliothèques ODataLib Hello peuvent être téléchargés directement ou référencés par votre projet de code via NuGet. les packages ODataLib spécifiques Hello utilisés par la bibliothèque cliente de stockage de hello sont [OData](http://nuget.org/packages/Microsoft.Data.OData/), [Edm](http://nuget.org/packages/Microsoft.Data.Edm/), et [Spatial](http://nuget.org/packages/System.Spatial/). Alors que ces bibliothèques sont utilisées par les classes de stockage de Table Azure hello, ils sont les dépendances requises pour la programmation avec hello bibliothèque cliente de stockage.
+> Les dépendances ODataLib de la bibliothèque de client de stockage pour .NET sont résolues via les packages ODataLib disponibles sur NuGet et non à partir des services de données WCF. Vous pouvez télécharger directement les bibliothèques ODataLib ou les référencer avec votre projet de code via NuGet. Les packages ODataLib utilisés par la bibliothèque cliente de stockage sont [OData](http://nuget.org/packages/Microsoft.Data.OData/), [Edm](http://nuget.org/packages/Microsoft.Data.Edm/) et [Spatial](http://nuget.org/packages/System.Spatial/). Bien qu’elles soient utilisées par les classes de stockage de Table Azure, ces bibliothèques sont des dépendances requises pour la programmation avec la bibliothèque cliente de stockage.
 > 
 > 
 
 ### <a name="determine-your-target-environment"></a>Déterminer votre environnement cible
-Vous avez deux options d’environnement pour l’exécution des exemples de hello dans ce guide :
+Vous avez le choix entre deux environnements pour exécuter les exemples de ce guide :
 
-* Vous pouvez exécuter votre code par rapport à un compte de stockage Azure dans le cloud de hello. 
-* Vous pouvez exécuter votre code par rapport à l’émulateur de stockage Azure hello. l’émulateur de stockage Hello est un environnement local qui émule un compte de stockage Azure dans le cloud de hello. l’émulateur Hello est une option disponible pour tester et déboguer votre code pendant que votre application est en cours de développement. émulateur de Hello utilise un compte bien connu et une clé. Pour plus d’informations, consultez [hello d’utilisation émulateur de stockage pour le développement et le test](../articles/storage/common/storage-use-emulator.md)
+* Vous pouvez exécuter votre code sur un compte Azure Storage dans le cloud. 
+* Vous pouvez exécuter votre code sur l’émulateur de stockage Azure. L’émulateur de stockage est un environnement local qui émule un compte Azure Storage dans le cloud. L’émulateur est une option gratuite permettant de tester et déboguer votre code lors du développement de votre application. L’émulateur utilise un compte et une clé connus. Pour plus d’informations, consultez [Utilisation de l’émulateur de stockage Azure pour le développement et le test](../articles/storage/common/storage-use-emulator.md).
 
-Si vous ciblez un compte de stockage dans le cloud de hello, copiez la clé d’accès primaire hello pour votre compte de stockage à partir de hello portail Azure. Pour plus d’informations, voir [Affichage et copie de clés d’accès de stockage](../articles/storage/common/storage-create-storage-account.md#view-and-copy-storage-access-keys).
+Si vous ciblez un compte de stockage dans le cloud, copiez la clé d’accès primaire de votre compte de stockage à partir du portail Azure. Pour plus d’informations, voir [Affichage et copie de clés d’accès de stockage](../articles/storage/common/storage-create-storage-account.md#view-and-copy-storage-access-keys).
 
 > [!NOTE]
-> Vous pouvez cibler tooavoid d’émulateur de stockage hello encourir les coûts associés au stockage Azure. Toutefois, si vous choisissez tootarget un compte de stockage Azure dans le cloud de hello, les coûts pour effectuer ce didacticiel sera négligeables.
+> Vous pouvez cibler l’émulateur de stockage pour éviter les frais liés à l’utilisation des services de stockage Azure. Toutefois, si vous choisissez de cibler un compte de stockage Azure situé dans le cloud, les frais associés à l’utilisation de ce didacticiel seront négligeables.
 > 
 > 
 
 ### <a name="configure-your-storage-connection-string"></a>Configurer votre chaîne de connexion de stockage
-Hello bibliothèque cliente de stockage Azure pour .NET prend en charge de l’aide d’un points de terminaison de stockage connexion chaîne tooconfigure et informations d’identification pour accéder aux services de stockage. Hello meilleure manière toomaintain votre chaîne de connexion de stockage est dans un fichier de configuration. 
+La bibliothèque du client de stockage Azure pour .NET prend en charge l’utilisation d’une chaîne de connexion de stockage pour la configuration de points de terminaison et d’informations d’identification permettant d’accéder aux services de stockage. La meilleure façon de conserver votre chaîne de connexion de stockage est dans un fichier de configuration. 
 
-Pour plus d’informations sur les chaînes de connexion, consultez [configurer une chaîne de connexion de tooAzure stockage](../articles/storage/common/storage-configure-connection-string.md).
+Pour plus d’informations sur les chaînes de connexion, voir [Configuration d’une chaîne de connexion dans Stockage Azure](../articles/storage/common/storage-configure-connection-string.md).
 
 > [!NOTE]
-> Votre clé de compte de stockage est similaire toohello racine mot de passe pour votre compte de stockage. Toujours être prudent tooprotect votre clé de compte de stockage. Éviter la distribution des utilisateurs tooother, le codage en dur, ou l’enregistrer dans un fichier texte brut qui est accessible tooothers. Régénérez votre clé à l’aide de hello portail Azure si vous pensez qu’il a peut-être été compromis.
+> Votre clé de compte de stockage est similaire au mot de passe racine pour votre compte de stockage. Veillez toujours à protéger votre clé de compte de stockage. Évitez de la communiquer à d’autres utilisateurs, de la coder en dur ou de l’enregistrer dans un fichier texte brut accessible à d’autres personnes. Régénérez votre clé à l’aide du portail Azure si vous pensez que sa confidentialité est compromise.
 > 
 > 
 
-tooconfigure votre chaîne de connexion, l’ouvrir hello `app.config` fichier à partir de l’Explorateur de solutions dans Visual Studio. Ajouter du contenu hello Hello `<appSettings>` élément indiqué ci-dessous. Remplacez `account-name` avec nom hello de votre compte de stockage et `account-key` avec votre clé d’accès de compte :
+Pour configurer votre chaîne de connexion, ouvrez le fichier `app.config` depuis l’Explorateur de solutions dans Visual Studio. Ajoutez le contenu de l’élément `<appSettings>` indiqué ci-dessous. Remplacez `account-name` par le nom de votre compte de stockage et `account-key` par votre clé d’accès au compte :
 
 ```xml
 <configuration>
@@ -77,7 +77,7 @@ Par exemple, votre paramètre de configuration est semblable à :
 <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=GMuzNHjlB3S9itqZJHHCnRkrokLkcSyW7yK9BRbGp0ENePunLPwBgpxV1Z/pVo9zpem/2xSHXkMqTHHLcx8XRA==" />
 ```
 
-émulateur de stockage tootarget hello, vous pouvez utiliser un raccourci qui mappe une clé et le nom de compte bien connu toohello. Dans ce cas, le paramètre de votre chaîne de connexion est :
+Pour cibler l’émulateur de stockage, vous pouvez utiliser un raccourci qui correspond à la clé et au nom de compte connus. Dans ce cas, le paramètre de votre chaîne de connexion est :
 
 ```xml
 <add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />

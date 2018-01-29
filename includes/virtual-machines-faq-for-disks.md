@@ -2,71 +2,71 @@
 
 Dans cet article, nous étudierons les questions fréquentes relatives à Azure Managed Disks et Azure Stockage Premium.
 
-## <a name="managed-disks"></a>Managed Disks
+## <a name="managed-disks"></a>Managed Disks
 
 **Qu’est-ce qu’Azure Managed Disks ?**
 
-Managed Disks est une fonctionnalité qui simplifie la gestion des disques associés aux machines virtuelles Azure IaaS en prenant en charge pour vous la gestion des comptes de stockage. Pour plus d’informations, consultez hello [vue d’ensemble de disques gérés](../articles/virtual-machines/windows/managed-disks-overview.md).
+Managed Disks est une fonctionnalité qui simplifie la gestion des disques associés aux machines virtuelles Azure IaaS en prenant en charge pour vous la gestion des comptes de stockage. Pour plus d’informations, consultez la section [Vue d’ensemble des disques gérés](../articles/virtual-machines/windows/managed-disks-overview.md).
 
 **Si je crée un disque géré standard à partir d’un disque dur virtuel existant de 80 Go, combien cela me coûte-t-il ?**
 
-Un disque géré standard créé à partir d’un disque dur virtuel de 80 Go est traité comme taille de disque standard disponible suivant hello, qui est un disque S10. Vous êtes facturé en fonction toohello S10 disque tarification. Pour plus d’informations, consultez hello [page de tarification](https://azure.microsoft.com/pricing/details/storage).
+Un disque géré standard créé à partir d’un disque dur virtuel de 80 Go est considéré comme un disque standard de la taille directement supérieure. Dans notre cas, il s’agit du disque S10. Vous êtes facturé en fonction de la tarification de disque S10. Pour plus d’informations, consultez la [page relative aux prix appliqués](https://azure.microsoft.com/pricing/details/storage).
 
 **Des frais de transaction s’appliquent-ils aux disques gérés Standard ?**
 
-Oui. Vous êtes facturé pour chaque transaction. Pour plus d’informations, consultez hello [page de tarification](https://azure.microsoft.com/pricing/details/storage).
+Oui. Vous êtes facturé pour chaque transaction. Pour plus d’informations, consultez la [page relative aux prix appliqués](https://azure.microsoft.com/pricing/details/storage).
 
-**Pour un disque géré standard, me seront-elles facturées pour hello de taille réelle des données hello sur le disque de hello ou hello configuré capacité de hello disque ?**
+**Pour un disque standard géré, serai-je facturé pour la taille réelle des données sur le disque ou pour la capacité configurée du disque ?**
 
-Vous êtes facturé en fonction de la capacité de hello mis en service du disque de hello. Pour plus d’informations, consultez hello [page de tarification](https://azure.microsoft.com/pricing/details/storage).
+Vous êtes facturé en fonction de la capacité configurée du disque. Pour plus d’informations, consultez la [page relative aux prix appliqués](https://azure.microsoft.com/pricing/details/storage).
 
 **En quoi la tarification appliquée aux disques gérés Premium est-elle différente de celle associée aux disques non gérés ?**
 
-Hello tarification des disques premium géré est hello identique à celui des disques premium non managé.
+La tarification de ces 2 types de disques est identique.
 
-**Puis-je modifier hello stockage type de compte (Standard ou Premium) de mes disques gérés ?**
+**Puis-je modifier le type de compte de stockage (Standard/Premium) de mes disques gérés ?**
 
-Oui. Vous pouvez modifier le type de compte de stockage hello vos disques gérés à l’aide de hello portail Azure, PowerShell ou hello CLI d’Azure.
+Oui. Vous pouvez modifier le type de compte de stockage de vos disques gérés en utilisant le portail Azure, PowerShell ou l’interface Azure CLI.
 
-**Existe-t-il un moyen que je puisse copier ou exporter un compte de stockage privé tooa disque géré ?**
+**Existe-t-il un moyen de copier ou d’exporter un disque géré vers un compte de stockage privé ?**
 
-Oui. Vous pouvez exporter vos disques gérés à l’aide de hello portail Azure, PowerShell ou hello CLI d’Azure.
+Oui. Vous pouvez exporter vos disques gérés en utilisant le portail Azure, PowerShell ou l’interface Azure CLI.
 
-**Puis-je utiliser un fichier de disque dur virtuel dans un toocreate de compte de stockage Azure un disque géré avec un autre abonnement ?**
+**Puis-je utiliser un fichier VHD dans un compte de stockage Azure pour créer un disque géré avec un autre abonnement ?**
 
 Non.
 
-**Puis-je utiliser un fichier de disque dur virtuel dans un toocreate de compte de stockage Azure un disque géré dans une autre région ?**
+**Puis-je utiliser un fichier VHD dans un compte de stockage Azure pour créer un disque géré dans une région différente ?**
 
 Non.
 
 **Existe-t-il des restrictions de mise à l’échelle pour les clients utilisant des disques gérés ?**
 
-Disques gérés élimine les limites de hello associées aux comptes de stockage. Toutefois, nombre de hello de disques gérés par abonnement est limité too2, 000 par défaut. Vous pouvez appeler tooincrease de prise en charge ce nombre.
+Managed Disks élimine les restrictions associées aux comptes de stockage. Toutefois, le nombre de disques gérés par abonnement est limité à 2 000 par défaut. Vous pouvez appeler le support technique pour augmenter ce nombre.
 
 **Puis-je prendre une capture instantanée incrémentielle d’un disque géré ?**
 
-Non. fonctionnalité de capture instantanée actuelle Hello effectue une copie complète d’un disque géré. Toutefois, nous avons l’intention toosupport création d’instantanés incrémentiels hello futures.
+Non. La fonctionnalité actuelle de capture instantanée crée une copie complète d’un disque géré. Toutefois, nous envisageons de prendre en charge les captures instantanées incrémentielles à l’avenir.
 
 **Les machines virtuelles d’un groupe à haute disponibilité peuvent-elles consister en une combinaison de disques gérés et non gérés ?**
 
-Non. Hello machines virtuelles dans un ensemble de disponibilité doit utiliser tous les disques ou tous les disques non managés. Lorsque vous créez un ensemble de disponibilité, vous pouvez choisir le type de disques souhaité toouse.
+Non. Les machines virtuelles d’un groupe à haute disponibilité doivent utiliser exclusivement des disques gérés ou non gérés. Lorsque vous créez un groupe à haute disponibilité, vous pouvez définir le type de disques à utiliser.
 
-**Est l’option par défaut de disques gérés hello Bonjour portail Azure ?**
+**Les disques gérés sont-ils l’option par défaut dans le portail Azure ?**
 
-Pas actuellement, mais il sera fait défaut hello Bonjour futures.
+Oui. 
 
 **Est-il possible de créer un disque géré vide ?**
 
-Oui. Vous pouvez tout à fait créer un disque vide. Un disque géré peut être créé indépendamment d’une machine virtuelle, par exemple, sans l’attacher tooa machine virtuelle.
+Oui. Vous pouvez tout à fait créer un disque vide. Un disque géré peut être créé indépendamment d’une machine virtuelle, par exemple, sans le joindre à une machine virtuelle.
 
-**Quel est le nombre de domaines d’erreur hello pris en charge pour un ensemble de disponibilité qui utilise des disques gérés ?**
+**Par défaut, combien de domaines d’erreurs sont pris en charge pour les groupes à haute disponibilité utilisant Managed Disks ?**
 
-En fonction de la région de hello où se trouve le groupe à haute disponibilité hello qui utilise des disques gérés, le nombre de domaines d’erreur hello pris en charge est 2 ou 3.
+En fonction de la région où se trouve le groupe à haute disponibilité qui utilise Managed Disks, le nombre de domaines d’erreurs pris en charge peut être de 2 ou 3.
 
-**Comment est le compte de stockage standard hello pour configurer des diagnostics ?**
+**Comment est configuré le compte de stockage Standard pour les diagnostics ?**
 
-Vous configurez un compte de stockage privé pour les diagnostics de machine virtuelle. Bonjour future, nous prévoyons de diagnostics de tooswitch tooManaged ainsi des disques.
+Vous configurez un compte de stockage privé pour les diagnostics de machine virtuelle. À l’avenir, nous prévoyons de basculer également les diagnostics sur Managed Disks.
 
 **Quel type de prise en charge du contrôle d’accès en fonction du rôle est disponible pour Managed Disks ?**
 
@@ -76,20 +76,20 @@ Managed Disks prend en charge trois rôles principaux par défaut :
 * Contributeur : il dispose d’une liberté totale de gestion, mais ne contrôle pas l’accès
 * Lecteur : il peut afficher tous les éléments, mais ne peut y apporter de modifications
 
-**Existe-t-il un moyen que je puisse copier ou exporter un compte de stockage privé tooa disque géré ?**
+**Existe-t-il un moyen de copier ou d’exporter un disque géré vers un compte de stockage privé ?**
 
-Vous pouvez obtenir une signature d’accès partagé en lecture seule URI pour hello géré de disque et l’utiliser toocopy hello contenu tooa privé local ou compte de stockage.
+Vous pouvez obtenir un URI de signature d’accès partagé en lecture seule pour le disque géré et l’utiliser pour copier le contenu vers un compte de stockage privé ou un espace de stockage local.
 
 **Puis-je créer une copie de mon disque géré ?**
 
-Les clients peuvent prendre un instantané de leurs disques gérés, puis utilisez hello instantané toocreate à un autre disque géré.
+Les clients peuvent prendre une capture instantanée de leurs disques gérés, qu’ils utilisent pour créer un autre disque géré.
 
 **Les disques non gérés sont-ils encore pris en charge ?**
 
-Oui. Nous prenons à la fois en charge les disques gérés et non gérés. Nous vous recommandons d’utiliser des disques gérés pour les nouvelles charges de travail et de migrer vos disques toomanaged de charges de travail en cours.
+Oui. Nous prenons à la fois en charge les disques gérés et non gérés. Nous vous recommandons d’utiliser des disques gérés pour les nouvelles charges de travail et de migrer vos charges de travail en cours vers des disques gérés.
 
 
-**Si vous créez un disque de 128 Go et augmentez hello taille too130 Go, sera être facturé pour la taille du disque suivant hello (512 Go) ?**
+**Si je crée un disque de 128 Go, et que j’augmente la taille à 130 Go, serai-je facturé en fonction de la taille supérieure de disque (512 Go) ?**
 
 Oui.
 
@@ -101,13 +101,51 @@ Actuellement, Azure Managed Disks prend uniquement en charge les disques gérés
 
 Non. Cette fonctionnalité n’est pas prise en charge pour l’instant. 
 
-**Puis-je modifier propriété de nom d’ordinateur hello lorsque spécialisé (Impossible de créer en utilisant l’outil de préparation système hello ou généralisé) d’exploitation du disque du système est utilisée tooprovision une machine virtuelle ?**
+**Puis-je résilier un bail sur mon disque ?**
 
-Non. Vous ne pouvez pas mettre à jour propriété de nom d’ordinateur hello. Hello nouvelle machine virtuelle hérite du parent de hello machine virtuelle, ce qui était le disque de système d’exploitation utilisé toocreate hello. 
+Non. Cela n’est pas possible actuellement car un bail est présent pour empêcher une suppression accidentelle lorsque le disque est utilisé.
 
-**Où puis-je trouver exemple Azure Resource Manager modèles toocreate machines virtuelles avec des disques gérés ?**
+**Puis-je modifier la propriété de nom d’ordinateur lorsqu’un disque du système d’exploitation spécialisé (n’ayant pas été créé via l’outil de préparation système ou généralisé) est utilisé pour configurer une machine virtuelle ?**
+
+Non. Vous ne pouvez pas mettre à jour la propriété de nom d’ordinateur. La nouvelle machine virtuelle a hérité cette particularité de la machine virtuelle parente qui a été utilisée pour créer le disque de système d’exploitation. 
+
+**Où trouver des exemples de modèles Azure Resource Manager pour créer des machines virtuelles avec des disques gérés ?**
 * [Liste de modèles utilisant des disques gérés](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)
 * https://github.com/chagarw/MDPP
+
+## <a name="migrate-to-managed-disks"></a>Migrer vers Managed Disks 
+
+**Quelles sont les modifications nécessaires dans une configuration de service Sauvegarde Azure préexistante avant/après la migration vers Managed Disks ?**
+
+Aucune modification n’est nécessaire. 
+
+**Mes sauvegardes de machines virtuelles créées par le biais du service Sauvegarde Azure avant la migration continueront-elles à fonctionner ?**
+
+Oui, les sauvegardes fonctionnent de manière transparente.
+
+**Quelles sont les modifications nécessaires dans une configuration Azure Disk Encryption préexistante avant/après la migration vers Managed Disks ?**
+
+Aucune modification n’est nécessaire. 
+
+**La migration automatisée d’un groupe de machines virtuelles identiques existant à partir de disques non managés vers Managed Disks est-elle prise en charge ?**
+
+Non. Vous pouvez créer un groupe de machines virtuelles identiques à l’aide de l’image de votre ancien groupe de machines virtuelles identiques avec des disques non managés. 
+
+**Puis-je créer un disque managé à partir d’un instantané d’objet blob de pages antérieur à la migration vers Managed Disks ?**
+
+Non. Vous pouvez exporter un instantané d’objet blob de pages en tant qu’objet blob de pages, puis créer un disque managé à partir de l’objet blob de pages exporté. 
+
+**Puis-je basculer mes machines locales protégées par Azure Site Recovery vers une machine virtuelle avec Managed Disks ?**
+
+Oui, vous pouvez choisir de basculer vers une machine virtuelle avec Managed Disks.
+
+**La migration impacte-t-elle les machines virtuelles Azure protégées par Azure Site Recovery (ASR) par le biais de la réplication Azure vers Azure ?**
+
+Oui. La protection Azure vers Azure ASR n’est pas prise en charge pour les machines virtuelles avec Managed Disks. Elle sera prise en charge à la fin du 1er trimestre 2018. 
+
+**Puis-je convertir des machines virtuelles avec des disques non managés résidant sur des comptes de stockage qui sont ou ont été chiffrés sur des disques managés ?**
+
+Oui
 
 ## <a name="managed-disks-and-storage-service-encryption"></a>Managed Disks et Storage Service Encryption 
 
@@ -115,9 +153,9 @@ Non. Vous ne pouvez pas mettre à jour propriété de nom d’ordinateur hello. 
 
 Oui.
 
-**Qui gère les clés de chiffrement hello ?**
+**Qui gère les clés de chiffrement ?**
 
-Microsoft gère les clés de chiffrement hello.
+Microsoft gère les clés de chiffrement.
 
 **Puis-je désactiver Storage Service Encryption pour mes disques gérés ?**
 
@@ -125,30 +163,30 @@ Non.
 
 **Storage Service Encryption est-il disponible dans toutes les régions ?**
 
-Non. Il est disponible dans toutes les régions hello où disques gérés est disponible. Managed Disks est disponible dans toutes les zones publiques et en Allemagne.
+Non. Il est disponible dans toutes les régions où Managed Disks est disponible. Managed Disks est disponible dans toutes les zones publiques et en Allemagne.
 
 **Comment puis-je savoir si mon disque géré est chiffré ?**
 
-Vous pouvez trouver des temps hello quand un disque géré a été créé à partir de hello portail Azure, hello CLI d’Azure et PowerShell. Si hello est après le 9 juin 2017, votre disque est chiffré. 
+Vous pouvez déterminer l’heure de création d’un disque géré depuis le portail Azure, Azure CLI et PowerShell. S’il a été créé après le 9 juin 2017, votre disque est chiffré. 
 
 **Comment puis-je chiffrer mes disques existants qui ont été créés avant le 10 juin 2017 ?**
 
-À compter du 10 juin 2017, nouvelles données écrites tooexisting géré disques sont automatiquement chiffrées. Nous avons également l’intention tooencrypt les données existantes, et le chiffrement hello aura lieu de façon asynchrone en arrière-plan de hello. Si vous devez chiffrer des données existantes maintenant, créez une copie de votre disque. Les nouveaux disques seront chiffrés.
+À compter du 10 juin 2017, les nouvelles données écrites sur des disques gérés existants sont chiffrées automatiquement. Nous avons également l’intention de chiffrer les données existantes, et le chiffrement aura lieu de manière asynchrone en arrière-plan. Si vous devez chiffrer des données existantes maintenant, créez une copie de votre disque. Les nouveaux disques seront chiffrés.
 
-* [Copier les disques gérés à l’aide de hello CLI d’Azure](../articles/virtual-machines/scripts/virtual-machines-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
+* [Copier les disques gérés à l’aide de l’interface Azure CLI](../articles/virtual-machines/scripts/virtual-machines-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
 * [Copier les disques gérés à l’aide de PowerShell](../articles/virtual-machines/scripts/virtual-machines-windows-powershell-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
 
 **Les instantanés et les images gérés sont-ils chiffrés ?**
 
 Oui. Tous les instantanés et les images gérés créés après le 9 juin 2017 sont automatiquement chiffrés. 
 
-**Puis-je convertir des machines virtuelles avec des disques non managés qui sont trouvent sur des comptes de stockage qui sont ou ont été précédemment chiffrée toomanaged disques ?**
+**Puis-je convertir des machines virtuelles avec des disques non gérés situés sur des comptes de stockage qui sont ou ont été chiffrés sur des disques gérés ?**
 
 Oui
 
 **Un disque dur virtuel exporté à partir d’un disque géré ou un instantané seront-ils également chiffrés ?**
 
-Non. Mais si vous exportez un tooan de disque dur virtuel chiffrée compte de stockage d’un disque géré chiffrée ou d’instantané, puis il est chiffré. 
+Non. Mais si vous exportez un disque dur virtuel vers un compte de stockage chiffré depuis un disque géré chiffré ou un instantané, il sera chiffré. 
 
 ## <a name="premium-disks-managed-and-unmanaged"></a>Disques Premium : gérés et non gérés
 
@@ -156,43 +194,43 @@ Non. Mais si vous exportez un tooan de disque dur virtuel chiffrée compte de st
 
 Oui.
 
-**Puis-je attacher premium et la série de taille de tooa de disques de données standard ne prend pas en charge le stockage Premium, série D, Dv2, G ou F ?**
+**Puis-je joindre des disques de données Standard et Premium à une taille qui ne prend pas en charge le stockage Premium, comme D, Dv2, G ou F ?**
 
-Non. Vous pouvez joindre uniquement les tooVMs de disques de données standard qui n’utilisent pas une série de taille qui prend en charge le stockage Premium.
+Non. Vous ne pouvez joindre que des disques de données Standard aux machines virtuelles n’utilisant pas une gamme de taille qui prend en charge Stockage Premium.
 
 **Si je crée un disque de données Premium à partir d’un disque dur virtuel existant de 80 Go, combien cela me coûte-t-il ?**
 
-Un disque de données premium créé à partir d’un disque dur virtuel de 80 Go est traité comme la taille du disque hello premium disponible suivant, qui est un disque P10. Vous êtes facturé en fonction toohello P10 disque tarification.
+Un disque de données Premium créé à partir d’un disque dur virtuel de 80 Go est considéré comme un disque standard de taille directement supérieure. Dans notre cas, il s’agit du disque P10. Vous êtes facturé en fonction de la tarification de disque P10.
 
-**Existe-t-il des coûts de transaction toouse stockage Premium ?**
+**L’utilisation du stockage Premium occasionne-t-elle des coûts de transaction ?**
 
-Il existe un coût fixe pour chaque taille de disque. Il s’ajoute aux limites spécifiques d’E/S par seconde et de débit. Hello autres coûts sont la bande passante sortante et la capacité d’instantané, le cas échéant. Pour plus d’informations, consultez hello [page de tarification](https://azure.microsoft.com/pricing/details/storage).
+Il existe un coût fixe pour chaque taille de disque. Il s’ajoute aux limites spécifiques d’E/S par seconde et de débit. Les seuls autres coûts sont liés à la bande passante sortante et à la capacité de captures instantanées, le cas échéant. Pour plus d’informations, consultez la [page relative aux prix appliqués](https://azure.microsoft.com/pricing/details/storage).
 
-**Quelles sont les limites de hello pour e/s et un débit puis-je obtenir à partir du cache de disque hello ?**
+**Quelles sont les limites d’E/S par seconde et de débit associées à la mise en cache sur disque ?**
 
-Hello combiné des limites pour le cache disque SSD local pour une série DS 4 000 IOPS par cœur et et 33 Mo par seconde par cœur. Hello série GS offre 5 000 IOPS par cœur et 50 Mo par seconde par cœur.
+Les limites combinées pour le cache et le disque SSD local d’une machine de la série DS sont de 4 000 E/S par cœur et de 33 Mo par seconde par cœur. La série GS offre 5 000 E/S par seconde par cœur et 50 Mo par seconde par cœur.
 
-**Est hello que SSD local pris en charge pour une machine virtuelle de disques gérés ?**
+**Le disque local SSD est-il pris en charge pour les machines virtuelles Managed Disks ?**
 
-Hello SSD local correspond au stockage temporaire qui est inclus dans une machine virtuelle de disques gérés. Ce stockage temporaire n’occasionne aucun frais supplémentaire. Nous vous recommandons de ne pas utiliser cette toostore SSD local vos données d’application, car il n’est pas rendu persistant dans le stockage d’objets Blob Azure.
+Le disque local SSD est un stockage temporaire inclus avec une machine virtuelle Managed Disks. Ce stockage temporaire n’occasionne aucun frais supplémentaire. Nous vous déconseillons d’utiliser ce disque SSD local pour stocker les données de vos applications, car il n’est pas rendu persistant dans le stockage d’objets Blob Azure.
 
-**Sont des répercussions sur hello utilisez de découpage sur des disques premium ?**
+**L’utilisation de la fonction TRIM sur les disques Premium a-t-elle des répercussions ?**
 
-Il n’est pas inconvénient toohello de découpage sur disques Azure sur soit premium ou standard.
+Il n’existe aucun inconvénient à l’utilisation de TRIM sur des disques Azure Premium ou Standard.
 
 ## <a name="new-disk-sizes-managed-and-unmanaged"></a>Nouvelles tailles de disque : gérés et non-gérés
 
-**Quelle est la plus grande taille de disque hello pris en charge pour le système d’exploitation et des disques de données ?**
+**Quelle est la plus grande taille de disque prise en charge pour le système d’exploitation et les disques de données ?**
 
-type de partition de Hello Azure prend en charge pour un disque de système d’exploitation est hello MBR master boot record (). Hello MBR prend en charge une taille de disque jusqu'à too2 to. Hello plus grande taille que Azure prend en charge pour un disque de système d’exploitation est de 2 To. Azure prend en charge jusqu'à to too4 pour les disques de données. 
+Le type de partition pris en charge par Azure pour un disque de système d’exploitation est l’enregistrement de démarrage principal (MBR). Le format MBR prend en charge un disque dont la taille peut atteindre 2 To. La plus grande taille prise en charge par Azure pour un disque de système d’exploitation est de 2 To. Azure prend en charge jusqu’à 4 To pour les disques de données. 
 
-**Qu’est hello plus grand blob taille de page qui est pris en charge ?**
+**Quelle est la plus grande taille d’objet blob de page prise en charge ?**
 
-Hello plus grand blob taille de page Azure prend en charge est de 8 To (8 191 Go). Nous ne prennent en charge les objets BLOB de pages plus de 4 To (4 095 Go) attaché tooa machine virtuelle en tant que données ou disques du système d’exploitation.
+La plus grande taille de blob de page prise en charge par Azure est de 8 To (8 191 Go). Nous ne prenons pas en charge les objets blob de pages supérieurs à 4 To (4 095 Go) joints à une machine virtuelle en tant que disques de données ou de système d’exploitation.
 
-**Ai-je besoin toouse une nouvelle version de Windows Azure tools toocreate, attacher, redimensionner et télécharger des disques de taille supérieures à 1 to ?**
+**Dois-je utiliser une nouvelle version des outils Azure pour créer, joindre, redimensionner et télécharger des disques de taille supérieure à 1 To ?**
 
-Vous n’avez pas besoin tooupgrade votre toocreate outils Azure existant, attacher ou redimensionner des disques de taille supérieures à 1 To. tooupload de fichiers à partir de votre disque dur virtuel local directement tooAzure comme un objet blob de pages ou d’un disque non managé, vous devez toouse ensembles hello plus récente de l’outil :
+Vous n’avez pas besoin de mettre à niveau votre version des outils Azure pour créer, joindre ou redimensionner des disques de taille supérieure à 1 To. Pour télécharger votre fichier de disque dur virtuel en local directement vers Azure en tant qu’objet blob de pages ou disque non géré, vous devez utiliser l’ensemble d’outils le plus récent :
 
 |Outils Azure      | Versions prises en charge                                |
 |-----------------|---------------------------------------------------|
@@ -200,23 +238,23 @@ Vous n’avez pas besoin tooupgrade votre toocreate outils Azure existant, attac
 |Azure CLI v1     | Numéro de version 0.10.13 : version de mai 2017 ou version ultérieure|
 |AzCopy           | Numéro de version 6.1.0 : version de juin 2017 ou version ultérieure|
 
-prise en charge Hello v2 de CLI d’Azure et d’Azure Storage Explorer sera bientôt disponible. 
+La prise en charge d’Azure CLI v2 et l’explorateur de stockage Microsoft Azure sera bientôt disponible. 
 
 **Les tailles de disque P4 et P6 sont-elles prises en charge pour les disques non gérés ou les objets blob de pages ?**
 
 Non. Les tailles de disque P4 (32 Go) et P6 (64 Go) sont prises en charge uniquement pour les disques gérés. La prise en charge des disques non gérés et des objets BLOB de page sera bientôt disponible.
 
-**Si mon premium existant géré disque moins de 64 Go a été créé avant l’activation de disque hello (environ 15 juin 2017), comment est elle facturée ?**
+**Si mon disque géré Premium de moins de 64 Go a été créé avant l’activation du petit disque (aux environs du 15 juin 2017), comment est-il facturé ?**
 
-Les disques premium petit existants inférieure à 64 Go continuer toobe facturé en fonction toohello P10 avec la tarification. 
+Les disques Premium de petite taille de moins de 64 Go continuent à être facturés selon le niveau de tarification P10. 
 
-**Comment puis-je changer de niveau de disque hello des disques premium petit inférieur à 64 Go à partir de P10 tooP4 ou P6 ?**
+**Comment puis-je changer la couche de disque de petits disques Premium inférieurs à 64 Go de P10 à P4 ou P6 ?**
 
-Vous pouvez prendre un instantané de vos disques de petite et créez ensuite un Bonjour de commutateur tooautomatically disque tooP4 de niveau de tarification ou P6 en fonction de la taille de hello configuré. 
+Vous pouvez prendre un instantané de vos disques de petite taille et ensuite créer un disque pour changer automatiquement le niveau de tarification vers P4 ou P6 selon la taille fournie. 
 
 
 ## <a name="what-if-my-question-isnt-answered-here"></a>Que dois-je faire si je n’ai pas trouvé de réponse à ma question ici ?
 
-Si votre question n’est pas répertoriée ici, faites-le-nous savoir et nous vous aiderons à trouver une réponse. Vous pouvez poser une question à fin hello de cet article dans les commentaires de hello. tooengage avec l’équipe du stockage Azure hello et autres membres de la Communauté sur cet article, utilisez hello MSDN [forum Azure Storage](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata).
+Si votre question n’est pas répertoriée ici, faites-le-nous savoir et nous vous aiderons à trouver une réponse. Vous pouvez poser une question à la fin de cet article dans les commentaires. Pour prendre contact avec l’équipe de stockage Azure et d’autres membres de la Communauté sur cet article, consultez le [forum MSDN sur le stockage Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata).
 
-toorequest fonctionnalités, envoyez votre toohello demandes et idées [forum de commentaires de stockage Azure](https://feedback.azure.com/forums/217298-storage).
+Pour soumettre une demande de fonctionnalité, transmettez vos questions et vos idées sur le [forum dédié aux commentaires sur le stockage Azure](https://feedback.azure.com/forums/217298-storage).

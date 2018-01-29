@@ -1,11 +1,11 @@
-Créer un groupe de ressources avec hello [création de groupe de az](/cli/azure/group#create) commande.
+Dans Cloud Shell, créez un groupe de ressources avec la commande [az group create](/cli/azure/group?view=azure-cli-latest#az_group_create).
 
 [!INCLUDE [resource group intro text](resource-group.md)]
 
-Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *westeurope* emplacement.
+L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *Europe de l’Ouest*. Pour afficher tous les emplacements pris en charge pour App Service, exécutez la commande `az appservice list-locations`.
 
 ```azurecli-interactive
-az group create --name myResourceGroup --location westeurope
+az group create --name myResourceGroup --location "West Europe"
 ```
 
-Vous créez généralement votre ressource hello et groupe de ressources dans une région de près de chez vous. emplacements toosee tous pris en charge pour les applications Web Azure, exécutez hello `az appservice list-locations` commande. 
+Vous créez généralement votre groupe de ressources et les ressources dans une région proche de chez vous. 
