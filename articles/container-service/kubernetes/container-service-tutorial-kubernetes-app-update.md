@@ -10,10 +10,10 @@ ms.date: 09/14/2017
 ms.author: nepeters
 ms.custom: mvc
 ms.openlocfilehash: 5ecaa3a79270e29ac002e91065f7df4f7e8914e7
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
-ms.translationtype: HT
+ms.sourcegitcommit: 694e40a193980dea1e2f945471071f11030d5641
+ms.translationtype: MTE
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="update-an-application-in-kubernetes"></a>Mettre à jour une application dans Kubernetes
 
@@ -156,7 +156,7 @@ Accédez à l’adresse IP pour voir l’application mise à jour.
 
 ![Image du cluster Kubernetes sur Azure](media/container-service-kubernetes-tutorials/vote-app-updated-external.png)
 
-## <a name="next-steps"></a>Étapes suivantes
+## <a name="next-steps"></a>étapes suivantes
 
 Dans ce didacticiel, nous avons mis à jour une application et nous avons déployé cette mise à jour sur un cluster Kubernetes. Les tâches suivantes ont été accomplies :
 

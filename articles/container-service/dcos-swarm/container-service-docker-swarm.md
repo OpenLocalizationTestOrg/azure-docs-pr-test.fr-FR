@@ -10,10 +10,10 @@ ms.date: 09/13/2016
 ms.author: rogardle
 ms.custom: mvc
 ms.openlocfilehash: 3f8d18bc053bc303ab124ba38c8621d4ee2e8cb8
-ms.sourcegitcommit: 5d3e99478a5f26e92d1e7f3cec6b0ff5fbd7cedf
-ms.translationtype: HT
+ms.sourcegitcommit: 694e40a193980dea1e2f945471071f11030d5641
+ms.translationtype: MTE
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/06/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="container-management-with-docker-swarm"></a>Gestion des conteneurs avec Docker Swarm
 
@@ -109,6 +109,6 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 
 Naturellement, vous pouvez utiliser `docker-compose ps` pour examiner uniquement les conteneurs définis dans votre fichier `compose.yml`.
 
-## <a name="next-steps"></a>Étapes suivantes
+## <a name="next-steps"></a>étapes suivantes
 [Approfondissez vos connaissances sur Docker Swarm](https://docs.docker.com/swarm/)
 
