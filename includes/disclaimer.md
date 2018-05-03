@@ -1,2 +1,2 @@
-toouse cette fonctionnalité et autres nouvelles fonctionnalités de Azure, inscrivez-vous hello [l’aperçu gratuit](https://account.windowsazure.com/PreviewFeatures).
+Pour utiliser cette fonctionnalité et d’autres fonctionnalités Azure inédites, inscrivez-vous à l’ [aperçu gratuit](https://account.windowsazure.com/PreviewFeatures).
 

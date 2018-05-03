@@ -1,39 +1,39 @@
 <!--author=alkohli last changed: 9/17/15-->
 
-#### <a name="toocomplete-hello-minimum-storsimple-device-setup"></a>installation du périphérique StorSimple minimale toocomplete hello
-1. Bonjour **périphériques** page, l’appareil de hello sélectionnez, cliquez sur la flèche vers hello par rapport à la page de hello appareil nom toogo toohello périphérique spécifique. 
+#### <a name="to-complete-the-minimum-storsimple-device-setup"></a>Pour mener à bien la configuration minimale d’un appareil StorSimple
+1. Dans la page **Appareils** , sélectionnez l’appareil, cliquez sur la flèche en regard du nom de l’appareil pour accéder à la page d’appareil spécifique. 
    
     ![Page Appareils avec le périphérique en ligne](./media/storsimple-complete-minimum-device-setup/HCS_DevicesPageM-include.png) 
-2. Cliquez sur icône de démarrage rapide ![icône de démarrage rapide](./media/storsimple-complete-minimum-device-setup/HCS_QuickStartIcon-include.png) tooaccess hello page démarrage rapide du périphérique. Cliquez sur **terminer l’installation de l’appareil** toostart hello **configurer le périphérique** Assistant.
+2. Cliquez sur l’icône Démarrage rapide ![Icône Quick Start](./media/storsimple-complete-minimum-device-setup/HCS_QuickStartIcon-include.png) pour accéder à la page de démarrage rapide de l’appareil. Cliquez sur **Terminer la configuration de l’appareil** pour démarrer l’Assistant **Configurer l’appareil**.
    
     ![Page de démarrage rapide de l'appareil](./media/storsimple-complete-minimum-device-setup/Device_Quick_Start_page_1M.png)
-3. Sur hello **les paramètres de base** page, procédez comme hello suivant :
+3. Dans la page **Paramètres de base** , procédez comme suit :
    
-   1. Entrez un **Nom convivial** pour votre appareil. nom de périphérique par défaut Hello reflète les informations telles que le modèle d’appareil hello et numéro de série. Vous pouvez affecter un nom convivial des too64 caractères toomanage votre appareil.
-   2. Ensemble hello **fuseau horaire** basés sur l’emplacement géographique de hello dans le hello appareil est en cours de déploiement. Votre appareil utilise ce fuseau horaire pour toutes les opérations planifiées.
-   3. Sous **Paramètres DNS**, entrez une adresse pour votre **Serveur DNS secondaire**. Si vous utilisez IPv6, champ de hello est rempli en fonction de hello du préfixe IPv6 indiqué dans l’interface Windows PowerShell hello. 
-      Si le serveur DNS secondaire de hello n’est pas configuré, vous ne serez pas autorisé toosave votre configuration de l’appareil.
-   4. Sous les interfaces iSCSI activées, activez au moins un réseau pour le protocole iSCSI. Au moins une interface réseau doit toobe activé pour le cloud et une interface toobe compatible iSCSI. Le réseau DATA 0 est automatiquement activé pour le cloud.
+   1. Entrez un **Nom convivial** pour votre appareil. Le nom de l’appareil par défaut reflète des informations telles que le modèle de l’appareil et son numéro de série. Vous pouvez attribuer un nom convivial allant jusqu'à 64 caractères pour gérer l’appareil.
+   2. Définissez le **fuseau horaire** en fonction de l'emplacement géographique de l’appareil déployé. Votre appareil utilise ce fuseau horaire pour toutes les opérations planifiées.
+   3. Sous **Paramètres DNS**, entrez une adresse pour votre **Serveur DNS secondaire**. Si vous utilisez le protocole IPv6, le champ est renseigné en fonction du préfixe IPv6 fourni dans l'interface Windows PowerShell. 
+      Si le serveur DNS secondaire n'est pas configuré, vous ne pouvez pas enregistrer la configuration de votre appareil.
+   4. Sous les interfaces iSCSI activées, activez au moins un réseau pour le protocole iSCSI. Vous devez activer au moins une interface réseau pour le cloud et posséder au moins une interface compatible avec le protocole iSCSI. Le réseau DATA 0 est automatiquement activé pour le cloud.
       
       ![Paramètres de base de la configuration minimale de l'appareil StorSimple](./media/storsimple-complete-minimum-device-setup/HCS_MinDeviceSetupBasicSettings1-include.png)
-4. Cliquez sur icône de flèche hello. ![Icône en forme de flèche StorSimple](./media/storsimple-complete-minimum-device-setup/HCS_ArrowIcon-include.png)
-5. Sur hello **Interfaces réseau** , fournissez hello fixe des adresses IP pour le contrôleur 0 et 1. Si hello DATA 0, l’interface a été configurée pour IPv4, hello fixe IP adresses besoin toobe prévue hello format IPv4. Si vous avez indiqué un préfixe pour la configuration IPv6, adresses IP fixé de hello contiendra automatiquement dans ces champs.
+4. Cliquez sur l’icône en forme de flèche. ![Icône en forme de flèche StorSimple](./media/storsimple-complete-minimum-device-setup/HCS_ArrowIcon-include.png)
+5. Dans la page **Interfaces réseau** , entrez les adresses IP fixes pour les contrôleurs 0 et 1. Si l’interface du réseau DATA 0 est configurée pour le protocole IPv4, les adresses IP fixes doivent être fournies au format IPv4. Si vous avez fourni un préfixe pour la configuration du protocole IPv6, ces champs sont automatiquement remplis par des adresses IP fixes.
 
     > [!NOTE] 
-    > - les adresses IP fixé des contrôleurs de Hello besoin toobe libre des adresses IP de sous-réseau hello accessible par l’adresse IP du périphérique hello.
-    > - Hello fixe d’adresses IP pour le contrôleur de hello sont utilisées pour traiter les périphériques de toohello hello mises à jour, et par conséquent hello adresses IP fixé doit être routables et capables de tooconnect toohello Internet.
+    > - Les adresses IP fixes des contrôleurs doivent être disponibles au sein du sous-réseau accessible par l'adresse IP de l’appareil.
+    > - Les adresses IP fixes du contrôleur sont utilisées pour traiter les mises à jour de l’appareil. Par conséquent, les adresses IP fixes doivent pouvoir être acheminées et capables de se connecter à Internet.
 
     ![Interfaces réseau de la configuration minimale d’un appareil StorSimple](./media/storsimple-complete-minimum-device-setup/HCS_MinDeviceSetupNetworkInterfaces2-include.png)
 
-1. Cliquez sur une icône de coche hello ![StorSimple coche](./media/storsimple-complete-minimum-device-setup/HCS_CheckIcon-include.png).
-   Vous revenez toohello périphérique **Quick Start** page.
+1. Cliquez ensuite sur l'icône en forme de coche ![Icône en forme de coche StorSimple](./media/storsimple-complete-minimum-device-setup/HCS_CheckIcon-include.png).
+   Vous revenez à la page **Démarrage rapide** de l'appareil.
    
    > [!NOTE]
-   > Vous pouvez modifier hello tous les autres paramètres de l’appareil à tout moment en accédant à hello **configurer** page.
+   > Vous pouvez modifier tous les autres paramètres de l’appareil à tout moment en accédant à la page **Configurer** de l'appareil.
    > 
    > 
 
 ![Vidéo disponible](./media/storsimple-complete-minimum-device-setup/Video_icon.png)**Vidéo disponible**
 
-toowatch une vidéo qui montre comment toocomplete hello d’installation minimale de l’appareil, cliquez sur [ici](https://azure.microsoft.com/documentation/videos/minimum-storsimple-device-setup/).
+Pour visionner une vidéo qui montre comment effectuer l’installation minimale de l’appareil, cliquez [ici](https://azure.microsoft.com/documentation/videos/minimum-storsimple-device-setup/).
 

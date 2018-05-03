@@ -1,27 +1,27 @@
-Suivez ces étapes tooinstall et exécutez MongoDB sur une machine virtuelle exécutant Windows Server.
+Suivez cette procédure pour installer et exécuter MongoDB sur une machine virtuelle exécutant Windows Server.
 
 > [!IMPORTANT]
-> Les fonctionnalités de sécurité MongoDB, comme l’authentification et la liaison d’adresse IP, ne sont pas activées par défaut. Les fonctionnalités de sécurité doivent être activées avant de déployer l’environnement de production tooa MongoDB.  Pour en savoir plus, consultez la page [Sécurité et authentification](http://www.mongodb.org/display/DOCS/Security+and+Authentication).
+> Les fonctionnalités de sécurité MongoDB, comme l’authentification et la liaison d’adresse IP, ne sont pas activées par défaut. Elles doivent être activées avant le déploiement de MongoDB dans un environnement de production.  Pour en savoir plus, consultez la page [Sécurité et authentification](http://www.mongodb.org/display/DOCS/Security+and+Authentication).
 >
 >
 
-1. Une fois que vous vous êtes connecté l’ordinateur virtuel de toohello à l’aide du Bureau à distance, ouvrez Internet Explorer à partir de hello **Démarrer** menu sur l’ordinateur virtuel de hello.
-2. Sélectionnez hello **outils** bouton dans le coin supérieur droit de hello.  Dans **Options Internet**, sélectionnez hello **sécurité** onglet et sélectionnez hello **Sites de confiance** icône et enfin cliquez sur hello **Sites** bouton. Ajouter *https://\*. mongodb.org* toohello la liste des sites de confiance.
-3. Accédez trop[téléchargements - MongoDB](https://www.mongodb.com/download-center#community).
-4. Recherche hello **version Stable actuelle** de **serveur de la Communauté**, sélectionnez hello dernières **64 bits** version dans la colonne de Windows hello. Téléchargez, puis exécutez le programme d’installation MSI hello.
-5. MongoDB est généralement installé sur C:\Program Files\MongoDB. Recherchez les Variables d’environnement sur le bureau de hello et ajouter une variable de chemin d’accès du fichiers binaires du chemin d’accès toohello hello MongoDB. Par exemple, vous constaterez les binaires hello à C:\Program Files\MongoDB\Server\3.4\bin sur votre ordinateur.
-6. Créer des répertoires de journaux et de données MongoDB dans le disque de données hello (tel que le lecteur **F:**) vous avez créé dans les étapes précédentes de hello. À partir de **Démarrer**, sélectionnez **invite de commandes** tooopen une fenêtre d’invite de commandes.  Entrez :
+1. Une fois que vous êtes connecté à la machine virtuelle à l’aide du Bureau à distance, ouvrez Internet Explorer à partir du menu **Démarrer** de la machine virtuelle.
+2. Sélectionnez le bouton **Outils** dans le coin supérieur droit.  Dans **Options Internet**, sélectionnez l’onglet **Sécurité**, puis l’icône **Sites de confiance**, et cliquez sur le bouton **Sites**. Ajoutez le site *https://\*.mongodb.org* à la liste des sites de confiance.
+3. Accédez à [Téléchargements - MongoDB](https://www.mongodb.com/download-center#community).
+4. Recherchez la **version stable actuelle** de l’élément **Serveur de la communauté** et sélectionnez la dernière version **64 bits** dans la colonne Windows. Téléchargez et exécutez le programme d’installation MSI.
+5. MongoDB est généralement installé sur C:\Program Files\MongoDB. Recherchez des variables d’environnement sur le bureau et ajoutez le chemin d’accès aux fichiers binaires de MongoDB à la variable PATH. Par exemple, vous trouverez les fichiers binaires dans C:\Program Files\MongoDB\Server\3.4\bin sur votre ordinateur.
+6. Créez les répertoires de données et de journaux MongoDB dans le disque de données (lecteur **F:**, par exemple) créé lors des étapes précédentes. Dans **Démarrer**, sélectionnez **Invite de commandes** pour ouvrir une fenêtre d’invite de commandes.  Tapez :
 
         C:\> F:
         F:\> mkdir \MongoData
         F:\> mkdir \MongoLogs
-7. toorun hello base de données, exécutez :
+7. Pour exécuter la base de données, entrez :
 
         F:\> C:
         C:\> mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log
 
-    Tous les messages du journal sont suggéré toohello *F:\MongoLogs\mongolog.log* mongod.exe serveur démarre et pré-alloue des fichiers journaux de fichiers. Il peut prendre plusieurs minutes MongoDB toopreallocate les fichiers de journal hello et commence à écouter les connexions. invite de commandes Hello reste se concentrent sur cette tâche pendant l’exécution de votre instance de MongoDB.
-8. toostart hello MongoDB interpréteur de commandes d’administration, ouvrez une autre fenêtre de commande à partir de **Démarrer** et hello du type suivant de commandes :
+    Tous les messages du journal sont dirigés vers le fichier *F:\MongoLogs\mongolog.log* lorsque le serveur mongod.exe démarre et préalloue les fichiers journaux. Il se peut que plusieurs minutes soient nécessaires pour que MongaDB préalloue les fichiers journaux et commence à écouter les connexions. L’invite de commandes reste axée sur cette tâche pendant que votre instance MongoDB est en cours d’exécution.
+8. Pour démarrer l’interpréteur de commandes d’administration de MongoDB, ouvrez une autre fenêtre de commande à partir de **Démarrer** et saisissez les commandes suivantes :
 
         C:\> cd \my_mongo_dir\bin  
         C:\my_mongo_dir\bin> mongo  
@@ -36,30 +36,30 @@ Suivez ces étapes tooinstall et exécutez MongoDB sur une machine virtuelle ex�
         ...  
         > help  
 
-    base de données Hello est créé par insert de hello.
+    La base de données est créée par l'insertion.
 9. Vous pouvez également installer mongod.exe en tant que service :
 
         C:\> mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log --logappend  --install
 
-    Un service nommé « MongoDB » est installé et associé à la description « Mongo DB ». Hello `--logpath` option doit être toospecify utilisé un fichier journal, depuis hello service en cours d’exécution n’a aucun une sortie toodisplay de la fenêtre commande.  Hello `--logappend` option spécifie qu’un redémarrage du service de hello, le fichier journal existant de sortie tooappend toohello.  Hello `--dbpath` option spécifie l’emplacement de hello hello du répertoire de données. Pour plus d’informations sur les options de ligne de commande associées au service, consultez la page [Options de ligne de commande associées au service][MongoWindowsSvcOptions].
+    Un service nommé « MongoDB » est installé et associé à la description « Mongo DB ». L’option `--logpath` permet de spécifier un fichier journal puisque le service en cours d’exécution n’a pas de fenêtre de commande pour afficher la sortie.  L’option `--logappend` spécifie qu’au redémarrage du service, la sortie est ajoutée au fichier journal existant.  L’option `--dbpath` spécifie l’emplacement du répertoire de données. Pour plus d’informations sur les options de ligne de commande associées au service, consultez la page [Options de ligne de commande associées au service][MongoWindowsSvcOptions].
 
-    service de hello toostart, exécutez la commande suivante :
+    Pour démarrer le service, exécutez cette commande :
 
         C:\> net start MongoDB
-10. MongoDB est installé et en cours d’exécution, vous devez tooopen un port dans le pare-feu Windows, vous pouvez connecter à distance tooMongoDB.  À partir de hello **Démarrer** menu, sélectionnez **outils d’administration** , puis **pare-feu Windows avec fonctions avancées de sécurité**.
-11. a) dans le volet gauche de hello, sélectionnez **règles de trafic entrant**.  Bonjour **Actions** volet hello à droite, sélectionnez **nouvelle règle...** .
+10. Maintenant que MongoDB est installé et en cours d’exécution, vous devez ouvrir un port dans le Pare-feu Windows pour vous connecter à distance à MongoDB.  Dans le menu **Démarrer**, sélectionnez **Outils d’administration**, puis **Pare-feu Windows avec fonctions avancées de sécurité**.
+11. a) Dans le volet de gauche, sélectionnez **Règles de trafic entrant**.  Dans le volet **Actions** situé à droite, sélectionnez **Nouvelle règle...**.
 
     ![Pare-feu Windows][Image1]
 
-    (b) dans hello **Assistant Nouvelle règle de trafic entrant**, sélectionnez **Port** puis cliquez sur **suivant**.
+    b) Dans l’**Assistant Nouvelle règle de trafic entrant**, sélectionnez **Port**, puis cliquez sur **Suivant**.
 
     ![Pare-feu Windows][Image2]
 
-    c) Sélectionnez **TCP**, puis **Ports locaux spécifiques**.  Spécifiez un port de « 27017 » (port par défaut hello MongoDB écoute) et cliquez sur **suivant**.
+    c) Sélectionnez **TCP**, puis **Ports locaux spécifiques**.  Spécifiez le numéro de port « 27017 » (port par défaut sur lequel MongoDB écoute), puis cliquez sur **Suivant**.
 
     ![Pare-feu Windows][Image3]
 
-    d) sélectionnez **autoriser la connexion hello** et cliquez sur **suivant**.
+    d) Sélectionnez **Autoriser la connexion**, puis cliquez sur **Suivant**.
 
     ![Pare-feu Windows][Image4]
 
@@ -67,24 +67,24 @@ Suivez ces étapes tooinstall et exécutez MongoDB sur une machine virtuelle ex�
 
     ![Pare-feu Windows][Image5]
 
-    f) spécifiez un nom pour la règle de hello, tels que « MongoPort », puis cliquez sur **Terminer**.
+    f) Spécifiez un nom pour la règle, comme « MongoPort », puis cliquez sur **Terminer**.
 
     ![Pare-feu Windows][Image6]
 
-12. Si vous n’avez pas configurer un point de terminaison pour MongoDB lorsque vous avez créé l’ordinateur virtuel de hello, vous pouvez le faire maintenant. Vous devez règle de pare-feu hello et hello point de terminaison toobe tooconnect en mesure de tooMongoDB à distance.
+12. Si vous n’avez configuré aucun point de terminaison pour la base de données MongoDB lors de la création de la machine virtuelle, vous pouvez le faire maintenant. La règle de pare-feu et le point de terminaison sont tous deux nécessaires pour vous connecter à distance à la base de données MongoDB.
 
-  Bonjour portail Azure, cliquez sur **Machines virtuelles (classiques)**, cliquez sur nom hello de votre nouvel ordinateur virtuel, puis cliquez sur **points de terminaison**.
+  Dans le portail Azure, cliquez sur **Machines virtuelles (Classic)**, sur le nom de votre machine virtuelle MySQL, puis sur **Points de terminaison**.
 
     ![Points de terminaison][Image7]
 
-13. Cliquez sur **Add**.
+13. Cliquez sur **Ajouter**.
 
-14. Ajouter un point de terminaison portant le nom « Mongo », protocole **TCP**, alors que les **Public** et **privé** ports jeu trop « 27017 ». L’ouverture de ce port permet de toobe MongoDB accédé à distance.
+14. Ajoutez un point de terminaison avec le nom « Mongo », le protocole **TCP** ainsi que les ports **Public** et **Privé** définis sur « 27017 ». En ouvrant ce port, vous pouvez accéder à distance à MongoDB.
 
     ![Points de terminaison][Image9]
 
 > [!NOTE]
-> le port de Hello 27017 est le port par défaut de hello utilisé par MongoDB. Vous pouvez modifier ce port par défaut en spécifiant hello `--port` paramètre lors du démarrage du serveur de mongod.exe hello. Assurez-vous que toogive hello même numéro de port dans le pare-feu hello et hello du point de terminaison « Mongo » Bonjour précédant les instructions.
+> Le port 27017 est le port par défaut utilisé par MongoDB. Vous pouvez le modifier en spécifiant le paramètre `--port` au démarrage du serveur mongod.exe. Veillez à donner le même numéro de port au pare-feu et au point de terminaison « Mongo » dans les instructions ci-dessus.
 >
 >
 
