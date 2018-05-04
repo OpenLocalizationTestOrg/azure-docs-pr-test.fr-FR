@@ -1,3 +1,0 @@
-### <a name="storage-service-versions"></a>Versions du service de stockage
-services de stockage Azure Hello sont régulièrement mises à jour avec la prise en charge pour les nouvelles fonctionnalités. Hello référence d’API REST Azure Storage services décrit chaque version prise en charge et ses fonctionnalités. Nous vous recommandons d’utiliser la version la plus récente hello autant que possible. Pour plus d’informations sur la version la plus récente des services de stockage Azure hello hello, ainsi que des informations sur les versions antérieures, consultez [contrôle de version pour les Services de stockage Azure de hello](https://msdn.microsoft.com/library/azure/dd894041.aspx).  
-
