@@ -1,7 +1,0 @@
-> [!div class="op_single_selector"]
-> * [<span data-ttu-id="ae58d-101">C avec simulation de télémétrie</span><span class="sxs-lookup"><span data-stu-id="ae58d-101">C with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-simulator.md)
-> * [<span data-ttu-id="ae58d-102">C avec capteur réel</span><span class="sxs-lookup"><span data-stu-id="ae58d-102">C with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-basic.md)
-> * [<span data-ttu-id="ae58d-103">C avec implémentation de la mise à jour du microprogramme</span><span class="sxs-lookup"><span data-stu-id="ae58d-103">C implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-advanced.md)
-> * [<span data-ttu-id="ae58d-104">Node.js avec simulation de télémétrie</span><span class="sxs-lookup"><span data-stu-id="ae58d-104">Node.js with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
-> * [<span data-ttu-id="ae58d-105">Node.js avec capteur réel</span><span class="sxs-lookup"><span data-stu-id="ae58d-105">Node.js with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-basic.md)
-> * [<span data-ttu-id="ae58d-106">Node.js avec implémentation de la mise à jour du microprogramme</span><span class="sxs-lookup"><span data-stu-id="ae58d-106">Node.js implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-advanced.md)
